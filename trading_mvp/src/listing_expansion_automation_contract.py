@@ -14,8 +14,8 @@ from typing import Any, Mapping
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-PLAN_ID = "listing_momentum_expansion_automation_20260826_v4"
-PLAN_RELATIVE_PATH = "docs/plans/listing-momentum-expansion-automation-planonly-20260826-v4.json"
+PLAN_ID = "listing_momentum_expansion_automation_20260827_v5"
+PLAN_RELATIVE_PATH = "docs/plans/listing-momentum-expansion-automation-planonly-20260827-v5.json"
 SCHEMA = "trading_mvp_listing_expansion_automation_planonly_v1"
 VENUES = ("binance", "bybit", "okx", "bitget")
 WRAPPER_ARTIFACTS = {
