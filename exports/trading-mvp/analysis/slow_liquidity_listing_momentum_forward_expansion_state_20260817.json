@@ -14,118 +14,144 @@
       "tick_id": "expansion_tick_20260817T145106Z",
       "status": "COMPLETED",
       "new_listing_count": 0,
-      "rows_written": 0
+      "rows_written": 0,
+      "plan_hash": "b0bb8641e92ff64cbc513f448348a3e113d436a52fbc0338ba95c385c2113d07"
     },
     {
       "tick_id": "expansion_tick_20260817T210405Z",
       "status": "COMPLETED",
       "new_listing_count": 0,
-      "rows_written": 0
+      "rows_written": 0,
+      "plan_hash": "64bf88540d53cf4b9a9f37b38dc80cff3d3f6a8c2fd7ee40251ff2c84f79d516"
     },
     {
       "tick_id": "expansion_tick_20260818T030213Z",
       "status": "COMPLETED",
       "new_listing_count": 0,
-      "rows_written": 0
+      "rows_written": 0,
+      "plan_hash": "64bf88540d53cf4b9a9f37b38dc80cff3d3f6a8c2fd7ee40251ff2c84f79d516"
     },
     {
       "tick_id": "expansion_tick_20260818T090118Z",
       "status": "COMPLETED",
       "new_listing_count": 5,
-      "rows_written": 5
+      "rows_written": 5,
+      "plan_hash": "64bf88540d53cf4b9a9f37b38dc80cff3d3f6a8c2fd7ee40251ff2c84f79d516"
     },
     {
       "tick_id": "expansion_tick_20260818T190103Z",
       "status": "COMPLETED",
       "new_listing_count": 6,
-      "rows_written": 66
+      "rows_written": 66,
+      "plan_hash": "64bf88540d53cf4b9a9f37b38dc80cff3d3f6a8c2fd7ee40251ff2c84f79d516"
     },
     {
       "tick_id": "expansion_tick_20260819T030050Z",
       "status": "COMPLETED",
       "new_listing_count": 6,
-      "rows_written": 114
+      "rows_written": 114,
+      "plan_hash": "64bf88540d53cf4b9a9f37b38dc80cff3d3f6a8c2fd7ee40251ff2c84f79d516"
     },
     {
       "tick_id": "expansion_tick_20260819T110348Z",
       "status": "COMPLETED",
       "new_listing_count": 15,
-      "rows_written": 192
+      "rows_written": 192,
+      "plan_hash": "64bf88540d53cf4b9a9f37b38dc80cff3d3f6a8c2fd7ee40251ff2c84f79d516"
     },
     {
       "tick_id": "expansion_tick_20260819T122654Z",
       "status": "COMPLETED",
       "new_listing_count": 14,
-      "rows_written": 204
+      "rows_written": 204,
+      "plan_hash": "7f70a72527923336ee77b2ce6ff8af684873a48a2b35f7875f2fe63ea169ef8a"
     },
     {
       "tick_id": "expansion_tick_20260819T123901Z",
       "status": "COMPLETED",
       "new_listing_count": 14,
-      "rows_written": 204
+      "rows_written": 204,
+      "plan_hash": "99210d2a96ac4c93059332c62cb1e741e3e3dbd7831908aa6f5b752b054a0bb6"
     },
     {
       "tick_id": "expansion_tick_20260819T184502Z",
       "status": "COMPLETED",
       "new_listing_count": 14,
-      "rows_written": 288
+      "rows_written": 288,
+      "plan_hash": "8bce48b4779dac70e567dc33b04ad561874f452113f17a30c0b14682ea4b2dfa"
     },
     {
       "tick_id": "expansion_tick_20260824T1452253331567Z",
       "status": "COMPLETED",
       "new_listing_count": 32,
-      "rows_written": 2140
+      "rows_written": 2140,
+      "plan_hash": "79628a83ccfd6d912b37d11e3857570eaa7180a45ad13f248894ab7a4a145457"
     },
     {
       "tick_id": "expansion_tick_20260824T2057122433768Z",
       "status": "COMPLETED",
       "new_listing_count": 32,
-      "rows_written": 2152
+      "rows_written": 2152,
+      "plan_hash": "d280f7690c4caabca7dbebf158ec0bb243be4acf323b4cc2f7393df3dc579e08"
     },
     {
       "tick_id": "expansion_tick_20260825T0002147558985Z",
       "status": "COMPLETED",
       "new_listing_count": 32,
-      "rows_written": 2160
+      "rows_written": 2160,
+      "plan_hash": "d280f7690c4caabca7dbebf158ec0bb243be4acf323b4cc2f7393df3dc579e08"
     },
     {
       "tick_id": "expansion_tick_20260825T0307108076024Z",
       "status": "COMPLETED",
       "new_listing_count": 32,
-      "rows_written": 2166
+      "rows_written": 2166,
+      "plan_hash": "d280f7690c4caabca7dbebf158ec0bb243be4acf323b4cc2f7393df3dc579e08"
     },
     {
       "tick_id": "expansion_tick_20260825T0612202612513Z",
       "status": "COMPLETED",
       "new_listing_count": 32,
-      "rows_written": 2172
+      "rows_written": 2172,
+      "plan_hash": "d280f7690c4caabca7dbebf158ec0bb243be4acf323b4cc2f7393df3dc579e08"
     },
     {
       "tick_id": "expansion_tick_20260825T1527158455505Z",
       "status": "COMPLETED",
       "new_listing_count": 33,
-      "rows_written": 2196
+      "rows_written": 2196,
+      "plan_hash": "f682b49195dfd509132df615211260164282ed67896342d677df051d030f6ae5"
     },
     {
       "tick_id": "expansion_tick_20260827T0907306705408Z",
       "status": "COMPLETED",
       "new_listing_count": 50,
-      "rows_written": 2883
+      "rows_written": 2883,
+      "plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046"
     },
     {
       "tick_id": "expansion_tick_20260827T0927564102158Z",
       "status": "COMPLETED",
       "new_listing_count": 50,
-      "rows_written": 2885
+      "rows_written": 2885,
+      "plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046"
     },
     {
       "tick_id": "expansion_tick_20260827T0939066977651Z",
       "status": "COMPLETED",
       "new_listing_count": 50,
-      "rows_written": 2886
+      "rows_written": 2886,
+      "plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046"
+    },
+    {
+      "tick_id": "expansion_tick_20260827T1242552573246Z",
+      "status": "COMPLETED",
+      "new_listing_count": 50,
+      "rows_written": 2936,
+      "plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046"
     }
   ],
-  "tick_count": 19,
+  "tick_count": 20,
   "window_count": 50,
   "complete_window_count": 31,
   "crypto_acceptance_window_count": 4,
@@ -142,13 +168,15 @@
       "window_complete": false,
       "stats": {
         "n_bars": 1,
-        "first_open": 9.46,
+        "first_open": 9.45,
         "ret_72h": null,
         "ret_24h": null,
-        "max_runup": 0.0,
-        "max_drawdown": -0.005285,
-        "base_volume_sum": 2741.0
+        "max_runup": 0.004233,
+        "max_drawdown": -0.001058,
+        "base_volume_sum": 993.0
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
       "asset_class_acceptance_eligible": false
@@ -168,6 +196,8 @@
         "logret_1h_std": 0.05031216,
         "base_volume_sum": 510988779.46
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "crypto_token",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": true
@@ -181,15 +211,17 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 22,
+        "n_bars": 25,
         "first_open": 0.08,
-        "ret_72h": 14.45625,
-        "ret_24h": null,
+        "ret_72h": 14.24,
+        "ret_24h": 13.84125,
         "max_runup": 17.6375,
         "max_drawdown": 0.0,
-        "logret_1h_std": 0.04195531,
-        "base_volume_sum": 1255124.84
+        "logret_1h_std": 0.04060721,
+        "base_volume_sum": 1403962.92
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
       "asset_class_acceptance_eligible": false
@@ -209,6 +241,8 @@
         "logret_1h_std": 0.0789119,
         "base_volume_sum": 223310720.36
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "crypto_token",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": true
@@ -217,20 +251,21 @@
       "exchange": "bitget",
       "base": "PWT",
       "flags": [
-        "short_window",
         "window_in_progress"
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 69,
+        "n_bars": 72,
         "first_open": 0.005,
-        "ret_72h": 106.418,
+        "ret_72h": 106.488,
         "ret_24h": 106.534,
         "max_runup": 140.82,
         "max_drawdown": 0.0,
-        "logret_1h_std": 0.03161821,
-        "base_volume_sum": 23756113.66
+        "logret_1h_std": 0.0309475,
+        "base_volume_sum": 24895994.39
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "crypto_token",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": true
@@ -245,15 +280,17 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 50,
+        "n_bars": 53,
         "first_open": 49.618,
-        "ret_72h": 0.000343,
+        "ret_72h": -0.002479,
         "ret_24h": 0.02483,
         "max_runup": 0.034907,
         "max_drawdown": -0.007114,
-        "logret_1h_std": 0.00497839,
-        "base_volume_sum": 7064650.693854
+        "logret_1h_std": 0.00485211,
+        "base_volume_sum": 7080652.999215
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
       "asset_class_acceptance_eligible": false
@@ -268,15 +305,17 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 37,
+        "n_bars": 40,
         "first_open": 330.685,
-        "ret_72h": -0.06104,
+        "ret_72h": -0.071999,
         "ret_24h": -0.058228,
         "max_runup": 0.0,
-        "max_drawdown": -0.062352,
-        "logret_1h_std": 0.00678912,
-        "base_volume_sum": 4533328.1766
+        "max_drawdown": -0.082202,
+        "logret_1h_std": 0.00750628,
+        "base_volume_sum": 4764452.256461
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
       "asset_class_acceptance_eligible": false
@@ -291,15 +330,17 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 18,
+        "n_bars": 21,
         "first_open": 9.41,
-        "ret_72h": 0.004676,
+        "ret_72h": 0.007545,
         "ret_24h": null,
         "max_runup": 0.023379,
         "max_drawdown": -0.02763,
-        "logret_1h_std": 0.00434554,
-        "base_volume_sum": 3373047.528353
+        "logret_1h_std": 0.00417197,
+        "base_volume_sum": 3400321.136574
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
       "asset_class_acceptance_eligible": false
@@ -314,15 +355,17 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 50,
+        "n_bars": 53,
         "first_open": 180.137,
-        "ret_72h": -0.277855,
+        "ret_72h": -0.281752,
         "ret_24h": -0.30675,
         "max_runup": 0.011314,
         "max_drawdown": -0.331509,
-        "logret_1h_std": 0.02662925,
-        "base_volume_sum": 55836147.790149
+        "logret_1h_std": 0.02587093,
+        "base_volume_sum": 55894209.514345
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
       "asset_class_acceptance_eligible": false
@@ -337,15 +380,17 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 31,
+        "n_bars": 33,
         "first_open": 194.635,
-        "ret_72h": -0.021605,
+        "ret_72h": -0.022144,
         "ret_24h": -0.020885,
         "max_runup": 0.0,
         "max_drawdown": -0.025997,
-        "logret_1h_std": 0.00295493,
-        "base_volume_sum": 1827072.964251
+        "logret_1h_std": 0.00286238,
+        "base_volume_sum": 1827125.499957
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
       "asset_class_acceptance_eligible": false
@@ -360,15 +405,17 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 43,
+        "n_bars": 46,
         "first_open": 13.42,
-        "ret_72h": 0.003726,
+        "ret_72h": 0.005887,
         "ret_24h": -0.026379,
         "max_runup": 0.032787,
         "max_drawdown": -0.039493,
-        "logret_1h_std": 0.01413475,
-        "base_volume_sum": 3499092.990569
+        "logret_1h_std": 0.01373063,
+        "base_volume_sum": 3519194.990569
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
       "asset_class_acceptance_eligible": false
@@ -383,15 +430,17 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 27,
+        "n_bars": 28,
         "first_open": 179.985,
-        "ret_72h": 0.024419,
+        "ret_72h": -0.020563,
         "ret_24h": -0.00964,
         "max_runup": 0.024419,
-        "max_drawdown": -0.025513,
-        "logret_1h_std": 0.00793,
-        "base_volume_sum": 980619.500345
+        "max_drawdown": -0.033308,
+        "logret_1h_std": 0.01384608,
+        "base_volume_sum": 980914.717449
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
       "asset_class_acceptance_eligible": false
@@ -406,15 +455,17 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 28,
+        "n_bars": 30,
         "first_open": 68.511,
-        "ret_72h": 0.003926,
+        "ret_72h": 0.005897,
         "ret_24h": 0.005824,
         "max_runup": 0.00994,
         "max_drawdown": -0.011093,
-        "logret_1h_std": 0.00389306,
-        "base_volume_sum": 3195418.287988
+        "logret_1h_std": 0.00376302,
+        "base_volume_sum": 3195530.903988
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
       "asset_class_acceptance_eligible": false
@@ -429,15 +480,17 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 39,
+        "n_bars": 42,
         "first_open": 114.17,
-        "ret_72h": 0.077674,
+        "ret_72h": 0.079093,
         "ret_24h": 0.042437,
         "max_runup": 0.085215,
         "max_drawdown": -0.004633,
-        "logret_1h_std": 0.00978953,
-        "base_volume_sum": 2872636.270602
+        "logret_1h_std": 0.00944396,
+        "base_volume_sum": 2872596.294961
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
       "asset_class_acceptance_eligible": false
@@ -452,15 +505,17 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 43,
+        "n_bars": 46,
         "first_open": 84.378,
-        "ret_72h": 0.061414,
+        "ret_72h": 0.049977,
         "ret_24h": 0.00749,
         "max_runup": 0.061414,
         "max_drawdown": -0.005902,
-        "logret_1h_std": 0.00646455,
-        "base_volume_sum": 3504736.954847
+        "logret_1h_std": 0.00641501,
+        "base_volume_sum": 3505479.40977
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
       "asset_class_acceptance_eligible": false
@@ -475,15 +530,17 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 20,
+        "n_bars": 23,
         "first_open": 11.65,
-        "ret_72h": 0.052017,
+        "ret_72h": 0.042489,
         "ret_24h": null,
-        "max_runup": 0.054421,
+        "max_runup": 0.055622,
         "max_drawdown": -0.040343,
-        "logret_1h_std": 0.0139776,
-        "base_volume_sum": 17797594.057894
+        "logret_1h_std": 0.01295104,
+        "base_volume_sum": 18317243.60155
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
       "asset_class_acceptance_eligible": false
@@ -498,15 +555,17 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 39,
+        "n_bars": 42,
         "first_open": 118.996,
-        "ret_72h": 0.046128,
+        "ret_72h": 0.048018,
         "ret_24h": 0.047783,
-        "max_runup": 0.055582,
+        "max_runup": 0.062221,
         "max_drawdown": -0.00837,
-        "logret_1h_std": 0.00770075,
-        "base_volume_sum": 640670.322903
+        "logret_1h_std": 0.00804838,
+        "base_volume_sum": 641384.886552
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
       "asset_class_acceptance_eligible": false
@@ -521,15 +580,17 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 49,
+        "n_bars": 52,
         "first_open": 107.176,
-        "ret_72h": 0.19663,
+        "ret_72h": 0.188232,
         "ret_24h": 0.058437,
         "max_runup": 0.213425,
         "max_drawdown": -9e-06,
-        "logret_1h_std": 0.0162259,
-        "base_volume_sum": 6366016.500952
+        "logret_1h_std": 0.01592172,
+        "base_volume_sum": 6383787.868549
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
       "asset_class_acceptance_eligible": false
@@ -544,15 +605,17 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 44,
+        "n_bars": 47,
         "first_open": 538.755,
-        "ret_72h": 0.016241,
+        "ret_72h": 0.013086,
         "ret_24h": -0.004967,
-        "max_runup": 0.018023,
+        "max_runup": 0.018413,
         "max_drawdown": -0.022264,
-        "logret_1h_std": 0.00669173,
-        "base_volume_sum": 1393137.666439
+        "logret_1h_std": 0.00651336,
+        "base_volume_sum": 1395989.655971
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
       "asset_class_acceptance_eligible": false
@@ -568,15 +631,17 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 25,
+        "n_bars": 28,
         "first_open": 109.365,
-        "ret_72h": -0.008184,
+        "ret_72h": -0.01303,
         "ret_24h": -0.008366,
         "max_runup": 0.027961,
         "max_drawdown": -0.018196,
-        "logret_1h_std": 0.00592891,
-        "base_volume_sum": 2746649.87417
+        "logret_1h_std": 0.00566552,
+        "base_volume_sum": 2746686.87417
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
       "asset_class_acceptance_eligible": false
@@ -598,6 +663,8 @@
         "logret_1h_std": 0.05006036,
         "base_volume_sum": 10524847.87
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "crypto_token",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": true
@@ -611,15 +678,17 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 48,
+        "n_bars": 51,
         "first_open": 0.007,
-        "ret_72h": 20.725429,
+        "ret_72h": 20.730857,
         "ret_24h": 23.285714,
         "max_runup": 28.458286,
         "max_drawdown": 0.0,
-        "logret_1h_std": 0.0603759,
-        "base_volume_sum": 98383436.07
+        "logret_1h_std": 0.05880416,
+        "base_volume_sum": 107078495.98
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
       "asset_class_acceptance_eligible": false
@@ -639,6 +708,8 @@
         "logret_1h_std": 0.00749779,
         "base_volume_sum": 218.1918
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -658,6 +729,8 @@
         "logret_1h_std": 0.01563768,
         "base_volume_sum": 932.0484
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -677,6 +750,8 @@
         "logret_1h_std": 0.00369108,
         "base_volume_sum": 86.57236
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -696,6 +771,8 @@
         "logret_1h_std": 0.0087804,
         "base_volume_sum": 20.58913
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -715,6 +792,8 @@
         "logret_1h_std": 0.00589371,
         "base_volume_sum": 38.98783
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -734,6 +813,8 @@
         "logret_1h_std": 0.00875731,
         "base_volume_sum": 145.8442
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -753,6 +834,8 @@
         "logret_1h_std": 0.00499104,
         "base_volume_sum": 154.16258
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -772,6 +855,8 @@
         "logret_1h_std": 0.00777771,
         "base_volume_sum": 234.04308
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -791,6 +876,8 @@
         "logret_1h_std": 0.00468749,
         "base_volume_sum": 96.79246
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -810,6 +897,8 @@
         "logret_1h_std": 0.0046099,
         "base_volume_sum": 13.99406
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -829,6 +918,8 @@
         "logret_1h_std": 0.00593795,
         "base_volume_sum": 26.65095
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -848,6 +939,8 @@
         "logret_1h_std": 0.00287233,
         "base_volume_sum": 454.6733
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -867,6 +960,8 @@
         "logret_1h_std": 0.00834685,
         "base_volume_sum": 47.23398
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -886,6 +981,8 @@
         "logret_1h_std": 0.0090044,
         "base_volume_sum": 48.27387
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -905,6 +1002,8 @@
         "logret_1h_std": 0.00610191,
         "base_volume_sum": 42.54369
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -924,6 +1023,8 @@
         "logret_1h_std": 0.00761133,
         "base_volume_sum": 11240.0315
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -943,6 +1044,8 @@
         "logret_1h_std": 0.0015235,
         "base_volume_sum": 87.43459
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -962,6 +1065,8 @@
         "logret_1h_std": 0.00689485,
         "base_volume_sum": 707.10332
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -981,6 +1086,8 @@
         "logret_1h_std": 0.0076068,
         "base_volume_sum": 2289.9916
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -1000,6 +1107,8 @@
         "logret_1h_std": 0.00273934,
         "base_volume_sum": 7.1465
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -1019,6 +1128,8 @@
         "logret_1h_std": 0.00484185,
         "base_volume_sum": 33.017869
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -1038,6 +1149,8 @@
         "logret_1h_std": 0.0039298,
         "base_volume_sum": 18.7373
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -1057,6 +1170,8 @@
         "logret_1h_std": 0.00139209,
         "base_volume_sum": 836.39986
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -1076,6 +1191,8 @@
         "logret_1h_std": 0.00510394,
         "base_volume_sum": 31.11112
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -1095,6 +1212,8 @@
         "logret_1h_std": 0.00224649,
         "base_volume_sum": 9.90746
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -1114,6 +1233,8 @@
         "logret_1h_std": 0.00631153,
         "base_volume_sum": 48.13603
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -1133,6 +1254,8 @@
         "logret_1h_std": 0.00588878,
         "base_volume_sum": 128022.145
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
@@ -1152,24 +1275,40 @@
         "logret_1h_std": 0.00267444,
         "base_volume_sum": 47.04679
       },
+      "source_tick_id": "expansion_tick_20260827T1242552573246Z",
+      "source_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
       "asset_class": "tokenized_equity",
       "asset_class_source": "declared_spot_asset_registry_v1",
       "asset_class_acceptance_eligible": false
     }
   ],
+  "windows_by_plan_hash": {
+    "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046": {
+      "windows": 50,
+      "complete": 31,
+      "crypto_acceptance": 4
+    }
+  },
+  "current_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
+  "current_plan_window_count": 50,
+  "current_plan_complete_window_count": 31,
+  "current_plan_crypto_acceptance_window_count": 4,
   "cadence_observation": {
     "candidate": true,
     "official_confirmed": true,
     "exact_timestamp": true,
     "source_class": "official",
-    "proxy_timestamp": false
+    "proxy_timestamp": false,
+    "scoped_to_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
+    "job_rows_in_scope": 200,
+    "job_rows_in_store": 467
   },
   "adaptive_cadence": {
     "stage": "CONFIRMED",
     "interval_sec": 3600,
     "reason": "official_event_confirmed_without_near_exact_time",
-    "next_interval_at_utc": "2026-08-27T10:40:11.500241Z",
+    "next_interval_at_utc": "2026-08-27T16:37:47.628681Z",
     "event_eta_utc": null
   },
-  "state_hash": "a5ac74ca8313a7fa0943bf06b7719f97dcbd78297269f6308628facff09a9d40"
+  "state_hash": "923e5ddec71a772461b28ab41b084db3f17c7a0bc9ff302aba4c4a6feca75646"
 }

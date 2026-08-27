@@ -10,7 +10,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
-$defaultPlanPath = Join-Path $repoRoot "docs\plans\slow-liquidity-listing-momentum-forward-expansion-planonly-20260827-v15.json"
+$defaultPlanPath = Join-Path $repoRoot "docs\plans\slow-liquidity-listing-momentum-forward-expansion-planonly-20260827-v16.json"
 if (-not $PlanPath) { $PlanPath = $defaultPlanPath }
 $gateChecker = Join-Path $repoRoot "tools\check_active_run_gate.ps1"
 $monitorPy = Join-Path $repoRoot "trading_mvp\src\slow_liquidity_listing_momentum_forward_expansion_monitor.py"

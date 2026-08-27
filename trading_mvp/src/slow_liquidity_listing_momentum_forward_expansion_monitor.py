@@ -39,13 +39,13 @@ from adaptive_cadence import decide_cadence
 
 
 SCHEMA = "trading_mvp_slow_liquidity_listing_momentum_forward_expansion_monitor_planonly_v3"
-PLAN_ID = "slow_liquidity_listing_momentum_forward_expansion_20260827_v15"
+PLAN_ID = "slow_liquidity_listing_momentum_forward_expansion_20260827_v16"
 AUTOMATION_ID = "zolotyaylopata-listing-momentum-forward-expansion"
 REPO_ROOT = Path(__file__).resolve().parents[2]
 PLAN_PATH = (
     REPO_ROOT
     / "docs/plans"
-    / "slow-liquidity-listing-momentum-forward-expansion-planonly-20260827-v15.json"
+    / "slow-liquidity-listing-momentum-forward-expansion-planonly-20260827-v16.json"
 )
 FORWARD_ROOT = Path("E:/trading_mvp/listing-momentum-forward-expansion")
 TICKS_DIR = FORWARD_ROOT / "ticks"
@@ -824,21 +824,44 @@ def _window_asset_provenance(
 
 
 def rebuild_forward_state() -> dict[str, Any]:
+    # The declared hash of the plan this monitor runs under, read rather than validated.
+    # Attribution is a label, not an authorisation: routing this through load_plan() would
+    # make the rebuild depend on full plan validation, and a validation failure would then
+    # silently label every window as belonging to no generation at all.
+    try:
+        current_plan_hash: str | None = str(
+            json.loads(PLAN_PATH.read_text(encoding="utf-8"))["plan_hash"]
+        )
+    except (OSError, ValueError, KeyError, TypeError):
+        current_plan_hash = None
+
     windows: dict[tuple[str, str], dict[str, Any]] = {}
     ticks: list[dict[str, Any]] = []
     cadence_rows: list[dict[str, Any]] = []
+    cadence_rows_considered = 0
     for tick_dir in _tick_dirs():
         manifest_path = tick_dir / "manifest.json"
         if not manifest_path.is_file():
             continue
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        cadence_rows.extend([row for row in manifest.get("jobs") or [] if isinstance(row, Mapping)])
+        rows = [row for row in manifest.get("jobs") or [] if isinstance(row, Mapping)]
+        cadence_rows_considered += len(rows)
+        # Only the generation being run. A marker left by a retired plan describes a
+        # question that plan was asking, and answering today's cadence with it is how a
+        # scheduler ends up pinned to its tightest interval by ten-day-old evidence.
+        if current_plan_hash is None or manifest.get("plan_hash") == current_plan_hash:
+            cadence_rows.extend(rows)
+        tick_id = manifest.get("tick_id")
+        tick_plan_hash = manifest.get("plan_hash")
         ticks.append(
             {
-                "tick_id": manifest.get("tick_id"),
+                "tick_id": tick_id,
                 "status": manifest.get("status"),
                 "new_listing_count": manifest.get("new_listing_count"),
                 "rows_written": manifest.get("rows_written"),
+                # Which plan authorised this tick. The output root is shared across
+                # generations, so without this the state cannot say what it is a sample of.
+                "plan_hash": tick_plan_hash,
             }
         )
         rows_path = tick_dir / "ohlcv.jsonl"
@@ -870,6 +893,10 @@ def rebuild_forward_state() -> dict[str, Any]:
                 "flags": job_flags.get(key, []),
                 "window_complete": "window_in_progress" not in job_flags.get(key, []),
                 "stats": compute_window_stats(bars),
+                # The last tick to touch a pair replaces it outright rather than merging,
+                # so a window comes from exactly one tick and this attribution is exact.
+                "source_tick_id": tick_id,
+                "source_plan_hash": tick_plan_hash,
                 **asset_provenance,
             }
     ordered_windows = [windows[key] for key in sorted(windows)]
@@ -885,6 +912,10 @@ def rebuild_forward_state() -> dict[str, Any]:
         "exact_timestamp": official and in_progress,
         "source_class": "official" if official and in_progress else "proxy" if cadence_rows else None,
         "proxy_timestamp": not official and bool(cadence_rows),
+        # What the observation was computed over, so a reader does not have to infer it.
+        "scoped_to_plan_hash": current_plan_hash,
+        "job_rows_in_scope": len(cadence_rows),
+        "job_rows_in_store": cadence_rows_considered,
     }
     cadence = decide_cadence(cadence_observation)
     crypto_acceptance_window_count = sum(
@@ -894,6 +925,30 @@ def rebuild_forward_state() -> dict[str, Any]:
         and window["asset_class_source"] == DECLARATION_SOURCE
         and window["asset_class_acceptance_eligible"] is True
     )
+    # Per generation, because a pre-registered minimum counted over a pile of
+    # generations is not the quantity the pre-registration named.
+    windows_by_plan_hash: dict[str, dict[str, int]] = {}
+    for window in ordered_windows:
+        bucket = windows_by_plan_hash.setdefault(
+            str(window.get("source_plan_hash")),
+            {"windows": 0, "complete": 0, "crypto_acceptance": 0},
+        )
+        bucket["windows"] += 1
+        if window["window_complete"]:
+            bucket["complete"] += 1
+        if (
+            window["asset_class"] == ASSET_CLASS_CRYPTO_TOKEN
+            and window["asset_class_source"] == DECLARATION_SOURCE
+            and window["asset_class_acceptance_eligible"] is True
+        ):
+            bucket["crypto_acceptance"] += 1
+
+    current = windows_by_plan_hash.get(current_plan_hash or "") or {
+        "windows": 0,
+        "complete": 0,
+        "crypto_acceptance": 0,
+    }
+
     payload: dict[str, Any] = {
         "schema": "trading_mvp_slow_liquidity_listing_momentum_forward_expansion_state_v1",
         "monitor": PLAN_ID,
@@ -908,6 +963,13 @@ def rebuild_forward_state() -> dict[str, Any]:
         "descriptive_only_window_count": len(ordered_windows)
         - crypto_acceptance_window_count,
         "windows": ordered_windows,
+        # The mixed totals above describe the store; these describe the sample. A minimum
+        # that applies to windows governed by one plan has to be read from the second set.
+        "windows_by_plan_hash": windows_by_plan_hash,
+        "current_plan_hash": current_plan_hash,
+        "current_plan_window_count": current["windows"],
+        "current_plan_complete_window_count": current["complete"],
+        "current_plan_crypto_acceptance_window_count": current["crypto_acceptance"],
         "cadence_observation": cadence_observation,
         "adaptive_cadence": cadence.as_dict(),
     }

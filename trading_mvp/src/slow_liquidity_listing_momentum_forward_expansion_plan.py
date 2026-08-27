@@ -35,10 +35,10 @@ CANONICAL_PRIMARY_SPOT_COMMIT = "b77c27c1b4cc84db2828d4da8049aa251b8a5bef"
 PREVIOUS_EXPANSION_PLAN_PATH = (
     REPO_ROOT
     / "docs/plans"
-    / "slow-liquidity-listing-momentum-forward-expansion-planonly-20260826-v14.json"
+    / "slow-liquidity-listing-momentum-forward-expansion-planonly-20260827-v15.json"
 )
-PREVIOUS_EXPANSION_PLAN_HASH = "611f7b3a80c448d1c6b5f4873d6f209391f273fb98a6f98d9f11a6cea19ed8b3"
-PREVIOUS_EXPANSION_PLAN_FILE_SHA256 = "7d268c1fccb28a989615f59d81b2c183c5faaaa026a0cbad1c37ae90108ab6bb"
+PREVIOUS_EXPANSION_PLAN_HASH = "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046"
+PREVIOUS_EXPANSION_PLAN_FILE_SHA256 = "3c132e8b040102d6ae1e4b9ce5ff41e75b96be1afd186118098c5594a6092d09"
 BATCH1_RECEIPT_PATH = (
     REPO_ROOT
     / "docs/agent-log"
