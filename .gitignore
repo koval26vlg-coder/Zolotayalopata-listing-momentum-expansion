@@ -9,3 +9,7 @@ __pycache__/
 # Archived bookkeeping from a superseded plan: kept on disk as a record of what the
 # previous binding did, not committed, because it is per-machine like the live copy.
 docs/agent-log/run-gates/listing-expansion-automation.superseded-*/
+# Written by every tick and specific to the machine that ran it. The tick outcome
+# that matters is in the terminal attempts ledger, which stays tracked.
+docs/agent-log/global-writer-claim-archive/
+docs/agent-log/run-gates/listing_momentum_forward_expansion.launch.json
