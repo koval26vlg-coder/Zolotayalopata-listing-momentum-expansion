@@ -1,0 +1,1163 @@
+{
+  "schema": "trading_mvp_slow_liquidity_listing_momentum_forward_expansion_state_v1",
+  "monitor": "slow_liquidity_listing_momentum_forward_expansion_20260827_v15",
+  "evidence_class": "PROXY_DATE_FORWARD_ACCRUAL_EXPANSION",
+  "acceptance_decision": "NONE_ACCRUAL_ONLY",
+  "venues": [
+    "binance",
+    "bybit",
+    "okx",
+    "bitget"
+  ],
+  "ticks": [
+    {
+      "tick_id": "expansion_tick_20260817T145106Z",
+      "status": "COMPLETED",
+      "new_listing_count": 0,
+      "rows_written": 0
+    },
+    {
+      "tick_id": "expansion_tick_20260817T210405Z",
+      "status": "COMPLETED",
+      "new_listing_count": 0,
+      "rows_written": 0
+    },
+    {
+      "tick_id": "expansion_tick_20260818T030213Z",
+      "status": "COMPLETED",
+      "new_listing_count": 0,
+      "rows_written": 0
+    },
+    {
+      "tick_id": "expansion_tick_20260818T090118Z",
+      "status": "COMPLETED",
+      "new_listing_count": 5,
+      "rows_written": 5
+    },
+    {
+      "tick_id": "expansion_tick_20260818T190103Z",
+      "status": "COMPLETED",
+      "new_listing_count": 6,
+      "rows_written": 66
+    },
+    {
+      "tick_id": "expansion_tick_20260819T030050Z",
+      "status": "COMPLETED",
+      "new_listing_count": 6,
+      "rows_written": 114
+    },
+    {
+      "tick_id": "expansion_tick_20260819T110348Z",
+      "status": "COMPLETED",
+      "new_listing_count": 15,
+      "rows_written": 192
+    },
+    {
+      "tick_id": "expansion_tick_20260819T122654Z",
+      "status": "COMPLETED",
+      "new_listing_count": 14,
+      "rows_written": 204
+    },
+    {
+      "tick_id": "expansion_tick_20260819T123901Z",
+      "status": "COMPLETED",
+      "new_listing_count": 14,
+      "rows_written": 204
+    },
+    {
+      "tick_id": "expansion_tick_20260819T184502Z",
+      "status": "COMPLETED",
+      "new_listing_count": 14,
+      "rows_written": 288
+    },
+    {
+      "tick_id": "expansion_tick_20260824T1452253331567Z",
+      "status": "COMPLETED",
+      "new_listing_count": 32,
+      "rows_written": 2140
+    },
+    {
+      "tick_id": "expansion_tick_20260824T2057122433768Z",
+      "status": "COMPLETED",
+      "new_listing_count": 32,
+      "rows_written": 2152
+    },
+    {
+      "tick_id": "expansion_tick_20260825T0002147558985Z",
+      "status": "COMPLETED",
+      "new_listing_count": 32,
+      "rows_written": 2160
+    },
+    {
+      "tick_id": "expansion_tick_20260825T0307108076024Z",
+      "status": "COMPLETED",
+      "new_listing_count": 32,
+      "rows_written": 2166
+    },
+    {
+      "tick_id": "expansion_tick_20260825T0612202612513Z",
+      "status": "COMPLETED",
+      "new_listing_count": 32,
+      "rows_written": 2172
+    },
+    {
+      "tick_id": "expansion_tick_20260825T1527158455505Z",
+      "status": "COMPLETED",
+      "new_listing_count": 33,
+      "rows_written": 2196
+    },
+    {
+      "tick_id": "expansion_tick_20260827T0907306705408Z",
+      "status": "COMPLETED",
+      "new_listing_count": 50,
+      "rows_written": 2883
+    }
+  ],
+  "tick_count": 17,
+  "window_count": 50,
+  "complete_window_count": 31,
+  "crypto_acceptance_window_count": 4,
+  "descriptive_only_window_count": 46,
+  "windows": [
+    {
+      "exchange": "binance",
+      "base": "DJTB",
+      "flags": [
+        "proxy_ts_after_first_bar",
+        "short_window",
+        "window_in_progress"
+      ],
+      "window_complete": false,
+      "stats": {
+        "n_bars": 1,
+        "first_open": 9.46,
+        "ret_72h": null,
+        "ret_24h": null,
+        "max_runup": 0.0,
+        "max_drawdown": -0.002114,
+        "base_volume_sum": 12.6
+      },
+      "asset_class": "unclassified",
+      "asset_class_source": "unclassified_no_positive_identity",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "bitget",
+      "base": "ALIGN",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 72,
+        "first_open": 0.0015,
+        "ret_72h": 9.030667,
+        "ret_24h": 11.874667,
+        "max_runup": 25.406667,
+        "max_drawdown": 0.0,
+        "logret_1h_std": 0.05031216,
+        "base_volume_sum": 510988779.46
+      },
+      "asset_class": "crypto_token",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": true
+    },
+    {
+      "exchange": "bitget",
+      "base": "DEBIT",
+      "flags": [
+        "short_window",
+        "window_in_progress"
+      ],
+      "window_complete": false,
+      "stats": {
+        "n_bars": 22,
+        "first_open": 0.08,
+        "ret_72h": 14.2625,
+        "ret_24h": null,
+        "max_runup": 17.6375,
+        "max_drawdown": 0.0,
+        "logret_1h_std": 0.04149426,
+        "base_volume_sum": 1207666.56
+      },
+      "asset_class": "unclassified",
+      "asset_class_source": "unclassified_no_positive_identity",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "bitget",
+      "base": "DGAI",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 72,
+        "first_open": 0.005,
+        "ret_72h": 151.4852,
+        "ret_24h": 140.886,
+        "max_runup": 598.9798,
+        "max_drawdown": 0.0,
+        "logret_1h_std": 0.0789119,
+        "base_volume_sum": 223310720.36
+      },
+      "asset_class": "crypto_token",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": true
+    },
+    {
+      "exchange": "bitget",
+      "base": "PWT",
+      "flags": [
+        "short_window",
+        "window_in_progress"
+      ],
+      "window_complete": false,
+      "stats": {
+        "n_bars": 69,
+        "first_open": 0.005,
+        "ret_72h": 106.422,
+        "ret_24h": 106.534,
+        "max_runup": 140.82,
+        "max_drawdown": 0.0,
+        "logret_1h_std": 0.03161825,
+        "base_volume_sum": 23557782.83
+      },
+      "asset_class": "crypto_token",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": true
+    },
+    {
+      "exchange": "bitget",
+      "base": "RAA",
+      "flags": [
+        "proxy_ts_after_first_bar",
+        "short_window",
+        "window_in_progress"
+      ],
+      "window_complete": false,
+      "stats": {
+        "n_bars": 50,
+        "first_open": 49.618,
+        "ret_72h": 0.000343,
+        "ret_24h": 0.02483,
+        "max_runup": 0.034907,
+        "max_drawdown": -0.007114,
+        "logret_1h_std": 0.00497839,
+        "base_volume_sum": 7062390.898854
+      },
+      "asset_class": "unclassified",
+      "asset_class_source": "unclassified_no_positive_identity",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "bitget",
+      "base": "RBURL",
+      "flags": [
+        "proxy_ts_after_first_bar",
+        "short_window",
+        "window_in_progress"
+      ],
+      "window_complete": false,
+      "stats": {
+        "n_bars": 37,
+        "first_open": 330.685,
+        "ret_72h": -0.061037,
+        "ret_24h": -0.058228,
+        "max_runup": 0.0,
+        "max_drawdown": -0.062352,
+        "logret_1h_std": 0.00678897,
+        "base_volume_sum": 4532275.689012
+      },
+      "asset_class": "unclassified",
+      "asset_class_source": "unclassified_no_positive_identity",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "bitget",
+      "base": "RDJT",
+      "flags": [
+        "proxy_ts_after_first_bar",
+        "short_window",
+        "window_in_progress"
+      ],
+      "window_complete": false,
+      "stats": {
+        "n_bars": 18,
+        "first_open": 9.41,
+        "ret_72h": 0.005313,
+        "ret_24h": null,
+        "max_runup": 0.023379,
+        "max_drawdown": -0.02763,
+        "logret_1h_std": 0.00432897,
+        "base_volume_sum": 3366565.731207
+      },
+      "asset_class": "unclassified",
+      "asset_class_source": "unclassified_no_positive_identity",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "bitget",
+      "base": "RDKS",
+      "flags": [
+        "proxy_ts_after_first_bar",
+        "short_window",
+        "window_in_progress"
+      ],
+      "window_complete": false,
+      "stats": {
+        "n_bars": 50,
+        "first_open": 180.137,
+        "ret_72h": -0.279798,
+        "ret_24h": -0.30675,
+        "max_runup": 0.011314,
+        "max_drawdown": -0.331509,
+        "logret_1h_std": 0.0266132,
+        "base_volume_sum": 55832784.528687
+      },
+      "asset_class": "unclassified",
+      "asset_class_source": "unclassified_no_positive_identity",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "bitget",
+      "base": "REFX",
+      "flags": [
+        "proxy_ts_after_first_bar",
+        "short_window",
+        "window_in_progress"
+      ],
+      "window_complete": false,
+      "stats": {
+        "n_bars": 30,
+        "first_open": 194.635,
+        "ret_72h": -0.021605,
+        "ret_24h": -0.020885,
+        "max_runup": 0.0,
+        "max_drawdown": -0.025997,
+        "logret_1h_std": 0.00300404,
+        "base_volume_sum": 1827060.964251
+      },
+      "asset_class": "unclassified",
+      "asset_class_source": "unclassified_no_positive_identity",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "bitget",
+      "base": "REROC",
+      "flags": [
+        "proxy_ts_after_first_bar",
+        "short_window",
+        "window_in_progress"
+      ],
+      "window_complete": false,
+      "stats": {
+        "n_bars": 43,
+        "first_open": 13.42,
+        "ret_72h": 0.003651,
+        "ret_24h": -0.026379,
+        "max_runup": 0.032787,
+        "max_drawdown": -0.039493,
+        "logret_1h_std": 0.01413402,
+        "base_volume_sum": 3498530.990569
+      },
+      "asset_class": "unclassified",
+      "asset_class_source": "unclassified_no_positive_identity",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "bitget",
+      "base": "RH",
+      "flags": [
+        "proxy_ts_after_first_bar",
+        "short_window",
+        "window_in_progress"
+      ],
+      "window_complete": false,
+      "stats": {
+        "n_bars": 26,
+        "first_open": 179.985,
+        "ret_72h": 0.024419,
+        "ret_24h": -0.00964,
+        "max_runup": 0.024419,
+        "max_drawdown": -0.025513,
+        "logret_1h_std": 0.00808483,
+        "base_volume_sum": 980619.500345
+      },
+      "asset_class": "unclassified",
+      "asset_class_source": "unclassified_no_positive_identity",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "bitget",
+      "base": "RLNT",
+      "flags": [
+        "proxy_ts_after_first_bar",
+        "short_window",
+        "window_in_progress"
+      ],
+      "window_complete": false,
+      "stats": {
+        "n_bars": 28,
+        "first_open": 68.511,
+        "ret_72h": 0.003926,
+        "ret_24h": 0.005824,
+        "max_runup": 0.00994,
+        "max_drawdown": -0.011093,
+        "logret_1h_std": 0.00389306,
+        "base_volume_sum": 3195418.287988
+      },
+      "asset_class": "unclassified",
+      "asset_class_source": "unclassified_no_positive_identity",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "bitget",
+      "base": "RLSCC",
+      "flags": [
+        "proxy_ts_after_first_bar",
+        "short_window",
+        "window_in_progress"
+      ],
+      "window_complete": false,
+      "stats": {
+        "n_bars": 38,
+        "first_open": 114.17,
+        "ret_72h": 0.077656,
+        "ret_24h": 0.042437,
+        "max_runup": 0.085215,
+        "max_drawdown": -0.004633,
+        "logret_1h_std": 0.00991725,
+        "base_volume_sum": 2872636.270602
+      },
+      "asset_class": "unclassified",
+      "asset_class_source": "unclassified_no_positive_identity",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "bitget",
+      "base": "RNXT",
+      "flags": [
+        "proxy_ts_after_first_bar",
+        "short_window",
+        "window_in_progress"
+      ],
+      "window_complete": false,
+      "stats": {
+        "n_bars": 43,
+        "first_open": 84.378,
+        "ret_72h": 0.061414,
+        "ret_24h": 0.00749,
+        "max_runup": 0.061414,
+        "max_drawdown": -0.005902,
+        "logret_1h_std": 0.00646455,
+        "base_volume_sum": 3504734.954847
+      },
+      "asset_class": "unclassified",
+      "asset_class_source": "unclassified_no_positive_identity",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "bitget",
+      "base": "RPURR",
+      "flags": [
+        "proxy_ts_after_first_bar",
+        "short_window",
+        "window_in_progress"
+      ],
+      "window_complete": false,
+      "stats": {
+        "n_bars": 20,
+        "first_open": 11.65,
+        "ret_72h": 0.04412,
+        "ret_24h": null,
+        "max_runup": 0.0503,
+        "max_drawdown": -0.040343,
+        "logret_1h_std": 0.01410411,
+        "base_volume_sum": 17721370.053002
+      },
+      "asset_class": "unclassified",
+      "asset_class_source": "unclassified_no_positive_identity",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "bitget",
+      "base": "RSEZL",
+      "flags": [
+        "proxy_ts_after_first_bar",
+        "short_window",
+        "window_in_progress"
+      ],
+      "window_complete": false,
+      "stats": {
+        "n_bars": 39,
+        "first_open": 118.996,
+        "ret_72h": 0.046128,
+        "ret_24h": 0.047783,
+        "max_runup": 0.055582,
+        "max_drawdown": -0.00837,
+        "logret_1h_std": 0.00770075,
+        "base_volume_sum": 640447.507701
+      },
+      "asset_class": "unclassified",
+      "asset_class_source": "unclassified_no_positive_identity",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "bitget",
+      "base": "RTTMI",
+      "flags": [
+        "proxy_ts_after_first_bar",
+        "short_window",
+        "window_in_progress"
+      ],
+      "window_complete": false,
+      "stats": {
+        "n_bars": 49,
+        "first_open": 107.176,
+        "ret_72h": 0.198505,
+        "ret_24h": 0.058437,
+        "max_runup": 0.213425,
+        "max_drawdown": -9e-06,
+        "logret_1h_std": 0.0162093,
+        "base_volume_sum": 6361030.500952
+      },
+      "asset_class": "unclassified",
+      "asset_class_source": "unclassified_no_positive_identity",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "bitget",
+      "base": "RULTA",
+      "flags": [
+        "proxy_ts_after_first_bar",
+        "short_window",
+        "window_in_progress"
+      ],
+      "window_complete": false,
+      "stats": {
+        "n_bars": 44,
+        "first_open": 538.755,
+        "ret_72h": 0.017115,
+        "ret_24h": -0.004967,
+        "max_runup": 0.018023,
+        "max_drawdown": -0.022264,
+        "logret_1h_std": 0.00670768,
+        "base_volume_sum": 1391481.666439
+      },
+      "asset_class": "unclassified",
+      "asset_class_source": "unclassified_no_positive_identity",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "bitget",
+      "base": "RUSFD",
+      "flags": [
+        "proxy_ts_after_first_bar",
+        "history_truncated",
+        "short_window",
+        "window_in_progress"
+      ],
+      "window_complete": false,
+      "stats": {
+        "n_bars": 25,
+        "first_open": 109.365,
+        "ret_72h": -0.008184,
+        "ret_24h": -0.008366,
+        "max_runup": 0.027961,
+        "max_drawdown": -0.018196,
+        "logret_1h_std": 0.00592891,
+        "base_volume_sum": 2746649.87417
+      },
+      "asset_class": "unclassified",
+      "asset_class_source": "unclassified_no_positive_identity",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "bitget",
+      "base": "SWARM",
+      "flags": [
+        "proxy_ts_after_first_bar"
+      ],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 0.16361,
+        "ret_72h": -0.331447,
+        "ret_24h": -0.071078,
+        "max_runup": 0.082214,
+        "max_drawdown": -0.384298,
+        "logret_1h_std": 0.05006036,
+        "base_volume_sum": 10524847.87
+      },
+      "asset_class": "crypto_token",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": true
+    },
+    {
+      "exchange": "bitget",
+      "base": "TMX",
+      "flags": [
+        "short_window",
+        "window_in_progress"
+      ],
+      "window_complete": false,
+      "stats": {
+        "n_bars": 48,
+        "first_open": 0.007,
+        "ret_72h": 21.287143,
+        "ret_24h": 23.285714,
+        "max_runup": 28.458286,
+        "max_drawdown": 0.0,
+        "logret_1h_std": 0.06017813,
+        "base_volume_sum": 97033179.65
+      },
+      "asset_class": "unclassified",
+      "asset_class_source": "unclassified_no_positive_identity",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XAPLD",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 28.46,
+        "ret_72h": -0.03338,
+        "ret_24h": 0.026001,
+        "max_runup": 0.026001,
+        "max_drawdown": -0.047786,
+        "logret_1h_std": 0.00749779,
+        "base_volume_sum": 218.1918
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XBOT",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 31.92,
+        "ret_72h": -0.079887,
+        "ret_24h": -0.013158,
+        "max_runup": 0.0,
+        "max_drawdown": -0.135652,
+        "logret_1h_std": 0.01563768,
+        "base_volume_sum": 932.0484
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XBX",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 145.3,
+        "ret_72h": -0.007777,
+        "ret_24h": -0.026015,
+        "max_runup": 0.004129,
+        "max_drawdown": -0.027047,
+        "logret_1h_std": 0.00369108,
+        "base_volume_sum": 86.57236
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XCIEN",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 398.61,
+        "ret_72h": -0.005369,
+        "ret_24h": 0.00562,
+        "max_runup": 0.057701,
+        "max_drawdown": -0.019292,
+        "logret_1h_std": 0.0087804,
+        "base_volume_sum": 20.58913
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XCRM",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 193.71,
+        "ret_72h": 0.061122,
+        "ret_24h": 0.003097,
+        "max_runup": 0.070311,
+        "max_drawdown": -0.005111,
+        "logret_1h_std": 0.00589371,
+        "base_volume_sum": 38.98783
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XDKNG",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 25.37,
+        "ret_72h": -0.011825,
+        "ret_24h": -0.05203,
+        "max_runup": 0.024438,
+        "max_drawdown": -0.052424,
+        "logret_1h_std": 0.00875731,
+        "base_volume_sum": 145.8442
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XGLW",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 153.19,
+        "ret_72h": -0.051439,
+        "ret_24h": -0.0188,
+        "max_runup": 0.011815,
+        "max_drawdown": -0.057641,
+        "logret_1h_std": 0.00499104,
+        "base_volume_sum": 154.16258
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XHPE",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 55.78,
+        "ret_72h": -0.046791,
+        "ret_24h": -0.007888,
+        "max_runup": 0.036572,
+        "max_drawdown": -0.060595,
+        "logret_1h_std": 0.00777771,
+        "base_volume_sum": 234.04308
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XISRG",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 398.61,
+        "ret_72h": -0.063245,
+        "ret_24h": -0.055944,
+        "max_runup": 0.000326,
+        "max_drawdown": -0.077745,
+        "logret_1h_std": 0.00468749,
+        "base_volume_sum": 96.79246
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XJNJ",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 267.9,
+        "ret_72h": 0.011646,
+        "ret_24h": -0.007652,
+        "max_runup": 0.020119,
+        "max_drawdown": -0.010713,
+        "logret_1h_std": 0.0046099,
+        "base_volume_sum": 13.99406
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XKLAC",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 188.14,
+        "ret_72h": -0.034655,
+        "ret_24h": -0.016743,
+        "max_runup": 0.009195,
+        "max_drawdown": -0.034655,
+        "logret_1h_std": 0.00593795,
+        "base_volume_sum": 26.65095
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XKO",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 88.78,
+        "ret_72h": 0.02647,
+        "ret_24h": 0.013967,
+        "max_runup": 0.034805,
+        "max_drawdown": -0.002253,
+        "logret_1h_std": 0.00287233,
+        "base_volume_sum": 454.6733
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XLRCX",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 330.3,
+        "ret_72h": -0.052346,
+        "ret_24h": -0.052044,
+        "max_runup": 0.003482,
+        "max_drawdown": -0.083893,
+        "logret_1h_std": 0.00834685,
+        "base_volume_sum": 47.23398
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XNOW",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 119.04,
+        "ret_72h": 0.089046,
+        "ret_24h": -0.008737,
+        "max_runup": 0.097194,
+        "max_drawdown": -0.008737,
+        "logret_1h_std": 0.0090044,
+        "base_volume_sum": 48.27387
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XOKTA",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 143.09,
+        "ret_72h": -0.060032,
+        "ret_24h": -0.057656,
+        "max_runup": 0.013488,
+        "max_drawdown": -0.071004,
+        "logret_1h_std": 0.00610191,
+        "base_volume_sum": 42.54369
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XPOPMART",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 19.3,
+        "ret_72h": 0.010363,
+        "ret_24h": 0.026425,
+        "max_runup": 0.027461,
+        "max_drawdown": -0.040933,
+        "logret_1h_std": 0.00761133,
+        "base_volume_sum": 11240.0315
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XQCOM",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 162.07,
+        "ret_72h": -0.012711,
+        "ret_24h": -0.009749,
+        "max_runup": 0.005183,
+        "max_drawdown": -0.014747,
+        "logret_1h_std": 0.0015235,
+        "base_volume_sum": 87.43459
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XRDDT",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 157.13,
+        "ret_72h": -0.034939,
+        "ret_24h": -0.027493,
+        "max_runup": 0.007064,
+        "max_drawdown": -0.079679,
+        "logret_1h_std": 0.00689485,
+        "base_volume_sum": 707.10332
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XRIVN",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 15.76,
+        "ret_72h": 0.067259,
+        "ret_24h": 0.021574,
+        "max_runup": 0.087563,
+        "max_drawdown": -0.013959,
+        "logret_1h_std": 0.0076068,
+        "base_volume_sum": 2289.9916
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XROK",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 436.85,
+        "ret_72h": -0.005975,
+        "ret_24h": 0.001969,
+        "max_runup": 0.01069,
+        "max_drawdown": -0.012361,
+        "logret_1h_std": 0.00273934,
+        "base_volume_sum": 7.1465
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XSMH",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 570.98,
+        "ret_72h": -0.025167,
+        "ret_24h": -0.005745,
+        "max_runup": 0.012137,
+        "max_drawdown": -0.025167,
+        "logret_1h_std": 0.00484185,
+        "base_volume_sum": 33.017869
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XSNOW",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 328.02,
+        "ret_72h": -0.024389,
+        "ret_24h": -0.011646,
+        "max_runup": 0.012286,
+        "max_drawdown": -0.029815,
+        "logret_1h_std": 0.0039298,
+        "base_volume_sum": 18.7373
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XSTRC",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 95.67,
+        "ret_72h": 0.007003,
+        "ret_24h": 0.013379,
+        "max_runup": 0.017247,
+        "max_drawdown": -0.000836,
+        "logret_1h_std": 0.00139209,
+        "base_volume_sum": 836.39986
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XTTWO",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 242.51,
+        "ret_72h": 0.008247,
+        "ret_24h": -0.012247,
+        "max_runup": 0.015175,
+        "max_drawdown": -0.038761,
+        "logret_1h_std": 0.00510394,
+        "base_volume_sum": 31.11112
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XUNH",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 388.62,
+        "ret_72h": 0.007154,
+        "ret_24h": -0.008131,
+        "max_runup": 0.008003,
+        "max_drawdown": -0.011399,
+        "logret_1h_std": 0.00224649,
+        "base_volume_sum": 9.90746
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XWDC",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 469.46,
+        "ret_72h": -0.018979,
+        "ret_24h": 0.014613,
+        "max_runup": 0.020705,
+        "max_drawdown": -0.033634,
+        "logret_1h_std": 0.00631153,
+        "base_volume_sum": 48.13603
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XXIAOMI",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 3.52,
+        "ret_72h": 0.042614,
+        "ret_24h": 0.019886,
+        "max_runup": 0.068182,
+        "max_drawdown": -0.005682,
+        "logret_1h_std": 0.00588878,
+        "base_volume_sum": 128022.145
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    },
+    {
+      "exchange": "okx",
+      "base": "XZM",
+      "flags": [],
+      "window_complete": true,
+      "stats": {
+        "n_bars": 71,
+        "first_open": 108.17,
+        "ret_72h": -0.002958,
+        "ret_24h": -0.01359,
+        "max_runup": 0.002404,
+        "max_drawdown": -0.019599,
+        "logret_1h_std": 0.00267444,
+        "base_volume_sum": 47.04679
+      },
+      "asset_class": "tokenized_equity",
+      "asset_class_source": "declared_spot_asset_registry_v1",
+      "asset_class_acceptance_eligible": false
+    }
+  ],
+  "cadence_observation": {
+    "candidate": true,
+    "official_confirmed": true,
+    "exact_timestamp": true,
+    "source_class": "official",
+    "proxy_timestamp": false
+  },
+  "adaptive_cadence": {
+    "stage": "CONFIRMED",
+    "interval_sec": 3600,
+    "reason": "official_event_confirmed_without_near_exact_time",
+    "next_interval_at_utc": "2026-08-27T10:08:26.668295Z",
+    "event_eta_utc": null
+  },
+  "state_hash": "40b86d9bf12aaf79c75bb348f458ac476ae4a31bd9f37ffc9701518f9c810fe1"
+}

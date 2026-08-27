@@ -29,3 +29,4 @@ docs/agent-log/listing-strategy-control-plane-batch1-readiness-20260821.json -te
 docs/plans/slow-liquidity-listing-momentum-forward-expansion-planonly-20260827-v15.json -text whitespace=cr-at-eol
 docs/plans/listing-momentum-expansion-automation-planonly-20260827-v5.json -text whitespace=cr-at-eol
 exports/trading-mvp/analysis/listing_momentum_exchange_expansion_preflight_20260817.json -text
+docs/plans/listing-momentum-expansion-automation-planonly-20260827-v6.json -text whitespace=cr-at-eol

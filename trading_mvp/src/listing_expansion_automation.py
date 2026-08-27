@@ -83,17 +83,32 @@ def _iso(moment: datetime) -> str:
     )
 
 
-def _powershell() -> Path:
-    """PowerShell by absolute path, never by search order.
+# The child launcher and the active-run gate use ConvertFrom-Json -DateKind, which exists
+# only in PowerShell 7. Windows PowerShell 5.1 parses the script fine and then fails at
+# that call, so the child refuses its own preflight and exits within seconds having
+# printed nothing. That reaches the wrapper as "no terminal record was printed", which is
+# true and says nothing about the cause. The first activated tick failed exactly this way.
+POWERSHELL_7 = Path(r"C:\Program Files\PowerShell\7\pwsh.exe")
 
-    Resolving an interpreter through PATH lets whatever is earliest on it decide what
-    runs (CWE-426). The scheduler runs this unattended, so the interpreter is addressed
-    where Windows actually keeps it."""
-    system_root = os.environ.get("SystemRoot") or r"C:\Windows"
-    path = Path(system_root) / "System32" / "WindowsPowerShell" / "v1.0" / "powershell.exe"
-    if not path.is_file():
-        raise ExpansionAutomationError(f"PowerShell not found at {path}")
-    return path
+
+def _powershell() -> Path:
+    """PowerShell 7 by absolute path, never by search order and never 5.1.
+
+    Absolute because resolving an interpreter through PATH lets whatever happens to be
+    earliest decide what runs (CWE-426), and this runs unattended. Version 7 because the
+    child it launches requires it, and the coordinator that launches this wrapper already
+    uses it - an automation whose two halves disagree about their interpreter fails in a
+    way that names neither of them."""
+    if POWERSHELL_7.is_file():
+        return POWERSHELL_7
+    override = os.environ.get("PWSH_EXE")
+    if override and Path(override).is_file():
+        return Path(override)
+    # Refusing beats falling back to 5.1. The fallback would run, refuse deep inside the
+    # child, and report a missing terminal record instead of a missing interpreter.
+    raise ExpansionAutomationError(
+        f"PowerShell 7 not found at {POWERSHELL_7}; set PWSH_EXE to an absolute path"
+    )
 
 
 def _identity(pid: int) -> ProcessIdentity:
