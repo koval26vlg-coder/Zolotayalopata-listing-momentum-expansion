@@ -117,9 +117,15 @@
       "status": "COMPLETED",
       "new_listing_count": 50,
       "rows_written": 2885
+    },
+    {
+      "tick_id": "expansion_tick_20260827T0939066977651Z",
+      "status": "COMPLETED",
+      "new_listing_count": 50,
+      "rows_written": 2886
     }
   ],
-  "tick_count": 18,
+  "tick_count": 19,
   "window_count": 50,
   "complete_window_count": 31,
   "crypto_acceptance_window_count": 4,
@@ -141,7 +147,7 @@
         "ret_24h": null,
         "max_runup": 0.0,
         "max_drawdown": -0.005285,
-        "base_volume_sum": 456.6
+        "base_volume_sum": 2741.0
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -177,12 +183,12 @@
       "stats": {
         "n_bars": 22,
         "first_open": 0.08,
-        "ret_72h": 14.59125,
+        "ret_72h": 14.45625,
         "ret_24h": null,
         "max_runup": 17.6375,
         "max_drawdown": 0.0,
-        "logret_1h_std": 0.04236953,
-        "base_volume_sum": 1241802.13
+        "logret_1h_std": 0.04195531,
+        "base_volume_sum": 1255124.84
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -218,12 +224,12 @@
       "stats": {
         "n_bars": 69,
         "first_open": 0.005,
-        "ret_72h": 106.42,
+        "ret_72h": 106.418,
         "ret_24h": 106.534,
         "max_runup": 140.82,
         "max_drawdown": 0.0,
-        "logret_1h_std": 0.03161823,
-        "base_volume_sum": 23681564.8
+        "logret_1h_std": 0.03161821,
+        "base_volume_sum": 23756113.66
       },
       "asset_class": "crypto_token",
       "asset_class_source": "declared_spot_asset_registry_v1",
@@ -246,7 +252,7 @@
         "max_runup": 0.034907,
         "max_drawdown": -0.007114,
         "logret_1h_std": 0.00497839,
-        "base_volume_sum": 7063066.693854
+        "base_volume_sum": 7064650.693854
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -269,7 +275,7 @@
         "max_runup": 0.0,
         "max_drawdown": -0.062352,
         "logret_1h_std": 0.00678912,
-        "base_volume_sum": 4532843.1766
+        "base_volume_sum": 4533328.1766
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -287,12 +293,12 @@
       "stats": {
         "n_bars": 18,
         "first_open": 9.41,
-        "ret_72h": 0.005313,
+        "ret_72h": 0.004676,
         "ret_24h": null,
         "max_runup": 0.023379,
         "max_drawdown": -0.02763,
-        "logret_1h_std": 0.00432897,
-        "base_volume_sum": 3367709.931207
+        "logret_1h_std": 0.00434554,
+        "base_volume_sum": 3373047.528353
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -310,12 +316,12 @@
       "stats": {
         "n_bars": 50,
         "first_open": 180.137,
-        "ret_72h": -0.279854,
+        "ret_72h": -0.277855,
         "ret_24h": -0.30675,
         "max_runup": 0.011314,
         "max_drawdown": -0.331509,
-        "logret_1h_std": 0.02661282,
-        "base_volume_sum": 55833892.224831
+        "logret_1h_std": 0.02662925,
+        "base_volume_sum": 55836147.790149
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -338,7 +344,7 @@
         "max_runup": 0.0,
         "max_drawdown": -0.025997,
         "logret_1h_std": 0.00295493,
-        "base_volume_sum": 1827060.964251
+        "base_volume_sum": 1827072.964251
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -361,7 +367,7 @@
         "max_runup": 0.032787,
         "max_drawdown": -0.039493,
         "logret_1h_std": 0.01413475,
-        "base_volume_sum": 3499080.990569
+        "base_volume_sum": 3499092.990569
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -377,13 +383,13 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 26,
+        "n_bars": 27,
         "first_open": 179.985,
         "ret_72h": 0.024419,
         "ret_24h": -0.00964,
         "max_runup": 0.024419,
         "max_drawdown": -0.025513,
-        "logret_1h_std": 0.00808483,
+        "logret_1h_std": 0.00793,
         "base_volume_sum": 980619.500345
       },
       "asset_class": "unclassified",
@@ -471,12 +477,12 @@
       "stats": {
         "n_bars": 20,
         "first_open": 11.65,
-        "ret_72h": 0.053734,
+        "ret_72h": 0.052017,
         "ret_24h": null,
         "max_runup": 0.054421,
         "max_drawdown": -0.040343,
-        "logret_1h_std": 0.01397675,
-        "base_volume_sum": 17787641.057894
+        "logret_1h_std": 0.0139776,
+        "base_volume_sum": 17797594.057894
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -522,7 +528,7 @@
         "max_runup": 0.213425,
         "max_drawdown": -9e-06,
         "logret_1h_std": 0.0162259,
-        "base_volume_sum": 6363822.500952
+        "base_volume_sum": 6366016.500952
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -607,12 +613,12 @@
       "stats": {
         "n_bars": 48,
         "first_open": 0.007,
-        "ret_72h": 20.833857,
+        "ret_72h": 20.725429,
         "ret_24h": 23.285714,
         "max_runup": 28.458286,
         "max_drawdown": 0.0,
-        "logret_1h_std": 0.06031973,
-        "base_volume_sum": 97820652.07
+        "logret_1h_std": 0.0603759,
+        "base_volume_sum": 98383436.07
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -1162,8 +1168,8 @@
     "stage": "CONFIRMED",
     "interval_sec": 3600,
     "reason": "official_event_confirmed_without_near_exact_time",
-    "next_interval_at_utc": "2026-08-27T10:29:44.191981Z",
+    "next_interval_at_utc": "2026-08-27T10:40:11.500241Z",
     "event_eta_utc": null
   },
-  "state_hash": "31d12bc129005995376eda1d6dea362e4da1541dee38b408ff6455109d12ce30"
+  "state_hash": "a5ac74ca8313a7fa0943bf06b7719f97dcbd78297269f6308628facff09a9d40"
 }

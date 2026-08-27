@@ -6,3 +6,6 @@ docs/agent-log/run-gates/*.transaction.lock
 __pycache__/
 *.pyc
 *.bak-*
+# Archived bookkeeping from a superseded plan: kept on disk as a record of what the
+# previous binding did, not committed, because it is per-machine like the live copy.
+docs/agent-log/run-gates/listing-expansion-automation.superseded-*/
