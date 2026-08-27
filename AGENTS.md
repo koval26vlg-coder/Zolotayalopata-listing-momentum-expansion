@@ -24,3 +24,11 @@ that needs those fields relaxed is a change that needs a person, not a commit.
 universe only through a reviewed entry in the declared registry, on evidence the venue
 itself published. Ticker spelling is not evidence. This is the rule that stopped a tokenised
 share being counted as a crypto listing.
+
+**Tests for this runtime live here.** `trading_mvp/tests`, run with
+`python -m unittest discover -s trading_mvp/tests -p "test_*.py"` from the repository root.
+The main repository keeps its own copy of these sources, frozen at the plan its own lineage
+binds, and its tests describe that copy. Mirroring a change there without reissuing the plan
+that binds it breaks the binding silently, which is exactly how this rule came to be
+written: a behaviour change was copied into the main repository and its three plan-binding
+tests failed there while everything here stayed green.
