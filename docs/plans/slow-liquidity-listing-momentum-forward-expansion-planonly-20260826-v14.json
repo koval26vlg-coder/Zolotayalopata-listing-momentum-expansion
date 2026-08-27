@@ -1,0 +1,312 @@
+{
+  "schema": "trading_mvp_slow_liquidity_listing_momentum_forward_expansion_monitor_planonly_v3",
+  "plan_id": "slow_liquidity_listing_momentum_forward_expansion_20260826_v14",
+  "strategy_branch": "slow_liquidity_listing_momentum_forward_expansion",
+  "mode": "PlanOnly",
+  "status": "READY_FOR_VISIBLE_EXPANSION_TICKS",
+  "generated_at_utc": "2026-08-26T19:38:33Z",
+  "research_only": true,
+  "public_data_only": true,
+  "private_api": false,
+  "live_orders": false,
+  "real_capital": false,
+  "leverage_or_margin": false,
+  "replay_allowed": false,
+  "evaluator_or_oos_allowed": false,
+  "venues": [
+    "binance",
+    "bybit",
+    "okx",
+    "bitget"
+  ],
+  "objective": "Accrue a separate crypto-token descriptive first-days forward sample for new USDT spot symbols detected on Binance, Bybit, OKX and Bitget. Use official snapshot timestamps where available and an explicit detection-time proxy where the public spot schema does not expose a trustworthy listing timestamp. Do not mix this namespace with the immutable MEXC/Gate v2 sample.",
+  "adaptive_cadence": {
+    "policy_version": "adaptive_event_proximity_v2",
+    "scheduler_wake_interval_sec": 300,
+    "search_interval_sec": 21600,
+    "soon_interval_sec": 10800,
+    "confirmed_interval_sec": 3600,
+    "scheduled_interval_sec": 300,
+    "soon_horizon_sec": 259200,
+    "scheduled_horizon_sec": 86400,
+    "exact_timestamp_required_for_scheduled": true,
+    "proxy_cannot_escalate_to_confirmed": true,
+    "collector_runs_only_when_due": true,
+    "terminal_event_returns_to_search": true,
+    "event_spent_after_sec": 259200,
+    "spent_anchor_returns_to_search": true
+  },
+  "asset_class_contract": {
+    "acceptance_class": "crypto_token",
+    "classifier_role": "spot_asset_classifier",
+    "classifier_source": "declared_spot_asset_registry_v1",
+    "unknown_is_acceptance_eligible": false,
+    "tokenized_equity_is_acceptance_eligible": false,
+    "legacy_rows_without_provenance": "descriptive_only",
+    "provenance_required_through": [
+      "snapshot",
+      "candidate",
+      "job",
+      "ohlcv_row",
+      "manifest",
+      "state_window"
+    ]
+  },
+  "source_bindings": {
+    "technical_rebind": {
+      "kind": "technical_exact_byte_git_sealing_rebind",
+      "supersedes_plan_id": "slow_liquidity_listing_momentum_forward_expansion_20260826_v13",
+      "supersedes_plan_hash": "b49a050ef073760d593ea869eacaebc2124550de45270c21721e52cababea167",
+      "supersedes_plan_file_sha256": "c350de9e9bc95ed522fd08ae8c61ee8d00debfa452b6013dd2cc06d2c9488880",
+      "supersedes_plan_path": "C:\\Users\\koval\\Documents\\ZolotyayLopata\\docs\\plans\\slow-liquidity-listing-momentum-forward-expansion-planonly-20260826-v13.json",
+      "research_scope_changed": false,
+      "reason": "Seal the current fail-closed implementation to exact raw Git bytes without changing venue, universe, signal, cost, risk, cadence, runtime topology or acceptance contracts."
+    },
+    "control_plane_readiness_receipt": {
+      "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata\\docs\\agent-log\\listing-strategy-control-plane-batch1-readiness-20260821.json",
+      "file_sha256": "b310912a5c1d4e5b4bca16d8e343bb77aecca837a4ad32d4917a899fd08eeb56",
+      "status": "READY_FOR_PLANONLY_REBIND_NOT_ACTIVATED"
+    },
+    "preflight": {
+      "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata\\exports\\trading-mvp\\analysis\\listing_momentum_exchange_expansion_preflight_20260817.json",
+      "file_sha256": "85fb8f0c56c88060a0eb0e185bb2e109704f97634ff5ee99efef4e65ee41179c",
+      "receipt_hash": "fb4be6e1d02a2a276f52d518004c6396d6ae4e7bb706e5bda3f759f09f2aa8b9",
+      "generated_at_utc": "2026-08-17T14:28:56Z",
+      "baseline_as_of_ts": 1786976936,
+      "request_count": 8,
+      "max_requests": 8,
+      "raw_payload_persisted": false
+    },
+    "parent_v2": {
+      "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-monitor\\docs\\plans\\listing-momentum-forward-monitor-planonly-20260822-v2.json",
+      "canonical_repository": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-monitor",
+      "canonical_git_commit": "b77c27c1b4cc84db2828d4da8049aa251b8a5bef",
+      "file_sha256": "823b4f6813bf0eda2878400947824aaa8b8335ee9699bca528bfc8cc177d8422",
+      "plan_id": "listing_momentum_forward_monitor_20260822_v2",
+      "plan_hash": "ffdc27009d7ec6354348a163d0e7f11b03d4555bbb7cd6830b8764d2fdfafd78",
+      "parallel_immutable": true,
+      "venues": [
+        "mexc",
+        "gateio"
+      ]
+    },
+    "venue_contracts": {
+      "binance": {
+        "snapshot_url": "https://api.binance.com/api/v3/exchangeInfo",
+        "ohlcv_url": "https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1h&startTime=1786969738000&endTime=1786976938000&limit=2",
+        "snapshot_rows": 733,
+        "active_rows": 484,
+        "timestamp_coverage": 0.0,
+        "sample_symbol": "BTCUSDT",
+        "parsed_candles": 2,
+        "timestamp_contract": {
+          "method": "first_available_1h_kline_proxy_when_snapshot_has_no_onboardDate",
+          "quality": "proxy_required_for_current_spot_schema",
+          "official_listing_timestamp": false,
+          "proxy_allowed_for_accrual": true
+        },
+        "symbol_format": "BASEUSDT"
+      },
+      "bybit": {
+        "snapshot_url": "https://api.bybit.com/v5/market/instruments-info?category=spot",
+        "ohlcv_url": "https://api.bybit.com/v5/market/kline?category=spot&symbol=BTCUSDT&interval=60&start=1786969739000&end=1786976939000&limit=2",
+        "snapshot_rows": 409,
+        "active_rows": 409,
+        "timestamp_coverage": 0.0,
+        "sample_symbol": "BTCUSDT",
+        "parsed_candles": 2,
+        "timestamp_contract": {
+          "method": "first_available_1h_kline_proxy_when_spot_launchTime_missing",
+          "quality": "proxy_required_for_current_spot_schema",
+          "official_listing_timestamp": false,
+          "proxy_allowed_for_accrual": true
+        },
+        "symbol_format": "BASEUSDT"
+      },
+      "okx": {
+        "snapshot_url": "https://www.okx.com/api/v5/public/instruments?instType=SPOT",
+        "ohlcv_url": "https://www.okx.com/api/v5/market/candles?instId=BTC-USDT&bar=1H&after=1786976941000&before=1786969741000&limit=2",
+        "snapshot_rows": 367,
+        "active_rows": 366,
+        "timestamp_coverage": 1.0,
+        "sample_symbol": "BTC-USDT",
+        "parsed_candles": 2,
+        "timestamp_contract": {
+          "method": "listTime_ms",
+          "quality": "snapshot_timestamp",
+          "official_listing_timestamp": true,
+          "proxy_allowed_for_accrual": true
+        },
+        "symbol_format": "BASE-USDT"
+      },
+      "bitget": {
+        "snapshot_url": "https://api.bitget.com/api/v2/spot/public/symbols",
+        "ohlcv_url": "https://api.bitget.com/api/v2/spot/market/candles?symbol=BTCUSDT&granularity=1h&startTime=1786969743000&endTime=1786976943000&limit=2",
+        "snapshot_rows": 1189,
+        "active_rows": 1182,
+        "timestamp_coverage": 1.0,
+        "sample_symbol": "BTCUSDT",
+        "parsed_candles": 2,
+        "timestamp_contract": {
+          "method": "openTime_ms_deprecated_with_first_1h_kline_fallback",
+          "quality": "deprecated_snapshot_timestamp_or_proxy",
+          "official_listing_timestamp": false,
+          "proxy_allowed_for_accrual": true
+        },
+        "symbol_format": "BASEUSDT"
+      }
+    }
+  },
+  "implementation": {
+    "files": [
+      {
+        "role": "expansion_adapter",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata\\trading_mvp\\src\\listing_momentum_exchange_expansion.py",
+        "sha256": "e7cf15c79cf45efecb818a0ef7eac5f96065cee33b5164a499f07d0b86504ff9",
+        "provenance": {
+          "kind": "technical_rebind_from_superseded_plan_row",
+          "superseded_sha256": "e7cf15c79cf45efecb818a0ef7eac5f96065cee33b5164a499f07d0b86504ff9",
+          "superseded_plan_hash": "b49a050ef073760d593ea869eacaebc2124550de45270c21721e52cababea167",
+          "superseded_plan_file_sha256": "c350de9e9bc95ed522fd08ae8c61ee8d00debfa452b6013dd2cc06d2c9488880",
+          "batch1_readiness_receipt_sha256": "b310912a5c1d4e5b4bca16d8e343bb77aecca837a4ad32d4917a899fd08eeb56"
+        }
+      },
+      {
+        "role": "spot_asset_classifier",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata\\trading_mvp\\src\\listing_spot_asset_class.py",
+        "sha256": "dae979f59f87a0370166f7f3aa677967e61905c70485dd53606c57c795695a99",
+        "provenance": {
+          "kind": "technical_rebind_from_superseded_plan_row",
+          "superseded_sha256": "be521e7036bd91b5aee7864d51b9f25ced34d3aca7dbfe820caa2545f62a1050",
+          "superseded_plan_hash": "b49a050ef073760d593ea869eacaebc2124550de45270c21721e52cababea167",
+          "superseded_plan_file_sha256": "c350de9e9bc95ed522fd08ae8c61ee8d00debfa452b6013dd2cc06d2c9488880",
+          "batch1_readiness_receipt_sha256": "b310912a5c1d4e5b4bca16d8e343bb77aecca837a4ad32d4917a899fd08eeb56"
+        }
+      },
+      {
+        "role": "expansion_monitor",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata\\trading_mvp\\src\\slow_liquidity_listing_momentum_forward_expansion_monitor.py",
+        "sha256": "1990f64548cb2a829006b9126322053baa13c9a660c1ce79b18d9d3ed21bb592",
+        "provenance": {
+          "kind": "technical_rebind_from_superseded_plan_row",
+          "superseded_sha256": "76143fd2a7552199859a3b5d73e80a522c01ed699042cfb6c9a1b890421f2475",
+          "superseded_plan_hash": "b49a050ef073760d593ea869eacaebc2124550de45270c21721e52cababea167",
+          "superseded_plan_file_sha256": "c350de9e9bc95ed522fd08ae8c61ee8d00debfa452b6013dd2cc06d2c9488880",
+          "batch1_readiness_receipt_sha256": "b310912a5c1d4e5b4bca16d8e343bb77aecca837a4ad32d4917a899fd08eeb56"
+        }
+      },
+      {
+        "role": "preflight_launcher",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata\\tools\\start_listing_momentum_exchange_expansion_preflight_visible.ps1",
+        "sha256": "2bc7e91d997deb6f29ab5c4ff3773b1f2f26b5e2a90126175af45d5bd9bc0b05",
+        "provenance": {
+          "kind": "technical_rebind_from_superseded_plan_row",
+          "superseded_sha256": "2bc7e91d997deb6f29ab5c4ff3773b1f2f26b5e2a90126175af45d5bd9bc0b05",
+          "superseded_plan_hash": "b49a050ef073760d593ea869eacaebc2124550de45270c21721e52cababea167",
+          "superseded_plan_file_sha256": "c350de9e9bc95ed522fd08ae8c61ee8d00debfa452b6013dd2cc06d2c9488880",
+          "batch1_readiness_receipt_sha256": "b310912a5c1d4e5b4bca16d8e343bb77aecca837a4ad32d4917a899fd08eeb56"
+        }
+      },
+      {
+        "role": "visible_tick_launcher",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata\\tools\\start_listing_momentum_forward_expansion_tick_visible.ps1",
+        "sha256": "d5e98f372665da9ba3e06825c22801689227b1f7f34e77364ded14d9c3e3d9ac",
+        "provenance": {
+          "kind": "technical_rebind_from_superseded_plan_row",
+          "superseded_sha256": "3ffe1925d0299d1df43872804c732104c959f8aa7025f3e6d97ccde73960e9e8",
+          "superseded_plan_hash": "b49a050ef073760d593ea869eacaebc2124550de45270c21721e52cababea167",
+          "superseded_plan_file_sha256": "c350de9e9bc95ed522fd08ae8c61ee8d00debfa452b6013dd2cc06d2c9488880",
+          "batch1_readiness_receipt_sha256": "b310912a5c1d4e5b4bca16d8e343bb77aecca837a4ad32d4917a899fd08eeb56"
+        }
+      },
+      {
+        "role": "expansion_plan_generator",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata\\trading_mvp\\src\\slow_liquidity_listing_momentum_forward_expansion_plan.py",
+        "sha256": "991d91e5aafe9d72da9d81c0626dc141a15f435217f82bb51c0f5527f7dccc2c",
+        "provenance": {
+          "kind": "technical_rebind_from_superseded_plan_row",
+          "superseded_sha256": "92e64b6d68ee2ff97fbd351a4472c8e34561b20ab0c373c1b169107d580c4dd9",
+          "superseded_plan_hash": "b49a050ef073760d593ea869eacaebc2124550de45270c21721e52cababea167",
+          "superseded_plan_file_sha256": "c350de9e9bc95ed522fd08ae8c61ee8d00debfa452b6013dd2cc06d2c9488880",
+          "batch1_readiness_receipt_sha256": "b310912a5c1d4e5b4bca16d8e343bb77aecca837a4ad32d4917a899fd08eeb56"
+        }
+      },
+      {
+        "role": "cadence_policy",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata\\trading_mvp\\src\\adaptive_cadence.py",
+        "sha256": "066d7991c0e223be02b5073911c43efda4888d8efd6b62a8845dd4bf7ee4afaa",
+        "provenance": {
+          "kind": "technical_rebind_from_superseded_plan_row",
+          "superseded_sha256": "066d7991c0e223be02b5073911c43efda4888d8efd6b62a8845dd4bf7ee4afaa",
+          "superseded_plan_hash": "b49a050ef073760d593ea869eacaebc2124550de45270c21721e52cababea167",
+          "superseded_plan_file_sha256": "c350de9e9bc95ed522fd08ae8c61ee8d00debfa452b6013dd2cc06d2c9488880",
+          "batch1_readiness_receipt_sha256": "b310912a5c1d4e5b4bca16d8e343bb77aecca837a4ad32d4917a899fd08eeb56"
+        }
+      }
+    ]
+  },
+  "tick": {
+    "run_kind": "repeatable_bounded_visible_tick",
+    "cadence_recommendation": "adaptive: search 6h, candidate 3h, official confirmation 1h, exact official time within 24h 5m; scheduler wake 5m and no-op when not due",
+    "max_runtime_sec": 600,
+    "max_new_listings_per_tick": 50,
+    "effective_page_sizes": {
+      "binance": 1000,
+      "bybit": 1000,
+      "okx": 300,
+      "bitget": 1000
+    },
+    "window_sec": 259200,
+    "probe_window_before_proxy_sec": 1209600,
+    "granularity": "1h",
+    "tick_output_root": "E:\\trading_mvp\\listing-momentum-forward-expansion\\ticks",
+    "claim_path": "C:\\Users\\koval\\Documents\\ZolotyayLopata\\docs\\agent-log\\active-market-data-writer-claim.json",
+    "state_path": "C:\\Users\\koval\\Documents\\ZolotyayLopata\\exports\\trading-mvp\\analysis\\slow_liquidity_listing_momentum_forward_expansion_state_20260817.json",
+    "terminal_attempts_ledger_path": "C:\\Users\\koval\\Documents\\ZolotyayLopata\\docs\\agent-log\\run-gates\\listing_momentum_forward_expansion_terminal_attempts.jsonl",
+    "separate_namespace_from_v2": true
+  },
+  "guard_contract": {
+    "active_gate_must_not_be_running": true,
+    "global_writer_claim_must_be_absent": true,
+    "visible_terminal_launch_required": true,
+    "one_tick_at_a_time": true,
+    "tick_directory_must_be_new": true,
+    "no_background_daemon": true,
+    "v2_namespace_must_remain_untouched": true,
+    "combined_launcher_scheduler_routable": false,
+    "canonical_primary_spot_owned_by_dedicated_repository": true
+  },
+  "authorized_after_guards": [
+    "run repeatable visible public read-only expansion ticks",
+    "write per-tick expansion manifests and state rebuild",
+    "read expansion accrual status"
+  ],
+  "acceptance_policy": {
+    "evidence_class": "PROXY_DATE_FORWARD_ACCRUAL_EXPANSION",
+    "acceptance_decision": "NONE_ACCRUAL_ONLY",
+    "timestamp_caveat": "Binance and Bybit current spot snapshots have no reliable listing timestamp; detection-time proxy is explicit and not an official announcement date.",
+    "bitget_caveat": "Bitget openTime is retained as a deprecated snapshot timestamp and must remain separately flagged.",
+    "forward_sample_target_note": "A separate evaluator plan is required after enough complete windows accrue."
+  },
+  "forbidden": [
+    "background daemon or hidden scheduled runs",
+    "routing through the retired combined spot launcher",
+    "second concurrent market-data writer",
+    "mixing expansion rows into MEXC/Gate v2 state",
+    "evaluator or OOS without a separate plan",
+    "returns or PnL acceptance conclusions from accrual state",
+    "treating detection-time proxy as an official listing announcement",
+    "grid or retune",
+    "paper or live trading",
+    "private API keys",
+    "real capital",
+    "leverage or margin"
+  ],
+  "commands": {
+    "plan_check": "python trading_mvp/src/slow_liquidity_listing_momentum_forward_expansion_monitor.py --plan-check",
+    "status": "python trading_mvp/src/slow_liquidity_listing_momentum_forward_expansion_monitor.py --status",
+    "visible_tick": "pwsh -NoProfile -ExecutionPolicy Bypass -File tools/start_listing_momentum_forward_expansion_tick_visible.ps1 -ScheduledTick -Json"
+  },
+  "plan_hash_method": "sha256_canonical_json_excluding_plan_hash",
+  "plan_hash": "611f7b3a80c448d1c6b5f4873d6f209391f273fb98a6f98d9f11a6cea19ed8b3"
+}

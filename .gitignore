@@ -1,0 +1,8 @@
+# Runtime bookkeeping: pids, handoff tokens, a persistent lock inode. Specific to the
+# machine that ran it, rewritten on every wake, and not evidence of anything.
+docs/agent-log/run-gates/listing-expansion-automation/
+docs/agent-log/*.transaction.lock
+docs/agent-log/run-gates/*.transaction.lock
+__pycache__/
+*.pyc
+*.bak-*

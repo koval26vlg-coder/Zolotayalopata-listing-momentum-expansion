@@ -1,0 +1,163 @@
+{
+  "schema": "trading_mvp_listing_strategy_control_plane_batch1_readiness_v1",
+  "generated_at_utc": "2026-08-20T21:45:21.6759506+00:00",
+  "status": "READY_FOR_PLANONLY_REBIND_NOT_ACTIVATED",
+  "scope": "offline control-plane hardening only",
+  "network_used": false,
+  "collectors_started": false,
+  "scheduled_task_registered": false,
+  "planonly_rebound": false,
+  "active_run_gate": {
+    "status": "STOPPED_INCOMPLETE",
+    "gate_status": "STOPPED_INCOMPLETE",
+    "run_id": "slow_liquidity_listing_momentum_forward_monitor_20260817_v2",
+    "live_process_ids": [],
+    "gate_read_sha256": "4670c02f1423da9f537c835f7a4c0df8979c6dec299f416f8e2d96719888f586",
+    "launch_record_identity_mismatch": true
+  },
+  "root_verification": {
+    "launcher_guard_tests": {
+      "passed": 70,
+      "failed": 0,
+      "duration_sec": 260.16
+    },
+    "python_functional_tests": {
+      "passed": 104,
+      "failed": 0,
+      "deselected_expected_plan_binding_tests": 3,
+      "duration_sec": 5.70
+    },
+    "coordinator_tests": {
+      "passed": 35,
+      "failed": 0
+    },
+    "powershell_ast_files": 9,
+    "python_ast_files": 5,
+    "scoped_git_diff_check_exit_code": 0
+  },
+  "control_plane": {
+    "coordinator": "tools/invoke_listing_strategy_due_coordinator.ps1",
+    "installer": "tools/install_listing_strategy_due_coordinator_task.ps1",
+    "uninstaller": "tools/uninstall_listing_strategy_due_coordinator_task.ps1",
+    "wake_interval_minutes": 5,
+    "worker_exit_timeout_sec": 1800,
+    "model_invocation_on_wake": false,
+    "strict_scheduled_tick": true,
+    "valid_not_due_zero_write": true,
+    "one_global_market_data_writer": true,
+    "sequential_track_order": [
+      "listing_momentum_spot",
+      "crypto_premarket_perpetual",
+      "preipo_perpetual"
+    ]
+  },
+  "claims_at_verification": {
+    "docs/agent-log/active-market-data-writer-claim.json": false,
+    "docs/agent-log/active-market-data-writer-expansion-claim.json": false,
+    "docs/agent-log/run-gates/listing_strategy_due_coordinator.claim.json": false,
+    "docs/agent-log/run-gates/listing_momentum_forward_automation.claim.json": false
+  },
+  "legacy_codex_automations": [
+    {
+      "id": "zolotyaylopata-listing-momentum-monitor",
+      "status": "PAUSED",
+      "config_sha256": "4f1e7c34b78647ed776de81194bb83d5e87becc1b43f7ea6ab0853b74b31de71"
+    },
+    {
+      "id": "zolotyaylopata-pre-market-perpetual-listing-impulse-monitor",
+      "status": "PAUSED",
+      "config_sha256": "c4fd699e1c1ba79280be66084684a5bbf61e43ddd128b2a195f0f37573accdb8"
+    },
+    {
+      "id": "zolotyaylopata-pre-ipo-perpetual-event-monitor",
+      "status": "PAUSED",
+      "config_sha256": "76174a17d67057bb5b4fe6916a2b0057b61bf378e3eba3cd7c780126c64c34bb"
+    }
+  ],
+  "old_planonly_bindings": [
+    {
+      "path": "docs/plans/slow-liquidity-listing-momentum-forward-monitor-planonly-20260817-v2.json",
+      "file_sha256": "ceb2850bca4b2cca0141730b71c17181840d386085c3f5762f1cfaedc71b63aa",
+      "status": "PLAN_INVALID_EXPECTED_AFTER_BUGFIX",
+      "reason": "implementation sha256 mismatch: forward_monitor"
+    },
+    {
+      "path": "docs/plans/slow-liquidity-listing-momentum-forward-expansion-planonly-20260817.json",
+      "file_sha256": "8a92bd3b18b8629d53bf6d70616090bf61de199f97b0235355e3781a9d82488a",
+      "status": "PLAN_INVALID_EXPECTED_AFTER_BUGFIX",
+      "reason": "expansion implementation sha mismatch: expansion_monitor"
+    },
+    {
+      "path": "docs/plans/premarket-perp-listing-impulse-planonly-20260818-v1.json",
+      "file_sha256": "2f07a9b9621081b7f638042be0dadbd97a938d0741bc6fefe7c5fc1f25b13625",
+      "status": "PLAN_INVALID_EXPECTED_AFTER_BUGFIX",
+      "reason": "implementation hashes mismatch: premarket automation and visible launcher"
+    },
+    {
+      "path": "docs/plans/preipo-perpetual-event-planonly-20260818-v1.json",
+      "file_sha256": "6f8dd54c3d0666c5f8507103c194ce8ea546b57018d8a85aaf6f8f38104abd1c",
+      "status": "PLAN_INVALID_EXPECTED_AFTER_BUGFIX",
+      "reason": "implementation hashes mismatch: pre-IPO automation and visible launcher"
+    }
+  ],
+  "implementation_bindings": [
+    {
+      "path": "tools/invoke_listing_strategy_due_coordinator.ps1",
+      "sha256": "ae17f2e2de31025058b9d7d1fc3dcb7e77e06133233b63aa1ff3a427fad7e504"
+    },
+    {
+      "path": "tools/install_listing_strategy_due_coordinator_task.ps1",
+      "sha256": "c6ea8e4caab4159cf6945f313e2180befc3dee2a26a6d75fef751d302ee7c418"
+    },
+    {
+      "path": "tools/uninstall_listing_strategy_due_coordinator_task.ps1",
+      "sha256": "06c47662d0c7a122da7dd8b76cafa413d8f7ad9d19ea9ff6345934c92ad4ff3f"
+    },
+    {
+      "path": "tools/start_listing_momentum_forward_automation_visible.ps1",
+      "sha256": "407628e449adb3ef963b55687755415a7e001d04f41191cc272e0dd635481122"
+    },
+    {
+      "path": "tools/start_listing_momentum_forward_tick_visible.ps1",
+      "sha256": "d296c908200a394ad823b5d84f15dc334a9a97382d7c14179787246f1a47222a"
+    },
+    {
+      "path": "tools/start_listing_momentum_forward_expansion_tick_visible.ps1",
+      "sha256": "45aa760f495f6e291f3365156f6584cb8bce41a0dde386798c2382b76b7e7f56"
+    },
+    {
+      "path": "tools/start_premarket_perp_listing_automation_visible.ps1",
+      "sha256": "fef440afc5f4e7a06f93cd53091ad4ae3bd830312609f2379f37f5af6a6ad3c6"
+    },
+    {
+      "path": "tools/start_preipo_perpetual_event_automation_visible.ps1",
+      "sha256": "d2091b445c3da981ecbf4c3bd87d882c4fcfc6aee92932f8210111a5549cd545"
+    },
+    {
+      "path": "trading_mvp/src/global_market_writer_claim.py",
+      "sha256": "bc0604267c9d709a17188eb9daf317417d2633bf4c31266f73db33ac2f5066d2"
+    },
+    {
+      "path": "trading_mvp/src/premarket_automation.py",
+      "sha256": "d4ad97a4ef61f57ecad73e8272411e9cb35f770149e6e6d6f939c3701607e240"
+    },
+    {
+      "path": "trading_mvp/src/preipo_automation.py",
+      "sha256": "91972a409279e8e6c5fec9fbdd1113ed1c432d76965df946aebd043a54a30534"
+    },
+    {
+      "path": "trading_mvp/src/slow_liquidity_listing_momentum_forward_monitor.py",
+      "sha256": "869b03607824aed350717978008bbb8cc5214faf26780a38df4d5d04bff07610"
+    },
+    {
+      "path": "trading_mvp/src/slow_liquidity_listing_momentum_forward_expansion_monitor.py",
+      "sha256": "982bc2fb164c3c1ced7b710b087fc97b95af5125b0096c9da391c51b7c120899"
+    }
+  ],
+  "p2_backlog": [
+    "early derivative retry may retain worker PID identity and be conservatively reported as STALE_TRACK_STATE",
+    "main spot visible display may print blank initial cadence values; execution cadence is unaffected",
+    "legacy Codex automation PAUSED status is checked at install time, not at every coordinator wake"
+  ],
+  "next_safe_action": "create new immutable PlanOnly versions bound to the verified implementation hashes, rerun the three binding tests, and keep scheduler installation disabled until the active-run controller is explicitly reconciled"
+}

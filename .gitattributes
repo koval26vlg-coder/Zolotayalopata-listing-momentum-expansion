@@ -1,0 +1,28 @@
+# Every file a PlanOnly artifact here binds by sha256. core.autocrlf is true on this
+# machine, so without these the next checkout rewrites the bytes the plans hash.
+docs/plans/slow-liquidity-listing-momentum-forward-expansion-planonly-20260826-v13.json -text whitespace=cr-at-eol
+docs/plans/slow-liquidity-listing-momentum-forward-expansion-planonly-20260826-v14.json -text whitespace=cr-at-eol
+tools/check_active_run_gate.ps1 -text whitespace=cr-at-eol
+tools/start_listing_momentum_exchange_expansion_preflight_visible.ps1 -text whitespace=cr-at-eol
+tools/start_listing_momentum_expansion_automation_visible.ps1 -text whitespace=cr-at-eol
+tools/start_listing_momentum_forward_expansion_tick_visible.ps1 -text whitespace=cr-at-eol
+trading_mvp/src/adaptive_cadence.py -text whitespace=cr-at-eol
+trading_mvp/src/global_market_writer_claim.py -text
+trading_mvp/src/listing_automation_state.py -text
+trading_mvp/src/listing_event_history_collect_plan.py -text
+trading_mvp/src/listing_event_history_collector.py -text
+trading_mvp/src/listing_event_normalizer.py -text whitespace=cr-at-eol
+trading_mvp/src/listing_expansion_automation.py -text
+trading_mvp/src/listing_expansion_automation_contract.py -text
+trading_mvp/src/listing_expansion_child_evidence.py -text
+trading_mvp/src/listing_momentum_exchange_expansion.py -text whitespace=cr-at-eol
+trading_mvp/src/listing_spot_asset_class.py -text whitespace=cr-at-eol
+trading_mvp/src/slow_liquidity_listing_momentum_first_days_census.py -text whitespace=cr-at-eol
+trading_mvp/src/slow_liquidity_listing_momentum_first_days_collector.py -text whitespace=cr-at-eol
+trading_mvp/src/slow_liquidity_listing_momentum_forward_expansion_monitor.py -text whitespace=cr-at-eol
+trading_mvp/src/slow_liquidity_listing_momentum_forward_expansion_plan.py -text whitespace=cr-at-eol
+trading_mvp/src/slow_liquidity_official_identity_proposal.py -text whitespace=cr-at-eol
+trading_mvp/src/slow_liquidity_official_identity_verification.py -text
+trading_mvp/src/slow_liquidity_spot_v2_official_page_discovery.py -text whitespace=cr-at-eol
+trading_mvp/src/slow_liquidity_spot_v2_request_plan.py -text whitespace=cr-at-eol
+docs/agent-log/listing-strategy-control-plane-batch1-readiness-20260821.json -text
