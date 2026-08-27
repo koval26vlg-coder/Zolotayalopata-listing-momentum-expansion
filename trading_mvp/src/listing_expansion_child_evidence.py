@@ -92,16 +92,41 @@ def _aware(value: Any, label: str) -> datetime:
     return moment.astimezone(timezone.utc)
 
 
-def _same_instant(left: Any, right: Any, label: str) -> bool:
-    """Compare two timestamps as moments rather than as strings.
+# How far apart two *readings* of one process's start time may be. The wrapper observes a
+# launcher through psutil and the launcher records itself through .NET, and the two do not
+# produce the same number: .NET prints seven fractional digits, psutil converts a float to
+# microseconds, and measured over six spawns on this machine they differ by one microsecond
+# in five of them. An earlier version compared these with `==` on the strength of a single
+# measurement that happened to agree, and the wrapper then rejected roughly five of every
+# six ticks it ran successfully - fifty jobs collected, manifest written, outcome recorded
+# as a retry.
+#
+# One second is what ``global_market_writer_claim`` already uses for the same comparison,
+# and it is the right order of magnitude: the check exists because Windows reuses PIDs, and
+# a reused PID belongs to a process that started after the previous one exited, which is
+# not a millisecond ago.
+PROCESS_START_TOLERANCE_SEC = 1.0
 
-    The wrapper observes a launcher's start time through psutil and the launcher records
-    its own through .NET's round-trip format, which prints seven fractional digits where
-    Python prints six. Measured on this machine the two agree exactly at microsecond
-    resolution, so the instants are comparable even though the text is not. Comparing the
-    text would reject a correct identity over a formatting difference - and comparing the
-    instant still rejects a one-microsecond substitution, which is the check that matters."""
+
+def _same_instant(left: Any, right: Any, label: str) -> bool:
+    """Whether two records carry the same moment, compared as moments not as text.
+
+    For a value that was written once and copied into two records. A difference here is a
+    contradiction between two accounts of one fact, so it is exact - and it is exact
+    deliberately, not by omission: see ``_same_process_start`` for the case where two
+    different measurements of one moment legitimately disagree."""
     return _aware(left, label) == _aware(right, label)
+
+
+def _same_process_start(left: Any, right: Any, label: str) -> bool:
+    """Whether two measurements name the same process start, within tolerance.
+
+    For one process observed through two different APIs, which is not the same situation
+    as one value copied twice. What this must still reject is a different process wearing
+    a reused PID, and that one is seconds away at the very least."""
+    delta = (_aware(left, label) - _aware(right, label)).total_seconds()
+    return abs(delta) <= PROCESS_START_TOLERANCE_SEC
+
 
 def _sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -318,7 +343,7 @@ def _validate_receipt(
         raise _reject("the handoff receipt was issued under a different plan")
     if not _is_int(receipt.get("wrapper_pid")) or receipt.get("wrapper_pid") != identity["pid"]:
         raise _reject("the handoff receipt names a different wrapper process")
-    if not _same_instant(
+    if not _same_process_start(
         receipt.get("wrapper_process_started_at_utc"),
         identity["started_at_utc"],
         "handoff wrapper_process_started_at_utc",
