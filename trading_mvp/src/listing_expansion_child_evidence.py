@@ -358,6 +358,7 @@ def _validate_ledger_row(
     claim_path: Path,
     namespace: Path,
     ownership_token: str,
+    window: tuple[datetime, datetime],
 ) -> None:
     if row.get("schema") != LEDGER_SCHEMA:
         raise _reject("the terminal ledger schema is not the expected one")
@@ -390,9 +391,24 @@ def _validate_ledger_row(
             raise _reject(f"the terminal ledger {field} contradicts the manifest")
     if row.get("pending_retry") != manifest.get("pending_retry"):
         raise _reject("the terminal ledger pending_retry contradicts the manifest")
-    for field in ("started_at_utc", "finished_at_utc"):
-        if not _same_instant(row.get(field), manifest.get(field), f"terminal ledger {field}"):
-            raise _reject(f"the terminal ledger {field} contradicts the manifest")
+    if not _same_instant(
+        row.get("started_at_utc"), manifest.get("started_at_utc"),
+        "terminal ledger started_at_utc",
+    ):
+        raise _reject("the terminal ledger started_at_utc contradicts the manifest")
+
+    # Ordering, not equality. The child writes the manifest, rebuilds its state, and only
+    # then appends this row with a fresh clock reading - three seconds later on the first
+    # real tick. The manifest records when the tick finished; the ledger records when the
+    # attempt was recorded. What must hold is that the record does not predate the thing
+    # it records, and that neither escapes the window the launch happened in.
+    recorded = _aware(row.get("finished_at_utc"), "terminal ledger finished_at_utc")
+    finished = _aware(manifest.get("finished_at_utc"), "manifest finished_at_utc")
+    outer_started, outer_finished = window
+    if recorded < finished:
+        raise _reject("the terminal ledger was recorded before the tick finished")
+    if recorded > outer_finished or recorded < outer_started.replace(microsecond=0):
+        raise _reject("the terminal ledger was recorded outside the launch window")
 
 
 # ---------------------------------------------------------------- entry point
@@ -478,6 +494,7 @@ def verify_child_outcome(
             claim_path=claim_path,
             namespace=namespace,
             ownership_token=str(receipt.get("claim_ownership_token_sha256")),
+            window=window,
         )
 
         jobs: Iterable[Mapping[str, Any]] = manifest.get("jobs") or []

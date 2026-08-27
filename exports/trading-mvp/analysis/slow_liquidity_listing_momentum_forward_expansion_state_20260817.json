@@ -111,9 +111,15 @@
       "status": "COMPLETED",
       "new_listing_count": 50,
       "rows_written": 2883
+    },
+    {
+      "tick_id": "expansion_tick_20260827T0927564102158Z",
+      "status": "COMPLETED",
+      "new_listing_count": 50,
+      "rows_written": 2885
     }
   ],
-  "tick_count": 17,
+  "tick_count": 18,
   "window_count": 50,
   "complete_window_count": 31,
   "crypto_acceptance_window_count": 4,
@@ -134,8 +140,8 @@
         "ret_72h": null,
         "ret_24h": null,
         "max_runup": 0.0,
-        "max_drawdown": -0.002114,
-        "base_volume_sum": 12.6
+        "max_drawdown": -0.005285,
+        "base_volume_sum": 456.6
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -171,12 +177,12 @@
       "stats": {
         "n_bars": 22,
         "first_open": 0.08,
-        "ret_72h": 14.2625,
+        "ret_72h": 14.59125,
         "ret_24h": null,
         "max_runup": 17.6375,
         "max_drawdown": 0.0,
-        "logret_1h_std": 0.04149426,
-        "base_volume_sum": 1207666.56
+        "logret_1h_std": 0.04236953,
+        "base_volume_sum": 1241802.13
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -212,12 +218,12 @@
       "stats": {
         "n_bars": 69,
         "first_open": 0.005,
-        "ret_72h": 106.422,
+        "ret_72h": 106.42,
         "ret_24h": 106.534,
         "max_runup": 140.82,
         "max_drawdown": 0.0,
-        "logret_1h_std": 0.03161825,
-        "base_volume_sum": 23557782.83
+        "logret_1h_std": 0.03161823,
+        "base_volume_sum": 23681564.8
       },
       "asset_class": "crypto_token",
       "asset_class_source": "declared_spot_asset_registry_v1",
@@ -240,7 +246,7 @@
         "max_runup": 0.034907,
         "max_drawdown": -0.007114,
         "logret_1h_std": 0.00497839,
-        "base_volume_sum": 7062390.898854
+        "base_volume_sum": 7063066.693854
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -258,12 +264,12 @@
       "stats": {
         "n_bars": 37,
         "first_open": 330.685,
-        "ret_72h": -0.061037,
+        "ret_72h": -0.06104,
         "ret_24h": -0.058228,
         "max_runup": 0.0,
         "max_drawdown": -0.062352,
-        "logret_1h_std": 0.00678897,
-        "base_volume_sum": 4532275.689012
+        "logret_1h_std": 0.00678912,
+        "base_volume_sum": 4532843.1766
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -286,7 +292,7 @@
         "max_runup": 0.023379,
         "max_drawdown": -0.02763,
         "logret_1h_std": 0.00432897,
-        "base_volume_sum": 3366565.731207
+        "base_volume_sum": 3367709.931207
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -304,12 +310,12 @@
       "stats": {
         "n_bars": 50,
         "first_open": 180.137,
-        "ret_72h": -0.279798,
+        "ret_72h": -0.279854,
         "ret_24h": -0.30675,
         "max_runup": 0.011314,
         "max_drawdown": -0.331509,
-        "logret_1h_std": 0.0266132,
-        "base_volume_sum": 55832784.528687
+        "logret_1h_std": 0.02661282,
+        "base_volume_sum": 55833892.224831
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -325,13 +331,13 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 30,
+        "n_bars": 31,
         "first_open": 194.635,
         "ret_72h": -0.021605,
         "ret_24h": -0.020885,
         "max_runup": 0.0,
         "max_drawdown": -0.025997,
-        "logret_1h_std": 0.00300404,
+        "logret_1h_std": 0.00295493,
         "base_volume_sum": 1827060.964251
       },
       "asset_class": "unclassified",
@@ -350,12 +356,12 @@
       "stats": {
         "n_bars": 43,
         "first_open": 13.42,
-        "ret_72h": 0.003651,
+        "ret_72h": 0.003726,
         "ret_24h": -0.026379,
         "max_runup": 0.032787,
         "max_drawdown": -0.039493,
-        "logret_1h_std": 0.01413402,
-        "base_volume_sum": 3498530.990569
+        "logret_1h_std": 0.01413475,
+        "base_volume_sum": 3499080.990569
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -417,13 +423,13 @@
       ],
       "window_complete": false,
       "stats": {
-        "n_bars": 38,
+        "n_bars": 39,
         "first_open": 114.17,
-        "ret_72h": 0.077656,
+        "ret_72h": 0.077674,
         "ret_24h": 0.042437,
         "max_runup": 0.085215,
         "max_drawdown": -0.004633,
-        "logret_1h_std": 0.00991725,
+        "logret_1h_std": 0.00978953,
         "base_volume_sum": 2872636.270602
       },
       "asset_class": "unclassified",
@@ -447,7 +453,7 @@
         "max_runup": 0.061414,
         "max_drawdown": -0.005902,
         "logret_1h_std": 0.00646455,
-        "base_volume_sum": 3504734.954847
+        "base_volume_sum": 3504736.954847
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -465,12 +471,12 @@
       "stats": {
         "n_bars": 20,
         "first_open": 11.65,
-        "ret_72h": 0.04412,
+        "ret_72h": 0.053734,
         "ret_24h": null,
-        "max_runup": 0.0503,
+        "max_runup": 0.054421,
         "max_drawdown": -0.040343,
-        "logret_1h_std": 0.01410411,
-        "base_volume_sum": 17721370.053002
+        "logret_1h_std": 0.01397675,
+        "base_volume_sum": 17787641.057894
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -493,7 +499,7 @@
         "max_runup": 0.055582,
         "max_drawdown": -0.00837,
         "logret_1h_std": 0.00770075,
-        "base_volume_sum": 640447.507701
+        "base_volume_sum": 640670.322903
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -511,12 +517,12 @@
       "stats": {
         "n_bars": 49,
         "first_open": 107.176,
-        "ret_72h": 0.198505,
+        "ret_72h": 0.19663,
         "ret_24h": 0.058437,
         "max_runup": 0.213425,
         "max_drawdown": -9e-06,
-        "logret_1h_std": 0.0162093,
-        "base_volume_sum": 6361030.500952
+        "logret_1h_std": 0.0162259,
+        "base_volume_sum": 6363822.500952
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -534,12 +540,12 @@
       "stats": {
         "n_bars": 44,
         "first_open": 538.755,
-        "ret_72h": 0.017115,
+        "ret_72h": 0.016241,
         "ret_24h": -0.004967,
         "max_runup": 0.018023,
         "max_drawdown": -0.022264,
-        "logret_1h_std": 0.00670768,
-        "base_volume_sum": 1391481.666439
+        "logret_1h_std": 0.00669173,
+        "base_volume_sum": 1393137.666439
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -601,12 +607,12 @@
       "stats": {
         "n_bars": 48,
         "first_open": 0.007,
-        "ret_72h": 21.287143,
+        "ret_72h": 20.833857,
         "ret_24h": 23.285714,
         "max_runup": 28.458286,
         "max_drawdown": 0.0,
-        "logret_1h_std": 0.06017813,
-        "base_volume_sum": 97033179.65
+        "logret_1h_std": 0.06031973,
+        "base_volume_sum": 97820652.07
       },
       "asset_class": "unclassified",
       "asset_class_source": "unclassified_no_positive_identity",
@@ -1156,8 +1162,8 @@
     "stage": "CONFIRMED",
     "interval_sec": 3600,
     "reason": "official_event_confirmed_without_near_exact_time",
-    "next_interval_at_utc": "2026-08-27T10:08:26.668295Z",
+    "next_interval_at_utc": "2026-08-27T10:29:44.191981Z",
     "event_eta_utc": null
   },
-  "state_hash": "40b86d9bf12aaf79c75bb348f458ac476ae4a31bd9f37ffc9701518f9c810fe1"
+  "state_hash": "31d12bc129005995376eda1d6dea362e4da1541dee38b408ff6455109d12ce30"
 }

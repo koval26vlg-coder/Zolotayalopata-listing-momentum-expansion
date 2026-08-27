@@ -1,0 +1,16 @@
+{
+  "schema": "trading_mvp_listing_automation_state_v1",
+  "plan_id": "listing_momentum_expansion_automation_20260827_v5",
+  "plan_hash": "c74eaea87cec9f93a4dccd2f16d10dd92baddf242a432be903352be39d4dcc91",
+  "child_plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
+  "status": "RETRY_NEXT_INTERVAL",
+  "pending_retry": true,
+  "cadence_seconds": 21600,
+  "next_interval_at_utc": "2026-08-27T15:05:20.111611Z",
+  "last_attempt_id": "attempt_20260827T090507.223524Z_ab174f81",
+  "last_started_at_utc": "2026-08-27T09:05:07.223524Z",
+  "last_finished_at_utc": "2026-08-27T09:05:20.111611Z",
+  "last_error": "no terminal record was printed",
+  "worker_pid": null,
+  "updated_at_utc": "2026-08-27T09:05:20.111611Z"
+}

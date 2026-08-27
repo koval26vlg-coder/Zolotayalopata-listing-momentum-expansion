@@ -1,0 +1,19 @@
+{
+  "schema": "trading_mvp_market_data_worker_handoff_v1",
+  "status": "ISSUED",
+  "project": "trading_mvp",
+  "automation_id": "zolotyaylopata-listing-momentum-forward-expansion",
+  "attempt_id": "expansion_tick_20260827T0927564102158Z",
+  "plan_hash": "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046",
+  "wrapper_pid": 12944,
+  "wrapper_process_started_at_utc": "2026-08-27T09:27:53.6352081Z",
+  "handoff_token_sha256": "0240352013c072f5622c2ff233310479ae7499ed88d14088d4518308e6377bc0",
+  "claim_run_id": "slow_liquidity_listing_momentum_forward_expansion_20260827_v15__expansion_tick_20260827T0927564102158Z",
+  "claim_owner_kind": "listing_momentum_forward_expansion_monitor_tick",
+  "claim_owner_pid": null,
+  "claim_owner_process_started_at_utc": null,
+  "claim_ownership_token_sha256": "60811e5ce8c54e7dd870aed7ecfd282b833378f600c89f1d6cc024bbfc0bfd45",
+  "claim_output_namespace": "E:\\trading_mvp\\listing-momentum-forward-expansion\\ticks\\expansion_tick_20260827T0927564102158Z",
+  "claim_must_exist": false,
+  "issued_at_utc": "2026-08-27T09:27:56.4391964Z"
+}
