@@ -1,0 +1,53 @@
+{
+  "schema": "trading_mvp_bitget_reality_identity_review_v1",
+  "status": "REVIEWED_OFFICIAL_VENUE_METADATA",
+  "source_url": "https://api.bitget.com/api/v3/market/instruments?category=SPOT",
+  "source_documentation_url": "https://www.bitget.com/api-doc/uta/reality/reality-trading-guide",
+  "observed_at_utc": "2026-08-28T14:08:08.1662986Z",
+  "http_status": 200,
+  "response_bytes": 579634,
+  "response_sha256": "8fe227cf9b871a706a6500deeb8359cda07f3dfd98e0ec8f5a316b99987a7815",
+  "raw_response_persisted": false,
+  "exchange_request_time_ms": 1787926088707,
+  "identity_contract": {
+    "tokenized_equity": {
+      "isReality": "yes",
+      "symbolType": "stock",
+      "acceptance_eligible": false
+    },
+    "crypto_token": {
+      "isReality": "no",
+      "symbolType": "crypto",
+      "acceptance_eligible": true
+    }
+  },
+  "reviewed_rows": [
+    {"base": "ALIGN", "symbol": "ALIGNUSDT", "isReality": "no", "symbolType": "crypto", "status": "online", "launchTime_ms": 1787252400000},
+    {"base": "DGAI", "symbol": "DGAIUSDT", "isReality": "no", "symbolType": "crypto", "status": "online", "launchTime_ms": 1787558400000},
+    {"base": "PWT", "symbol": "PWTUSDT", "isReality": "no", "symbolType": "crypto", "status": "online", "launchTime_ms": 1787576400000},
+    {"base": "RAA", "symbol": "RAAUSDT", "isReality": "yes", "symbolType": "stock", "status": "online", "launchTime_ms": 1787642980196},
+    {"base": "RBURL", "symbol": "RBURLUSDT", "isReality": "yes", "symbolType": "stock", "status": "online", "launchTime_ms": 1787642929996},
+    {"base": "RDJT", "symbol": "RDJTUSDT", "isReality": "yes", "symbolType": "stock", "status": "online", "launchTime_ms": 1787750455238},
+    {"base": "RDKS", "symbol": "RDKSUSDT", "isReality": "yes", "symbolType": "stock", "status": "online", "launchTime_ms": 1787642995220},
+    {"base": "REFX", "symbol": "REFXUSDT", "isReality": "yes", "symbolType": "stock", "status": "online", "launchTime_ms": 1787642916389},
+    {"base": "REROC", "symbol": "REROCUSDT", "isReality": "yes", "symbolType": "stock", "status": "online", "launchTime_ms": 1787642902705},
+    {"base": "RH", "symbol": "RHUSDT", "isReality": "yes", "symbolType": "stock", "status": "online", "launchTime_ms": 1787643023619},
+    {"base": "RLNT", "symbol": "RLNTUSDT", "isReality": "yes", "symbolType": "stock", "status": "online", "launchTime_ms": 1787643015909},
+    {"base": "RLSCC", "symbol": "RLSCCUSDT", "isReality": "yes", "symbolType": "stock", "status": "online", "launchTime_ms": 1787642937352},
+    {"base": "RNXT", "symbol": "RNXTUSDT", "isReality": "yes", "symbolType": "stock", "status": "online", "launchTime_ms": 1787643001880},
+    {"base": "RPURR", "symbol": "RPURRUSDT", "isReality": "yes", "symbolType": "stock", "status": "online", "launchTime_ms": 1787750464628},
+    {"base": "RSEZL", "symbol": "RSEZLUSDT", "isReality": "yes", "symbolType": "stock", "status": "online", "launchTime_ms": 1787642909428},
+    {"base": "RTTMI", "symbol": "RTTMIUSDT", "isReality": "yes", "symbolType": "stock", "status": "online", "launchTime_ms": 1787643008579},
+    {"base": "RULTA", "symbol": "RULTAUSDT", "isReality": "yes", "symbolType": "stock", "status": "online", "launchTime_ms": 1787642923309},
+    {"base": "RUSFD", "symbol": "RUSFDUSDT", "isReality": "yes", "symbolType": "stock", "status": "online", "launchTime_ms": 1787642988768},
+    {"base": "SWARM", "symbol": "SWARMUSDT", "isReality": "no", "symbolType": "crypto", "status": "online", "launchTime_ms": 1787216551767}
+  ],
+  "review_decision": {
+    "declare_tokenized_equity_bases": [
+      "RAA", "RBURL", "RDJT", "RDKS", "REFX", "REROC", "RH", "RLNT",
+      "RLSCC", "RNXT", "RPURR", "RSEZL", "RTTMI", "RULTA", "RUSFD"
+    ],
+    "retain_crypto_token_bases": ["ALIGN", "DGAI", "PWT", "SWARM"],
+    "acceptance_decision": "NONE_IDENTITY_CLASSIFICATION_ONLY"
+  }
+}

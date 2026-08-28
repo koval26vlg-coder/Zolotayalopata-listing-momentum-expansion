@@ -17,6 +17,8 @@ trading_mvp/src/listing_expansion_automation_contract.py -text
 trading_mvp/src/listing_expansion_child_evidence.py -text
 trading_mvp/src/listing_momentum_exchange_expansion.py -text whitespace=cr-at-eol
 trading_mvp/src/listing_spot_asset_class.py -text whitespace=cr-at-eol
+trading_mvp/tests/test_listing_spot_asset_class.py -text whitespace=cr-at-eol
+trading_mvp/tests/test_listing_plan_successors.py -text whitespace=cr-at-eol
 trading_mvp/src/slow_liquidity_listing_momentum_first_days_census.py -text whitespace=cr-at-eol
 trading_mvp/src/slow_liquidity_listing_momentum_first_days_collector.py -text whitespace=cr-at-eol
 trading_mvp/src/slow_liquidity_listing_momentum_forward_expansion_monitor.py -text whitespace=cr-at-eol
@@ -26,11 +28,14 @@ trading_mvp/src/slow_liquidity_official_identity_verification.py -text
 trading_mvp/src/slow_liquidity_spot_v2_official_page_discovery.py -text whitespace=cr-at-eol
 trading_mvp/src/slow_liquidity_spot_v2_request_plan.py -text whitespace=cr-at-eol
 docs/agent-log/listing-strategy-control-plane-batch1-readiness-20260821.json -text
+docs/agent-log/bitget-reality-identity-review-20260828.json -text
 docs/plans/slow-liquidity-listing-momentum-forward-expansion-planonly-20260827-v15.json -text whitespace=cr-at-eol
 docs/plans/listing-momentum-expansion-automation-planonly-20260827-v5.json -text whitespace=cr-at-eol
 exports/trading-mvp/analysis/listing_momentum_exchange_expansion_preflight_20260817.json -text
 docs/plans/listing-momentum-expansion-automation-planonly-20260827-v6.json -text whitespace=cr-at-eol
 docs/plans/listing-momentum-expansion-automation-planonly-20260827-v7.json -text whitespace=cr-at-eol
 docs/plans/slow-liquidity-listing-momentum-forward-expansion-planonly-20260827-v16.json -text whitespace=cr-at-eol
+docs/plans/slow-liquidity-listing-momentum-forward-expansion-planonly-20260828-v17.json -text whitespace=cr-at-eol
 docs/plans/listing-momentum-expansion-automation-planonly-20260827-v8.json -text whitespace=cr-at-eol
 docs/plans/listing-momentum-expansion-automation-planonly-20260827-v9.json -text whitespace=cr-at-eol
+docs/plans/listing-momentum-expansion-automation-planonly-20260828-v10.json -text whitespace=cr-at-eol

@@ -20,6 +20,18 @@ DECLARATION_SOURCE = "declared_spot_asset_registry_v1"
 # Exact OKX bases already observed in the expansion state. This is deliberately an
 # explicit identity set, not an ``X``-prefix heuristic which could misclassify a token.
 DECLARED_TOKENIZED_EQUITY_BASES: dict[str, frozenset[str]] = {
+    # Bitget's official UTA instrument metadata reports these pairs with
+    # ``isReality=yes`` and ``symbolType=stock``. Reality is Bitget's tokenized-US-
+    # stock product; on-chain deposit/withdrawal is therefore not crypto-underlying
+    # evidence. The reviewed response metadata and raw response hash are retained in
+    # docs/agent-log/bitget-reality-identity-review-20260828.json.
+    "bitget": frozenset(
+        {
+            "RAA", "RBURL", "RDJT", "RDKS", "REFX", "REROC", "RH",
+            "RLNT", "RLSCC", "RNXT", "RPURR", "RSEZL", "RTTMI",
+            "RULTA", "RUSFD",
+        }
+    ),
     "okx": frozenset(
         {
             "XAPLD", "XBOT", "XBX", "XCIEN", "XCRM", "XDKNG", "XGLW",
@@ -35,12 +47,12 @@ DECLARED_TOKENIZED_EQUITY_BASES: dict[str, frozenset[str]] = {
 # acceptance universe, so every entry here is a reviewed identity rather than a guess.
 #
 # The Bitget four were established on 2026-08-26 under probe plan
-# listing_spot_crypto_identity_probe_20260826_v2: Bitget publishes both deposit and
-# withdrawal for each on a public network with a contract address - ALIGN on ERC20,
-# DGAI, PWT and SWARM on BEP20. An instrument that can be moved onto a public chain
-# and back is not an internal exchange ledger entry, which is what a tokenised share
-# on these venues is. The response bytes each verdict rests on are hashed in
-# docs/agent-log/listing-spot-crypto-identity-probe-result-20260826.json.
+# listing_spot_crypto_identity_probe_20260826_v2. The venue's 2026-08-28 UTA
+# instrument metadata independently reports ``isReality=no`` and
+# ``symbolType=crypto`` for each. Deposit/withdrawal proves token mechanics, not the
+# nature of the underlying: Reality stock tokens are movable too. The reviewed
+# identity rows and source-response hash are retained in
+# docs/agent-log/bitget-reality-identity-review-20260828.json.
 #
 # TMX is deliberately absent. Bitget publishes deposit for it and not withdrawal, and
 # one-way movement does not establish the identity: a suspended withdrawal looks the

@@ -16,6 +16,7 @@ from listing_momentum_exchange_expansion import (
     canonical_hash as preflight_hash,
     load_preflight,
 )
+from listing_spot_asset_class import DECLARED_TOKENIZED_EQUITY_BASES
 from slow_liquidity_spot_v2_official_page_discovery import canonical_hash
 
 
@@ -35,16 +36,22 @@ CANONICAL_PRIMARY_SPOT_COMMIT = "b77c27c1b4cc84db2828d4da8049aa251b8a5bef"
 PREVIOUS_EXPANSION_PLAN_PATH = (
     REPO_ROOT
     / "docs/plans"
-    / "slow-liquidity-listing-momentum-forward-expansion-planonly-20260827-v15.json"
+    / "slow-liquidity-listing-momentum-forward-expansion-planonly-20260827-v16.json"
 )
-PREVIOUS_EXPANSION_PLAN_HASH = "687d7b6f30d8b4e0d03ec58a993155cdd505d6eb092d180a89d1324bf8db0046"
-PREVIOUS_EXPANSION_PLAN_FILE_SHA256 = "3c132e8b040102d6ae1e4b9ce5ff41e75b96be1afd186118098c5594a6092d09"
+PREVIOUS_EXPANSION_PLAN_HASH = "884829d5714e63f2ec20f0342770a0af236a836301c6f277b6250a621c6a5a68"
+PREVIOUS_EXPANSION_PLAN_FILE_SHA256 = "9c6f0793f3ecfcd04dd8bc5aa27098d0fe9472c5dc28ac965ee84c1d1fbc4051"
 BATCH1_RECEIPT_PATH = (
     REPO_ROOT
     / "docs/agent-log"
     / "listing-strategy-control-plane-batch1-readiness-20260821.json"
 )
 BATCH1_RECEIPT_FILE_SHA256 = "b310912a5c1d4e5b4bca16d8e343bb77aecca837a4ad32d4917a899fd08eeb56"
+BITGET_REALITY_IDENTITY_RECEIPT_PATH = (
+    REPO_ROOT
+    / "docs/agent-log"
+    / "bitget-reality-identity-review-20260828.json"
+)
+BITGET_REALITY_IDENTITY_RECEIPT_FILE_SHA256 = "93e043540f143d9d99c1870280e8613be4d3624da3fb935cbc8a295800092215"
 ADAPTIVE_CADENCE = {
     "policy_version": "adaptive_event_proximity_v2",
     "scheduler_wake_interval_sec": 300,
@@ -156,6 +163,11 @@ FIRST_BINDING_KIND = "first_binding_of_role_absent_from_superseded_plan"
 # plan, which autopilot_guard enforces by admitting only same-scope technical rebinds.
 RESEARCH_SCOPE_CHANGE: dict[str, Any] | None = None
 RUNTIME_TOPOLOGY_CHANGE: dict[str, Any] | None = None
+TECHNICAL_REBIND_REASON = (
+    "Seal reviewed Bitget Reality identities from official venue metadata. The "
+    "fifteen bases move from unclassified/ineligible to tokenized-equity/ineligible, "
+    "so venue, acceptance universe, signal, cost, risk and cadence remain unchanged."
+)
 
 
 def _iso_now() -> str:
@@ -225,6 +237,35 @@ def build_plan(generated_at_utc: str) -> dict[str, Any]:
     _require(
         _sha256_file(BATCH1_RECEIPT_PATH) == BATCH1_RECEIPT_FILE_SHA256,
         "Batch 1 readiness receipt sha mismatch",
+    )
+    _require(
+        BITGET_REALITY_IDENTITY_RECEIPT_PATH.is_file()
+        and _sha256_file(BITGET_REALITY_IDENTITY_RECEIPT_PATH)
+        == BITGET_REALITY_IDENTITY_RECEIPT_FILE_SHA256,
+        "Bitget Reality identity review receipt sha mismatch",
+    )
+    identity_review = json.loads(
+        BITGET_REALITY_IDENTITY_RECEIPT_PATH.read_text(encoding="utf-8")
+    )
+    reviewed_equities = {
+        str(row.get("base") or "").upper()
+        for row in identity_review.get("reviewed_rows") or []
+        if row.get("isReality") == "yes" and row.get("symbolType") == "stock"
+    }
+    declared_equities = set(
+        DECLARED_TOKENIZED_EQUITY_BASES.get("bitget", frozenset())
+    )
+    _require(
+        identity_review.get("status") == "REVIEWED_OFFICIAL_VENUE_METADATA"
+        and reviewed_equities == declared_equities
+        and set(
+            (identity_review.get("review_decision") or {}).get(
+                "declare_tokenized_equity_bases"
+            )
+            or []
+        )
+        == declared_equities,
+        "Bitget Reality declaration does not match reviewed venue metadata",
     )
     implementation_paths = {
         "expansion_adapter": REPO_ROOT / "trading_mvp/src/listing_momentum_exchange_expansion.py",
@@ -324,17 +365,23 @@ def build_plan(generated_at_utc: str) -> dict[str, Any]:
                 "reason": (
                     RESEARCH_SCOPE_CHANGE["reason"]
                     if RESEARCH_SCOPE_CHANGE
-                    else (
-                        "Seal the current fail-closed implementation to exact raw Git bytes "
-                        "without changing venue, universe, signal, cost, risk, cadence, "
-                        "runtime topology or acceptance contracts."
-                    )
+                    else TECHNICAL_REBIND_REASON
                 ),
             },
             "control_plane_readiness_receipt": {
                 "path": str(BATCH1_RECEIPT_PATH),
                 "file_sha256": BATCH1_RECEIPT_FILE_SHA256,
                 "status": "READY_FOR_PLANONLY_REBIND_NOT_ACTIVATED",
+            },
+            "bitget_reality_identity_review": {
+                "path": str(BITGET_REALITY_IDENTITY_RECEIPT_PATH),
+                "file_sha256": BITGET_REALITY_IDENTITY_RECEIPT_FILE_SHA256,
+                "status": identity_review["status"],
+                "source_url": identity_review["source_url"],
+                "response_sha256": identity_review["response_sha256"],
+                "acceptance_decision": identity_review["review_decision"][
+                    "acceptance_decision"
+                ],
             },
             "preflight": {
                 "path": str(DEFAULT_PREFLIGHT_PATH),
@@ -474,6 +521,25 @@ def validate_plan(plan: Mapping[str, Any]) -> None:
         and receipt.get("file_sha256") == BATCH1_RECEIPT_FILE_SHA256
         and receipt.get("status") == "READY_FOR_PLANONLY_REBIND_NOT_ACTIVATED",
         "Batch 1 readiness receipt binding",
+    )
+    identity_binding = (plan.get("source_bindings") or {}).get(
+        "bitget_reality_identity_review"
+    ) or {}
+    _require(
+        BITGET_REALITY_IDENTITY_RECEIPT_PATH.is_file()
+        and _sha256_file(BITGET_REALITY_IDENTITY_RECEIPT_PATH)
+        == BITGET_REALITY_IDENTITY_RECEIPT_FILE_SHA256,
+        "Bitget Reality identity review receipt",
+    )
+    _require(
+        identity_binding.get("path") == str(BITGET_REALITY_IDENTITY_RECEIPT_PATH)
+        and identity_binding.get("file_sha256")
+        == BITGET_REALITY_IDENTITY_RECEIPT_FILE_SHA256
+        and identity_binding.get("status")
+        == "REVIEWED_OFFICIAL_VENUE_METADATA"
+        and identity_binding.get("acceptance_decision")
+        == "NONE_IDENTITY_CLASSIFICATION_ONLY",
+        "Bitget Reality identity review binding",
     )
     expected_paths = {
         "expansion_adapter": REPO_ROOT / "trading_mvp/src/listing_momentum_exchange_expansion.py",
