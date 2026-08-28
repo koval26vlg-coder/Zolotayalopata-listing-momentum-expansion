@@ -46,17 +46,38 @@ class PlanSuccessorTests(unittest.TestCase):
 
     def test_wrapper_identity_and_both_launcher_defaults_move_together(self) -> None:
         self.assertEqual(
-            "listing_momentum_expansion_automation_20260828_v10",
+            "listing_momentum_expansion_automation_20260828_v11",
             wrapper_contract.PLAN_ID,
         )
         self.assertEqual(
-            "docs/plans/listing-momentum-expansion-automation-planonly-20260828-v10.json",
+            "docs/plans/listing-momentum-expansion-automation-planonly-20260828-v11.json",
             wrapper_contract.PLAN_RELATIVE_PATH,
+        )
+        self.assertEqual(
+            "docs/plans/listing-momentum-expansion-automation-planonly-20260828-v10.json",
+            wrapper_contract.PREVIOUS_PLAN_RELATIVE_PATH,
         )
         child_launcher = (REPO_ROOT / "tools" / "start_listing_momentum_forward_expansion_tick_visible.ps1").read_text(encoding="utf-8")
         wrapper_launcher = (REPO_ROOT / "tools" / "start_listing_momentum_expansion_automation_visible.ps1").read_text(encoding="utf-8")
         self.assertIn(monitor.PLAN_PATH.name, child_launcher)
         self.assertIn(Path(wrapper_contract.PLAN_RELATIVE_PATH).name, wrapper_launcher)
+
+    def test_wrapper_successor_preserves_and_names_v10_lineage(self) -> None:
+        previous_path = REPO_ROOT / "docs" / "plans" / "listing-momentum-expansion-automation-planonly-20260828-v10.json"
+        previous = json.loads(previous_path.read_text(encoding="utf-8"))
+        self.assertEqual(
+            "a018a8f2cf986c6cf18c896de9d95f8c4b86fbebc8566ff3df01f0662ba522c2",
+            hashlib.sha256(previous_path.read_bytes()).hexdigest(),
+        )
+        self.assertEqual("3502ad5cf932059158c10043788fd3c806f09c6d8279cc9752792cb01b010552", previous["plan_hash"])
+
+        successor_path = REPO_ROOT / wrapper_contract.PLAN_RELATIVE_PATH
+        successor = json.loads(successor_path.read_text(encoding="utf-8"))
+        lineage = successor["technical_rebind"]
+        self.assertEqual(previous["plan_id"], lineage["supersedes_plan_id"])
+        self.assertEqual(previous["plan_hash"], lineage["supersedes_plan_hash"])
+        self.assertEqual(hashlib.sha256(previous_path.read_bytes()).hexdigest(), lineage["supersedes_plan_file_sha256"])
+        self.assertEqual(str(previous_path), lineage["supersedes_plan_path"])
 
 
 if __name__ == "__main__":

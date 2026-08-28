@@ -39,3 +39,5 @@ docs/plans/slow-liquidity-listing-momentum-forward-expansion-planonly-20260828-v
 docs/plans/listing-momentum-expansion-automation-planonly-20260827-v8.json -text whitespace=cr-at-eol
 docs/plans/listing-momentum-expansion-automation-planonly-20260827-v9.json -text whitespace=cr-at-eol
 docs/plans/listing-momentum-expansion-automation-planonly-20260828-v10.json -text whitespace=cr-at-eol
+docs/plans/listing-momentum-expansion-automation-planonly-20260828-v11.json -text whitespace=cr-at-eol
+trading_mvp/tests/test_listing_terminal_claim_cleanup.py -text whitespace=cr-at-eol

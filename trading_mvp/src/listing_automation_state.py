@@ -449,8 +449,9 @@ class AutomationEngine:
             )
 
             child = self._identity_from(claim.get("child"))
+            child_liveness = self._is_live(child) if child is not None else None
             if outcome == OUTCOME_COMPLETE and child is not None:
-                if self._is_live(child) != "DEAD":
+                if child_liveness != "DEAD":
                     raise AutomationStateError(
                         "CHILD_NOT_EXITED: a completion cannot be recorded while a child runs"
                     )
@@ -492,6 +493,12 @@ class AutomationEngine:
                 # Only an explicit statement that nothing was created releases an unbound
                 # claim. A generic failure might have spawned a worker we cannot see.
                 self._archive_claim(claim, moment, "NO_WORKER_SPAWNED")
+            elif child is not None and child_liveness == "DEAD":
+                # The attached child is the market-data writer. Once it has exited and
+                # the terminal ledger/state commit is durable, the still-returning
+                # wrapper owns no mutable market-data work and must not hold the track
+                # claim until a later due interval.
+                self._archive_claim(claim, moment, "TERMINAL_CHILD_EXITED")
 
             return {
                 "state_status": outcome,

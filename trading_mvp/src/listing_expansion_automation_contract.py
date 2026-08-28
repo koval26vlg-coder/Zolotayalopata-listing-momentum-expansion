@@ -14,8 +14,11 @@ from typing import Any, Mapping
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-PLAN_ID = "listing_momentum_expansion_automation_20260828_v10"
-PLAN_RELATIVE_PATH = "docs/plans/listing-momentum-expansion-automation-planonly-20260828-v10.json"
+PLAN_ID = "listing_momentum_expansion_automation_20260828_v11"
+PLAN_RELATIVE_PATH = "docs/plans/listing-momentum-expansion-automation-planonly-20260828-v11.json"
+PREVIOUS_PLAN_RELATIVE_PATH = "docs/plans/listing-momentum-expansion-automation-planonly-20260828-v10.json"
+PREVIOUS_PLAN_HASH = "3502ad5cf932059158c10043788fd3c806f09c6d8279cc9752792cb01b010552"
+PREVIOUS_PLAN_FILE_SHA256 = "a018a8f2cf986c6cf18c896de9d95f8c4b86fbebc8566ff3df01f0662ba522c2"
 SCHEMA = "trading_mvp_listing_expansion_automation_planonly_v1"
 VENUES = ("binance", "bybit", "okx", "bitget")
 WRAPPER_ARTIFACTS = {
@@ -174,6 +177,14 @@ def build_plan(repo_root: Path, child_plan_path: Path, *, generated_at_utc: str)
     for path in sorted(_local_dependencies(list(roles.values()), root)):
         if path not in roles.values():
             roles["dependency_" + path.relative_to(root).as_posix().replace("/", "_").replace(".", "_")] = path
+    previous_path = _inside(root / PREVIOUS_PLAN_RELATIVE_PATH, root)
+    if _sha(previous_path) != PREVIOUS_PLAN_FILE_SHA256:
+        raise AutomationContractError("superseded wrapper plan file sha mismatch")
+    if hashlib.sha256(_committed_bytes(root, previous_path)).hexdigest() != PREVIOUS_PLAN_FILE_SHA256:
+        raise AutomationContractError("superseded wrapper plan committed bytes mismatch")
+    previous = read_json(previous_path)
+    if previous.get("plan_hash") != PREVIOUS_PLAN_HASH:
+        raise AutomationContractError("superseded wrapper plan hash mismatch")
     state_root = root / "docs/agent-log/run-gates/listing-expansion-automation"
     payload: dict[str, Any] = {
         "schema": SCHEMA, "plan_id": PLAN_ID, "mode": "PlanOnly",
@@ -182,6 +193,13 @@ def build_plan(repo_root: Path, child_plan_path: Path, *, generated_at_utc: str)
         "private_api": False, "live_orders": False, "real_capital": False,
         "leverage_or_margin": False, "replay_allowed": False, "evaluator_or_oos_allowed": False,
         "venues": list(VENUES), "acceptance_decision": "NONE_ACCRUAL_ONLY",
+        "technical_rebind": {
+            "reason": "terminal_child_exit_claim_cleanup",
+            "supersedes_plan_id": previous.get("plan_id"),
+            "supersedes_plan_hash": PREVIOUS_PLAN_HASH,
+            "supersedes_plan_file_sha256": PREVIOUS_PLAN_FILE_SHA256,
+            "supersedes_plan_path": str(previous_path),
+        },
         "child_plan": {"path": str(child_path), "plan_id": child["plan_id"], "plan_hash": child["plan_hash"], "file_sha256": _sha(child_path)},
         "child_launcher_path": str(child_by_role["visible_tick_launcher"]),
         "child_monitor_path": str(child_by_role["expansion_monitor"]),
@@ -191,7 +209,11 @@ def build_plan(repo_root: Path, child_plan_path: Path, *, generated_at_utc: str)
                        "wake_interval_sec": 300, "allowed_intervals_sec": [21600, 10800, 3600, 300],
                        "default_interval_sec": 21600, "max_runtime_sec": tick["max_runtime_sec"],
                        "handoff_timeout_sec": 30, "terminal_grace_sec": 60, "visible_worker_required": True,
-                       "not_due_is_read_only": True, "retry_next_interval": True, "global_claim_owner": "child_python_collector"},
+                       "not_due_is_read_only": True, "retry_next_interval": True, "global_claim_owner": "child_python_collector",
+                       "terminal_claim_release": {"durable_terminal_ledger_required": True,
+                                                  "durable_terminal_state_required": True,
+                                                  "attached_child_must_be_dead": True,
+                                                  "live_or_unknown_child_retains_claim": True}},
         "implementation": {"files": [{"role": role, "path": str(path), "sha256": _sha(path)} for role, path in sorted(roles.items())]},
         "plan_hash_method": "sha256_canonical_json_excluding_plan_hash",
     }
