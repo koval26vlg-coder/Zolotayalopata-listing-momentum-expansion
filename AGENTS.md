@@ -32,3 +32,19 @@ binds, and its tests describe that copy. Mirroring a change there without reissu
 that binds it breaks the binding silently, which is exactly how this rule came to be
 written: a behaviour change was copied into the main repository and its three plan-binding
 tests failed there while everything here stayed green.
+
+**Changing the wrapper plan has an order, and it is not optional.** A new plan does not
+inherit the previous plan's attempts: the state carries its plan hash, and the wrapper
+refuses with `BINDING_MISMATCH` rather than continuing under a binding nobody reviewed. So
+after reissuing the wrapper plan:
+
+1. rename `docs/agent-log/run-gates/listing-expansion-automation` to
+   `...listing-expansion-automation.superseded-<version>-<UTC stamp>`;
+2. run `listing_expansion_automation.py --launch-probe`, which re-creates the state and
+   starts nothing;
+3. only then re-pin the registry and re-bind the coordinator.
+
+Out of order, promotion fails with `active_state_read_failed` - the promoter reads that
+state file - and the message does not say why, which is how a five-minute step becomes an
+hour. The main repository's `refresh_listing_strategy_due_coordinator.ps1` now recognises
+that failure and prints these steps.
