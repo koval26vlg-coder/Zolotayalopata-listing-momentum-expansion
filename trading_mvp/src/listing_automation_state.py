@@ -36,6 +36,8 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Callable, Mapping
 
+from listing_atomic_io import atomic_write_json
+
 # The cadence ladder the listing plans declare. An interval outside it is refused rather
 # than rounded, so a typo cannot quietly become a schedule nobody reviewed.
 FROZEN_CADENCE_SECONDS: frozenset[int] = frozenset({300, 3600, 10800, 21600})
@@ -136,12 +138,7 @@ class AutomationEngine:
     # ---------------------------------------------------------------- persistence
 
     def _write_json(self, path: Path, payload: Mapping[str, Any]) -> None:
-        path.parent.mkdir(parents=True, exist_ok=True)
-        temporary = path.with_name(f"{path.name}.tmp.{os.getpid()}.{secrets.token_hex(4)}")
-        temporary.write_text(
-            json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-        )
-        temporary.replace(path)
+        atomic_write_json(path, payload)
 
     def _write_state(self, state: Mapping[str, Any]) -> None:
         self._write_json(self.paths.state, state)

@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import os
 import time
 from datetime import datetime, timezone
@@ -36,19 +37,42 @@ from slow_liquidity_listing_momentum_first_days_collector import (
 )
 from slow_liquidity_spot_v2_official_page_discovery import canonical_hash
 from adaptive_cadence import decide_cadence
+from listing_expansion_backlog import Backlog
+from listing_atomic_io import atomic_write_json
 
 
 SCHEMA = "trading_mvp_slow_liquidity_listing_momentum_forward_expansion_monitor_planonly_v3"
-PLAN_ID = "slow_liquidity_listing_momentum_forward_expansion_20260828_v17"
+PLAN_ID = "slow_liquidity_listing_momentum_forward_expansion_20260925_v18"
 AUTOMATION_ID = "zolotyaylopata-listing-momentum-forward-expansion"
 REPO_ROOT = Path(__file__).resolve().parents[2]
 PLAN_PATH = (
     REPO_ROOT
     / "docs/plans"
-    / "slow-liquidity-listing-momentum-forward-expansion-planonly-20260828-v17.json"
+    / "slow-liquidity-listing-momentum-forward-expansion-planonly-20260925-v18.json"
 )
 FORWARD_ROOT = Path("E:/trading_mvp/listing-momentum-forward-expansion")
 TICKS_DIR = FORWARD_ROOT / "ticks"
+BACKLOG_PATH = FORWARD_ROOT / "backlog-v18" / "events.jsonl"
+BACKLOG_CONTRACT = {
+    "schema": "expansion_backlog_event_v1",
+    "generation_isolation": "new_v18_no_legacy_completion_import",
+    "persist_before_cap": "normalized_discovery_snapshot_all_jobs_and_skips_then_fsynced_hash_chain",
+    "instrument_key": ["plan_hash", "exchange", "symbol"],
+    "proxy_anchor": "freeze_first_observed_hour_proxy_and_exact_received_time",
+    "revision_policy": "quarantine_changed_source_base_classification_or_metadata_timestamp",
+    "missing_symbol_policy": "retain_pending_never_infer_delisting",
+    "selection": "least_recent_attempt_sequence_then_admission_sequence_then_event_id",
+    "max_attempts_per_tick": 50,
+    "attempt_reservation": "durable_before_request_crash_remains_retry",
+    "minimum_retry_delay_sec": 300,
+    "complete": "closed_window_exact_unique_hourly_grid_valid_ohlcv_descriptive_only",
+    "outcome_commit": "raw_fsynced_immutable_receipt_manifest_state_terminal_ledger_then_queue_then_release",
+    "corruption_policy": "fail_closed_preserve_tail_no_automatic_truncation",
+    "terminal_identity": "COLLECTED_DESCRIPTIVE_tombstone_never_acceptance",
+    "manifest_jobs_total": "actually_attempted_selected_slice",
+    "pending_count": "all_queued_and_quarantined_records_including_deferred",
+    "cadence_evidence": "proxy_only_no_official_promotion",
+}
 STATE_PATH = (
     REPO_ROOT
     / "exports/trading-mvp/analysis"
@@ -111,6 +135,10 @@ def _validate_plan(plan: Mapping[str, Any], plan_path: Path) -> None:
     _require(plan.get("replay_allowed") is False, "replay must remain blocked")
     _require(plan.get("evaluator_or_oos_allowed") is False, "evaluator/OOS must remain blocked")
     _require(tuple(plan.get("venues") or []) == SUPPORTED_VENUES, "expansion venue set mismatch")
+    _require(plan.get("backlog_contract") == BACKLOG_CONTRACT, "backlog contract mismatch")
+    _require((plan.get("tick") or {}).get("backlog_path") == str(BACKLOG_PATH), "backlog path mismatch")
+    _require((plan.get("tick") or {}).get("max_new_listings_per_tick") == MAX_NEW_LISTINGS_PER_TICK,
+             "tick cap mismatch")
     _require(
         (plan.get("guard_contract") or {}).get("combined_launcher_scheduler_routable")
         is False,
@@ -132,6 +160,8 @@ def _validate_plan(plan: Mapping[str, Any], plan_path: Path) -> None:
         "visible_tick_launcher": REPO_ROOT / "tools/start_listing_momentum_forward_expansion_tick_visible.ps1",
         "expansion_plan_generator": REPO_ROOT / "trading_mvp/src/slow_liquidity_listing_momentum_forward_expansion_plan.py",
         "cadence_policy": REPO_ROOT / "trading_mvp/src/adaptive_cadence.py",
+        "expansion_backlog": REPO_ROOT / "trading_mvp/src/listing_expansion_backlog.py",
+        "atomic_io": REPO_ROOT / "trading_mvp/src/listing_atomic_io.py",
     }
     by_role = {str(item.get("role")): item for item in implementation if isinstance(item, Mapping)}
     _require(set(by_role) == set(expected), "expansion implementation role set mismatch")
@@ -248,6 +278,7 @@ def fetch_current_rows() -> tuple[list[dict[str, Any]], int]:
 def _forward_row(job: Mapping[str, Any], bar: Any) -> dict[str, Any]:
     return {
         "monitor": PLAN_ID,
+        "event_id": job.get("event_id"),
         "exchange": job["exchange"],
         "base": job["base"],
         "symbol": job["symbol"],
@@ -270,17 +301,21 @@ def _forward_row(job: Mapping[str, Any], bar: Any) -> dict[str, Any]:
 
 
 def _write_tick_manifest_atomic(path: Path, payload: Mapping[str, Any]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    encoded = (json.dumps(dict(payload), ensure_ascii=False, indent=2) + "\n").encode("utf-8")
-    temp_path = path.with_name(f".{path.name}.tmp.{os.getpid()}.{time.time_ns()}")
-    try:
-        with temp_path.open("xb") as handle:
-            handle.write(encoded)
-            handle.flush()
-            os.fsync(handle.fileno())
-        temp_path.replace(path)
-    finally:
-        temp_path.unlink(missing_ok=True)
+    atomic_write_json(path, payload)
+
+
+def _coverage_complete(job: Mapping[str, Any], bars: Sequence[Any], now_ts: int) -> bool:
+    """Acquisition coverage, not execution/strategy acceptance or a price signal."""
+    if now_ts < int(job["window_end_ts"]):
+        return False
+    selected = [bar for bar in bars if job["proxy_ts"] <= bar.ts < job["window_end_ts"]]
+    expected = list(range(((int(job["proxy_ts"])+3599)//3600)*3600, int(job["window_end_ts"]), 3600))
+    if not expected or sorted(bar.ts for bar in selected) != expected:
+        return False
+    return all(all(math.isfinite(float(getattr(bar, field))) for field in
+                   ("open", "high", "low", "close", "volume"))
+               and 0 < bar.low <= min(bar.open, bar.close) <= max(bar.open, bar.close) <= bar.high
+               and bar.volume >= 0 for bar in selected)
 
 
 def _finalize_incomplete_tick_manifest(
@@ -460,8 +495,6 @@ def run_tick(
     _assert_legacy_expansion_claim_absent()
     tick_dir = TICKS_DIR / tick_id
     _require(not tick_dir.exists(), f"tick {tick_id} already exists")
-    from listing_event_history_collector import write_manifest
-
     now_ts = int(now_ts if now_ts is not None else time.time())
     deadline = time.monotonic() + MAX_RUNTIME_SEC
     fetcher = fetcher or fetch_current_rows
@@ -500,6 +533,10 @@ def run_tick(
     skipped: list[dict[str, Any]] = []
     baseline_as_of_ts = 0
     manifest_path = tick_dir / "manifest.json"
+    backlog = None
+    outcomes_path = None
+    discovery_error = None
+    discovered_job_count = 0
     try:
         tick_dir.mkdir(parents=True, exist_ok=True)
         release_failure_reason = "running_manifest_persistence_exception"
@@ -520,7 +557,12 @@ def run_tick(
         )
         release_failure_reason = "fetch_or_prepare_exception"
         reconcile_running_tick_manifests(exclude_tick_id=tick_id)
-        current_rows, snapshot_requests = fetcher()
+        backlog = Backlog(BACKLOG_PATH, str(plan["plan_hash"]))
+        try:
+            current_rows, snapshot_requests = fetcher()
+        except Exception as exc:
+            current_rows, snapshot_requests = [], 0
+            discovery_error = f"{type(exc).__name__}: {exc}"
         requests_made += snapshot_requests
         baseline = (plan.get("source_bindings") or {}).get("preflight") or {}
         baseline_as_of_ts = int(baseline.get("baseline_as_of_ts") or 0)
@@ -549,8 +591,26 @@ def run_tick(
             for entry in new_listings
             if not entry["collect"]
         ]
-        jobs = derive_forward_jobs(new_listings)
-        _require(len(jobs) <= MAX_NEW_LISTINGS_PER_TICK, f"new listings {len(jobs)} exceed tick cap {MAX_NEW_LISTINGS_PER_TICK}")
+        discovered_jobs = derive_forward_jobs(new_listings)
+        discovered_job_count = len(discovered_jobs)
+        known_instruments = {(e["job"]["exchange"], e["job"]["symbol"]) for e in backlog.entries.values()}
+        known_revision_jobs = derive_forward_jobs([
+            {**entry, "collect": True} for entry in new_listings
+            if not entry["collect"] and (entry["exchange"], entry["symbol"]) in known_instruments
+        ])
+        # Durable full normalized evidence before ANY budget selection or OHLCV request.
+        snapshot_path = tick_dir / "discovery.json"
+        _write_tick_manifest_atomic(snapshot_path, {
+            "schema": "expansion_discovery_snapshot_v1", "tick_id": tick_id,
+            "plan_hash": plan["plan_hash"], "now_ts": now_ts,
+            "received_at_utc": utc_now_iso(), "baseline_binding": baseline,
+            "current_rows": current_rows, "jobs": discovered_jobs + known_revision_jobs, "skipped": skipped,
+            "known_skipped_observations_for_revision_checks": len(known_revision_jobs),
+            "requests_made": snapshot_requests, "discovery_error": discovery_error,
+        })
+        release_failure_reason = "backlog_admission_persistence_exception"
+        backlog.admit(snapshot_path)
+        jobs = backlog.select(now_ts, MAX_NEW_LISTINGS_PER_TICK)
         release_failure_reason = "collection_or_result_exception"
         stop_reason = "completed"
         with (tick_dir / "ohlcv.jsonl").open("w", encoding="utf-8") as handle:
@@ -558,6 +618,9 @@ def run_tick(
                 if time.monotonic() > deadline:
                     stop_reason = "max_runtime_sec_exceeded"
                     break
+                release_failure_reason = "backlog_attempt_persistence_exception"
+                backlog.start(job["event_id"], tick_id, now_ts)
+                release_failure_reason = "collection_or_result_exception"
                 requests = 0
                 try:
                     client = clients[job["exchange"]]
@@ -593,8 +656,13 @@ def run_tick(
                     if job["category"] == "new_listing_in_progress":
                         summary["flags"] = list(summary["flags"]) + ["window_in_progress"]
                 summary.pop("window_bars", None)
+                summary["coverage_complete"] = (
+                    summary["job_status"] == "SUCCEEDED" and _coverage_complete(job, bars, now_ts))
+                if not summary["coverage_complete"]:
+                    summary["flags"] = list(summary["flags"]) + ["acquisition_incomplete"]
                 summary.update(
                     {
+                        "event_id": job["event_id"],
                         "exchange": job["exchange"],
                         "base": job["base"],
                         "symbol": job["symbol"],
@@ -614,6 +682,8 @@ def run_tick(
                     if job["proxy_ts"] <= bar.ts < job["window_end_ts"]:
                         handle.write(json.dumps(_forward_row(job, bar), ensure_ascii=False) + "\n")
                         rows_written += 1
+            handle.flush()
+            os.fsync(handle.fileno())
         if stop_reason == "max_runtime_sec_exceeded":
             for job in jobs[len(job_summaries) :]:
                 retry_queue.append(
@@ -629,9 +699,18 @@ def run_tick(
                 stop_reason = "partial_job_request_error"
             else:
                 stop_reason = "all_jobs_request_error"
-        if stop_reason == "completed":
+        completed_ids = {j["event_id"] for j in job_summaries if j["coverage_complete"]}
+        detailed_retries = {j["event_id"]: j for j in retry_queue if j.get("event_id")}
+        retry_queue = [j for j in backlog.pending(now_ts) if j["event_id"] not in completed_ids]
+        retry_queue = [{**j, **detailed_retries.get(j["event_id"], {})} for j in retry_queue]
+        if discovery_error:
+            retry_queue.append({"failure_reason": "discovery_snapshot_failed", "error": discovery_error,
+                                "retry_disposition": "RETRY_NEXT_INTERVAL"})
+        if retry_queue and stop_reason == "completed":
+            stop_reason = "backlog_pending_next_interval"
+        if not retry_queue and stop_reason == "completed":
             terminal_status = "COMPLETED"
-        elif stop_reason == "partial_job_request_error":
+        elif jobs_succeeded:
             terminal_status = "PARTIAL_RETRY_NEXT_INTERVAL"
         else:
             terminal_status = "STOPPED_INCOMPLETE"
@@ -649,9 +728,17 @@ def run_tick(
             "plan_hash": plan["plan_hash"],
             "now_ts": now_ts,
             "baseline_as_of_ts": baseline_as_of_ts,
-            "new_listing_count": len(jobs),
+            "new_listing_count": discovered_job_count,
+            "discovery_error": discovery_error,
+            "discovery_snapshot_path": str(snapshot_path),
+            "discovery_snapshot_sha256": _sha256_file(snapshot_path),
+            "backlog_path": str(BACKLOG_PATH),
+            "backlog_total_count": len(backlog.entries),
+            "backlog_pending_count": len(retry_queue) - int(bool(discovery_error)),
+            "jobs_selected": len(jobs),
+            "jobs_deferred": max(0, len(backlog.pending(now_ts)) - len(job_summaries)),
             "skipped_backfill_or_relist": skipped,
-            "jobs_total": len(jobs),
+            "jobs_total": len(job_summaries),
             "jobs_attempted": len(job_summaries),
             "jobs_succeeded": jobs_succeeded,
             "jobs_failed": jobs_failed,
@@ -661,7 +748,14 @@ def run_tick(
             "rows_written": rows_written,
             "requests_made": requests_made,
         }
-        write_manifest(manifest_path, manifest)
+        outcomes_path = tick_dir / "acquisition-outcomes.json"
+        _write_tick_manifest_atomic(outcomes_path, {
+            "schema": "expansion_acquisition_outcomes_v1", "tick_id": tick_id,
+            "plan_hash": plan["plan_hash"], "jobs": job_summaries,
+            "raw_evidence": {"path": str((tick_dir / "ohlcv.jsonl").resolve()),
+                             "sha256": _sha256_file(tick_dir / "ohlcv.jsonl")},
+        })
+        _write_tick_manifest_atomic(manifest_path, manifest)
         release_failure_reason = "state_rebuild_exception"
         rebuild_forward_state()
         release_final_status = terminal_status
@@ -680,9 +774,12 @@ def run_tick(
             "pending_retry": True,
             "now_ts": now_ts,
             "baseline_as_of_ts": baseline_as_of_ts,
-            "new_listing_count": len(jobs),
+            "new_listing_count": discovered_job_count,
+            "discovery_error": discovery_error,
+            "backlog_path": str(BACKLOG_PATH),
+            "jobs_selected": len(jobs),
             "skipped_backfill_or_relist": skipped,
-            "jobs_total": len(jobs),
+            "jobs_total": len(job_summaries),
             "jobs_attempted": len(job_summaries),
             "jobs_succeeded": jobs_succeeded,
             "jobs_failed": jobs_failed,
@@ -710,6 +807,7 @@ def run_tick(
             )
         raise
     finally:
+        durability_stage = "terminal_ledger_persistence_exception"
         try:
             _append_terminal_attempt(
                 claim=claim,
@@ -720,21 +818,31 @@ def run_tick(
                 primary_error=primary_error,
                 finalization_error=finalization_error,
             )
+            if primary_error is None and backlog is not None and outcomes_path is not None:
+                # Completion tombstones follow raw, receipt, manifest, state and ledger durability.
+                durability_stage = "backlog_outcome_persistence_exception"
+                backlog.finish(outcomes_path, now_ts)
         except BaseException as ledger_exc:
             # No successful durability barrier means no release or archive,
             # including when the terminal manifest could not be finalized.
             if primary_error is None:
                 try:
+                    recovery_pending = backlog.pending(now_ts) if backlog is not None else retry_queue
+                    if discovery_error:
+                        recovery_pending = [*recovery_pending, {"failure_reason": "discovery_snapshot_failed",
+                            "error": discovery_error, "retry_disposition": "RETRY_NEXT_INTERVAL"}]
                     _finalize_incomplete_tick_manifest(
                         manifest_path,
                         tick_id=tick_id,
                         started_at_utc=started_utc,
                         plan_hash=str(plan["plan_hash"]),
-                        failure_reason="terminal_ledger_persistence_exception",
+                        failure_reason=durability_stage,
                         error=f"{type(ledger_exc).__name__}: {ledger_exc}",
                         partial={
                             **terminal_attempt,
-                            "jobs_pending_retry": max(1, len(retry_queue)),
+                            "jobs_pending_retry": max(1, len(recovery_pending)),
+                            "backlog_pending_count": len(recovery_pending)-int(bool(discovery_error)),
+                            "retry_queue": recovery_pending,
                         },
                     )
                     rebuild_forward_state()
@@ -743,7 +851,7 @@ def run_tick(
                         "ledger failure manifest/state finalization also failed: "
                         f"{type(finalize_exc).__name__}: {finalize_exc}"
                     )
-                ledger_exc.add_note("terminal attempt ledger not durable; global writer claim retained")
+                ledger_exc.add_note(f"{durability_stage}; global writer claim retained")
                 raise
             primary_error.add_note(
                 "terminal attempt ledger persistence also failed; global writer claim retained: "
@@ -835,10 +943,14 @@ def rebuild_forward_state() -> dict[str, Any]:
     except (OSError, ValueError, KeyError, TypeError):
         current_plan_hash = None
 
-    windows: dict[tuple[str, str], dict[str, Any]] = {}
+    windows: dict[tuple[str, ...], dict[str, Any]] = {}
     ticks: list[dict[str, Any]] = []
     cadence_rows: list[dict[str, Any]] = []
     cadence_rows_considered = 0
+    latest_backlog_manifest = None
+    def identity(row):
+        key = (str(row.get("exchange")), str(row.get("base")))
+        return (*key, str(row["event_id"])) if row.get("event_id") else key
     for tick_dir in _tick_dirs():
         manifest_path = tick_dir / "manifest.json"
         if not manifest_path.is_file():
@@ -851,6 +963,8 @@ def rebuild_forward_state() -> dict[str, Any]:
         # scheduler ends up pinned to its tightest interval by ten-day-old evidence.
         if current_plan_hash is None or manifest.get("plan_hash") == current_plan_hash:
             cadence_rows.extend(rows)
+            if "backlog_pending_count" in manifest:
+                latest_backlog_manifest = manifest
         tick_id = manifest.get("tick_id")
         tick_plan_hash = manifest.get("plan_hash")
         ticks.append(
@@ -867,19 +981,19 @@ def rebuild_forward_state() -> dict[str, Any]:
         rows_path = tick_dir / "ohlcv.jsonl"
         if not rows_path.is_file():
             continue
-        bars_by_key: dict[tuple[str, str], list[dict[str, Any]]] = {}
+        bars_by_key: dict[tuple[str, ...], list[dict[str, Any]]] = {}
         for line in rows_path.read_text(encoding="utf-8").splitlines():
             if not line.strip():
                 continue
             row = json.loads(line)
-            bars_by_key.setdefault((str(row["exchange"]), str(row["base"])), []).append(row)
+            bars_by_key.setdefault(identity(row), []).append(row)
         jobs_by_key = {
-            (job.get("exchange"), job.get("base")): job
+            identity(job): job
             for job in manifest.get("jobs") or []
             if isinstance(job, Mapping)
         }
         job_flags = {
-            (job.get("exchange"), job.get("base")): job.get("flags") or []
+            identity(job): job.get("flags") or []
             for job in manifest.get("jobs") or []
             if isinstance(job, Mapping)
         }
@@ -890,8 +1004,10 @@ def rebuild_forward_state() -> dict[str, Any]:
             windows[key] = {
                 "exchange": key[0],
                 "base": key[1],
+                "event_id": key[2] if len(key) == 3 else None,
                 "flags": job_flags.get(key, []),
-                "window_complete": "window_in_progress" not in job_flags.get(key, []),
+                "window_complete": ((jobs_by_key.get(key) or {}).get("coverage_complete") is True
+                                    if len(key) == 3 else "window_in_progress" not in job_flags.get(key, [])),
                 "stats": compute_window_stats(bars),
                 # The last tick to touch a pair replaces it outright rather than merging,
                 # so a window comes from exactly one tick and this attribution is exact.
@@ -917,6 +1033,18 @@ def rebuild_forward_state() -> dict[str, Any]:
         "job_rows_in_scope": len(cadence_rows),
         "job_rows_in_store": cadence_rows_considered,
     }
+    # Current queue manifests explicitly report projected post-commit pending
+    # state. Reading the backlog here would precede its terminal commit barrier.
+    backlog_pending_count = None
+    if latest_backlog_manifest is not None:
+        backlog_pending_count = latest_backlog_manifest["backlog_pending_count"]
+        cadence_observation.update(
+            candidate=backlog_pending_count > 0,
+            official_confirmed=False, exact_timestamp=False,
+            source_class="proxy" if backlog_pending_count else None,
+            proxy_timestamp=backlog_pending_count > 0,
+            queue_observation_tick_id=latest_backlog_manifest["tick_id"],
+        )
     cadence = decide_cadence(cadence_observation)
     crypto_acceptance_window_count = sum(
         1
@@ -970,12 +1098,12 @@ def rebuild_forward_state() -> dict[str, Any]:
         "current_plan_window_count": current["windows"],
         "current_plan_complete_window_count": current["complete"],
         "current_plan_crypto_acceptance_window_count": current["crypto_acceptance"],
+        "backlog_pending_count": backlog_pending_count,
         "cadence_observation": cadence_observation,
         "adaptive_cadence": cadence.as_dict(),
     }
     payload["state_hash"] = canonical_hash(payload)
-    STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    STATE_PATH.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    _write_tick_manifest_atomic(STATE_PATH, payload)
     return payload
 
 

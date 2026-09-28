@@ -1,0 +1,187 @@
+{
+  "schema": "trading_mvp_listing_expansion_automation_planonly_v1",
+  "plan_id": "listing_momentum_expansion_automation_20260925_v12",
+  "mode": "PlanOnly",
+  "status": "READY_FOR_SCHEDULER_ROUTED_BOUNDED_PUBLIC_RESEARCH",
+  "generated_at_utc": "2026-09-25T08:51:36Z",
+  "research_only": true,
+  "public_data_only": true,
+  "private_api": false,
+  "live_orders": false,
+  "real_capital": false,
+  "leverage_or_margin": false,
+  "replay_allowed": false,
+  "evaluator_or_oos_allowed": false,
+  "venues": [
+    "binance",
+    "bybit",
+    "okx",
+    "bitget"
+  ],
+  "acceptance_decision": "NONE_ACCRUAL_ONLY",
+  "technical_rebind": {
+    "reason": "bounded_unverified_failure_diagnostics_no_capture_recovery",
+    "supersedes_plan_id": "listing_momentum_expansion_automation_20260828_v11",
+    "supersedes_plan_hash": "e82bf2fe8d586d1d24e52382f21554304d38d3d4c7b3855d844c6d2c385bd4d9",
+    "supersedes_plan_file_sha256": "8eb133a18ee0a0a7f0dcf96a4e373139e9361e8c55d539226dd45b247d231795",
+    "supersedes_plan_path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\docs\\plans\\listing-momentum-expansion-automation-planonly-20260828-v11.json"
+  },
+  "child_plan": {
+    "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\docs\\plans\\slow-liquidity-listing-momentum-forward-expansion-planonly-20260828-v17.json",
+    "plan_id": "slow_liquidity_listing_momentum_forward_expansion_20260828_v17",
+    "plan_hash": "9f90509ff04a48ca8897b4056fba2a37d8a366be744ed36b0a5c4c5104dfbc1d",
+    "file_sha256": "8cfb126c3d8d7c4e2e0b44fe3a5c989b97d11fa27f1737ab2963960d59d3a855"
+  },
+  "child_launcher_path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\tools\\start_listing_momentum_forward_expansion_tick_visible.ps1",
+  "child_monitor_path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\slow_liquidity_listing_momentum_forward_expansion_monitor.py",
+  "automation": {
+    "automation_id": "zolotyaylopata-listing-expansion-canonical",
+    "root": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\docs\\agent-log\\run-gates\\listing-expansion-automation",
+    "state_path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\docs\\agent-log\\run-gates\\listing-expansion-automation\\state.json",
+    "attempts_path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\docs\\agent-log\\run-gates\\listing-expansion-automation\\attempts.jsonl",
+    "claim_path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\docs\\agent-log\\run-gates\\listing-expansion-automation\\claim.json",
+    "claim_archive": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\docs\\agent-log\\run-gates\\listing-expansion-automation\\claim-archive",
+    "wake_interval_sec": 300,
+    "allowed_intervals_sec": [
+      21600,
+      10800,
+      3600,
+      300
+    ],
+    "default_interval_sec": 21600,
+    "max_runtime_sec": 600,
+    "handoff_timeout_sec": 30,
+    "terminal_grace_sec": 60,
+    "visible_worker_required": true,
+    "not_due_is_read_only": true,
+    "retry_next_interval": true,
+    "global_claim_owner": "child_python_collector",
+    "terminal_claim_release": {
+      "durable_terminal_ledger_required": true,
+      "durable_terminal_state_required": true,
+      "attached_child_must_be_dead": true,
+      "live_or_unknown_child_retains_claim": true
+    }
+  },
+  "implementation": {
+    "files": [
+      {
+        "role": "active_gate_checker",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\tools\\check_active_run_gate.ps1",
+        "sha256": "a3b1b735dba6681b18fdb2e9be637079a22391123eced0a316dc2b76855193fd"
+      },
+      {
+        "role": "automation_contract",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\listing_expansion_automation_contract.py",
+        "sha256": "2cc91a2bba022a12a3d939b6757dd981ce75ce1876b320918fbb81989d9b3d65"
+      },
+      {
+        "role": "automation_runner",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\listing_expansion_automation.py",
+        "sha256": "c6239b635154ef87bb40ed726919ec32b17ed7c66967a4f88a2e3d479598f84d"
+      },
+      {
+        "role": "automation_state",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\listing_automation_state.py",
+        "sha256": "ae7524bab099e1d2d0bde7dc7192940547edfdf72a440fce456f454abcec8b11"
+      },
+      {
+        "role": "cadence_policy",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\adaptive_cadence.py",
+        "sha256": "066d7991c0e223be02b5073911c43efda4888d8efd6b62a8845dd4bf7ee4afaa"
+      },
+      {
+        "role": "child_expansion_adapter",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\listing_momentum_exchange_expansion.py",
+        "sha256": "e7cf15c79cf45efecb818a0ef7eac5f96065cee33b5164a499f07d0b86504ff9"
+      },
+      {
+        "role": "child_expansion_monitor",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\slow_liquidity_listing_momentum_forward_expansion_monitor.py",
+        "sha256": "e0dd2079d77ede507ada53cffa862b62c021d85e22bd89f4b5bd246b7596097c"
+      },
+      {
+        "role": "child_expansion_plan_generator",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\slow_liquidity_listing_momentum_forward_expansion_plan.py",
+        "sha256": "44f6ed91090da637bdde14122fff990d948ffbc8ac25edc2cf9ee47b61b4d0bc"
+      },
+      {
+        "role": "child_outcome_verifier",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\listing_expansion_child_evidence.py",
+        "sha256": "03760222e34d4f12fadfcd0560bcd6b9278ebad81ba2ceb847b123f93e7bd9f4"
+      },
+      {
+        "role": "child_preflight_launcher",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\tools\\start_listing_momentum_exchange_expansion_preflight_visible.ps1",
+        "sha256": "2bc7e91d997deb6f29ab5c4ff3773b1f2f26b5e2a90126175af45d5bd9bc0b05"
+      },
+      {
+        "role": "child_spot_asset_classifier",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\listing_spot_asset_class.py",
+        "sha256": "5d6e94a3af6e41ef570f9dbf8ba6aae472e597e14f4b5d196f1feadbf6a773e1"
+      },
+      {
+        "role": "child_visible_tick_launcher",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\tools\\start_listing_momentum_forward_expansion_tick_visible.ps1",
+        "sha256": "35fc7d0287edcde16e1a67a8da08ec95f0c505a6389deb4e1b37ec26ee413f5f"
+      },
+      {
+        "role": "dependency_trading_mvp_src_listing_event_history_collect_plan_py",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\listing_event_history_collect_plan.py",
+        "sha256": "00e725b02b21cac159ca61904ce2223cd89bf0b39f056dd7a1da5899215b6acc"
+      },
+      {
+        "role": "dependency_trading_mvp_src_listing_event_history_collector_py",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\listing_event_history_collector.py",
+        "sha256": "a6ce0cc800953ede3a31bbad8881e8a2733a84a7fb07d7c69b80652efc39cbed"
+      },
+      {
+        "role": "dependency_trading_mvp_src_listing_event_normalizer_py",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\listing_event_normalizer.py",
+        "sha256": "2c552cbe69eb71dddf3280641dab1e3f7775ebf43c0299386e8605b83528e485"
+      },
+      {
+        "role": "dependency_trading_mvp_src_slow_liquidity_listing_momentum_first_days_census_py",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\slow_liquidity_listing_momentum_first_days_census.py",
+        "sha256": "7726e75198401a575167132c8f69c622d6d5f16809279b0ff10f85cc27b27564"
+      },
+      {
+        "role": "dependency_trading_mvp_src_slow_liquidity_listing_momentum_first_days_collector_py",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\slow_liquidity_listing_momentum_first_days_collector.py",
+        "sha256": "0d1bd87dd4a97977df4c72eb41b4d4635619be425e701878b6bbc4c2b9306e67"
+      },
+      {
+        "role": "dependency_trading_mvp_src_slow_liquidity_official_identity_proposal_py",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\slow_liquidity_official_identity_proposal.py",
+        "sha256": "de157bd1b143b60c71f0c84131b15c816248e819affecb9b0bca6ea71a431cd1"
+      },
+      {
+        "role": "dependency_trading_mvp_src_slow_liquidity_official_identity_verification_py",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\slow_liquidity_official_identity_verification.py",
+        "sha256": "b26e685af9134e0425360a7bdf5bc896e4901aff887e8d5c6876ace6331b08bf"
+      },
+      {
+        "role": "dependency_trading_mvp_src_slow_liquidity_spot_v2_official_page_discovery_py",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\slow_liquidity_spot_v2_official_page_discovery.py",
+        "sha256": "a9b147eb2aab71ce1cefa40be708f2294b55aef52089619b6d84996807bc112b"
+      },
+      {
+        "role": "dependency_trading_mvp_src_slow_liquidity_spot_v2_request_plan_py",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\slow_liquidity_spot_v2_request_plan.py",
+        "sha256": "a9f135ce6e180248b64798a4036b64db87ea1d0e5a8709a6fde4cda755fb9080"
+      },
+      {
+        "role": "global_writer_claim",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\global_market_writer_claim.py",
+        "sha256": "bc0604267c9d709a17188eb9daf317417d2633bf4c31266f73db33ac2f5066d2"
+      },
+      {
+        "role": "visible_automation_launcher",
+        "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\tools\\start_listing_momentum_expansion_automation_visible.ps1",
+        "sha256": "d6c18b50fcbe4a8ed0d16d6fff0fc444db8a9bdf1bda07d8a6b8d7e72284b3dc"
+      }
+    ]
+  },
+  "plan_hash_method": "sha256_canonical_json_excluding_plan_hash",
+  "plan_hash": "2150fdb52cc034afc1e4f75d530ce1a5bf039b9df8c931394faafc29ac8dbe52"
+}

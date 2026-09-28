@@ -246,6 +246,40 @@ class ChildOutcomeEvidenceTests(unittest.TestCase):
     def test_missing_terminal_json_does_not_search_latest_manifest(self) -> None:
         self.assert_retry(self.fixture.call(stdout_text="tick exit code: 0\n"))
 
+    def test_failed_child_keeps_cap_diagnostic_without_promoting_it_to_evidence(self) -> None:
+        result = self.fixture.call(
+            stdout_text=("Traceback (most recent call last):\n"
+                         "ExpansionMonitorError: new listings 1510 exceed tick cap 50\n"
+                         "tick exit code: 1\n"), exit_code=1,
+        )
+        self.assert_retry(result)
+        self.assertIn("new listings 1510 exceed tick cap 50", result["reason"])
+        self.assertIn("unverified child output", result["reason"])
+        self.assertNotIn("child_manifest_sha256", result)
+        self.assertEqual({}, result["counts"])
+
+    def test_failed_preflight_keeps_structured_reason_without_reading_old_manifest(self) -> None:
+        result = self.fixture.call(stdout_text=json.dumps({
+            "ok": False, "reasons": ["active_run_gate_invalid: checker exited 1"],
+            "plan_id": self.fixture.plan["plan_id"],
+        }), exit_code=1)
+        self.assert_retry(result)
+        self.assertIn("active_run_gate_invalid", result["reason"])
+        self.assertNotIn("child_tick_id", result)
+
+    def test_failed_child_diagnostic_is_bounded(self) -> None:
+        result = self.fixture.call(
+            stdout_text="ExpansionMonitorError: " + "x" * 5000, exit_code=1)
+        self.assert_retry(result)
+        self.assertIn("unverified child output", result["reason"])
+        self.assertLessEqual(len(result["reason"]), 640)
+
+    def test_stdout_diagnostic_cannot_hide_missing_terminal_after_zero_exit(self) -> None:
+        result = self.fixture.call(
+            stdout_text="ExpansionMonitorError: stale diagnostic", exit_code=0)
+        self.assert_retry(result)
+        self.assertEqual("no terminal record was printed", result["reason"])
+
     def test_multiple_terminal_objects_are_ambiguous_even_if_identical(self) -> None:
         self.assert_retry(self.fixture.call(stdout_text=self.fixture.stdout() + json.dumps(self.fixture.terminal())))
 

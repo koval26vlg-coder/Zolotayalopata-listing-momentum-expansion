@@ -245,7 +245,7 @@ def run_once(
             str(shell), "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass",
             "-File", str(launcher),
             "-PlanPath", str(child_plan_path),
-            "-VisibleWorker", "-ScheduledTick",
+            "-VisibleWorker", "-ScheduledTick", "-Json",
         ],
         cwd=str(repo_root),
         stdout=subprocess.PIPE,

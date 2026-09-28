@@ -159,6 +159,40 @@ def _retry(reason: str, *, candidate: bool = False) -> dict[str, Any]:
 # ---------------------------------------------------------------- evidence readers
 
 
+def _child_failure_diagnostic(stdout_text: str) -> str | None:
+    """Keep a bounded failure explanation, never a substitute for terminal evidence.
+
+    The launcher can refuse before a tick exists, and the monitor reraises after
+    durably recording a failed tick. Neither prints a success-shaped terminal object.
+    Previously both reached the attempt ledger as just 'no terminal record', hiding
+    the reason for every future retry. These hints remain unverified child output;
+    they cannot provide counts, a tick identity, cadence escalation, or success.
+    """
+    decoder = json.JSONDecoder(object_pairs_hook=_no_duplicate_keys)
+    index = 0
+    while True:
+        start = stdout_text.find("{", index)
+        if start < 0:
+            break
+        try:
+            value, index = decoder.raw_decode(stdout_text, start)
+        except ValueError:
+            index = start + 1
+            continue
+        if isinstance(value, dict) and value.get("ok") is False:
+            reasons = value.get("reasons")
+            if isinstance(reasons, list) and reasons and all(isinstance(r, str) for r in reasons):
+                return " ".join("; ".join(reasons).split())[:512]
+    prefixes = ("ExpansionMonitorError:", "ExpansionAutomationError:",
+                "AutomationContractError:", "PermissionError:",
+                "FileNotFoundError:", "RuntimeError:")
+    for line in reversed(stdout_text.splitlines()):
+        clean = re.sub(r"\x1b\[[0-9;]*[A-Za-z]", "", line).strip()
+        if clean.startswith(prefixes):
+            return " ".join(clean.split())[:512]
+    return None
+
+
 def _terminal_from_stdout(stdout_text: Any) -> dict[str, Any]:
     if not isinstance(stdout_text, str):
         raise _reject("stdout is not text")
@@ -523,11 +557,14 @@ def verify_child_outcome(
         )
 
         jobs: Iterable[Mapping[str, Any]] = manifest.get("jobs") or []
+        pending_jobs = [dict(job) for job in manifest.get("retry_queue") or []]
+        # A bounded tick may service mature jobs while upcoming candidates remain
+        # deferred. Both lists have passed the same manifest/receipt/ledger checks;
+        # neither may turn metadata into an official listing timestamp.
         candidate = any(
             isinstance(job, Mapping) and job.get("category") == _IN_PROGRESS_CATEGORY
-            for job in jobs
+            for job in (*jobs, *pending_jobs)
         )
-        pending_jobs = [dict(job) for job in manifest.get("retry_queue") or []]
         counts = {
             field: manifest[field]
             for field in (
@@ -564,7 +601,12 @@ def verify_child_outcome(
             "cadence_observation": _cadence_observation(candidate),
         }
     except _Reject as refusal:
-        return _retry(str(refusal))
+        reason = str(refusal)
+        if reason == "no terminal record was printed" and _is_int(exit_code) and exit_code != 0:
+            diagnostic = _child_failure_diagnostic(stdout_text)
+            if diagnostic:
+                reason += f"; unverified child output: {diagnostic}"
+        return _retry(reason)
     except (OSError, ValueError) as exc:
         return _retry(f"the child evidence could not be read: {exc}")
 

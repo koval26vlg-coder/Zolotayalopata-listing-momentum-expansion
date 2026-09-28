@@ -36,10 +36,10 @@ CANONICAL_PRIMARY_SPOT_COMMIT = "b77c27c1b4cc84db2828d4da8049aa251b8a5bef"
 PREVIOUS_EXPANSION_PLAN_PATH = (
     REPO_ROOT
     / "docs/plans"
-    / "slow-liquidity-listing-momentum-forward-expansion-planonly-20260827-v16.json"
+    / "slow-liquidity-listing-momentum-forward-expansion-planonly-20260828-v17.json"
 )
-PREVIOUS_EXPANSION_PLAN_HASH = "884829d5714e63f2ec20f0342770a0af236a836301c6f277b6250a621c6a5a68"
-PREVIOUS_EXPANSION_PLAN_FILE_SHA256 = "9c6f0793f3ecfcd04dd8bc5aa27098d0fe9472c5dc28ac965ee84c1d1fbc4051"
+PREVIOUS_EXPANSION_PLAN_HASH = "9f90509ff04a48ca8897b4056fba2a37d8a366be744ed36b0a5c4c5104dfbc1d"
+PREVIOUS_EXPANSION_PLAN_FILE_SHA256 = "8cfb126c3d8d7c4e2e0b44fe3a5c989b97d11fa27f1737ab2963960d59d3a855"
 BATCH1_RECEIPT_PATH = (
     REPO_ROOT
     / "docs/agent-log"
@@ -161,7 +161,25 @@ FIRST_BINDING_KIND = "first_binding_of_role_absent_from_superseded_plan"
 # See the forward-monitor generator for the full reasoning. Declaring a scope change is
 # a code edit under review; it withdraws the autopilot's unattended authority over this
 # plan, which autopilot_guard enforces by admitting only same-scope technical rebinds.
-RESEARCH_SCOPE_CHANGE: dict[str, Any] | None = None
+RESEARCH_SCOPE_CHANGE: dict[str, Any] | None = {
+    "changed_fields": [
+        "backlog_contract",
+        "tick.backlog_path",
+        "tick.max_new_listings_per_tick_semantics",
+        "detection_time_proxy.first_observed_persistence",
+        "discovery.admission_before_budget_cap",
+        "job_selection.least_recent_attempt_first",
+        "completion.exact_hourly_grid_after_window_close",
+    ],
+    "reason": (
+        "Replace fail-on-excess discovery with append-only durable admission before "
+        "the unchanged 50-job-attempt/600-second tick limits. Freeze first-observed "
+        "proxy timestamps, retain vanished instruments, quarantine conflicting "
+        "metadata revisions and fairly revisit incomplete jobs. The frozen baseline "
+        "is not altered; this changes prospective accrual protocol, not acceptance."
+    ),
+    "autopilot_authority": "WITHDRAWN_UNTIL_REVIEWED",
+}
 RUNTIME_TOPOLOGY_CHANGE: dict[str, Any] | None = None
 TECHNICAL_REBIND_REASON = (
     "Seal reviewed Bitget Reality identities from official venue metadata. The "
@@ -271,6 +289,8 @@ def build_plan(generated_at_utc: str) -> dict[str, Any]:
         "expansion_adapter": REPO_ROOT / "trading_mvp/src/listing_momentum_exchange_expansion.py",
         "spot_asset_classifier": REPO_ROOT / "trading_mvp/src/listing_spot_asset_class.py",
         "expansion_monitor": REPO_ROOT / "trading_mvp/src/slow_liquidity_listing_momentum_forward_expansion_monitor.py",
+        "expansion_backlog": REPO_ROOT / "trading_mvp/src/listing_expansion_backlog.py",
+        "atomic_io": REPO_ROOT / "trading_mvp/src/listing_atomic_io.py",
         "preflight_launcher": REPO_ROOT / "tools/start_listing_momentum_exchange_expansion_preflight_visible.ps1",
         "visible_tick_launcher": REPO_ROOT / "tools/start_listing_momentum_forward_expansion_tick_visible.ps1",
         "expansion_plan_generator": Path(__file__).resolve(),
@@ -397,6 +417,7 @@ def build_plan(generated_at_utc: str) -> dict[str, Any]:
             "venue_contracts": venue_contracts,
         },
         "implementation": {"files": implementation},
+        "backlog_contract": monitor.BACKLOG_CONTRACT,
         "tick": {
             "run_kind": "repeatable_bounded_visible_tick",
             "cadence_recommendation": "adaptive: search 6h, candidate 3h, official confirmation 1h, exact official time within 24h 5m; scheduler wake 5m and no-op when not due",
@@ -409,6 +430,8 @@ def build_plan(generated_at_utc: str) -> dict[str, Any]:
             "tick_output_root": str(monitor.TICKS_DIR),
             "claim_path": str(monitor.CLAIM_PATH),
             "state_path": str(monitor.STATE_PATH),
+            "backlog_path": str(monitor.BACKLOG_PATH),
+            "max_new_listings_per_tick_semantics": "maximum_job_attempts_including_retries_not_discovery_admissions",
             # Declared so a wrapper has a named place to read terminal evidence from,
             # and taken from the monitor itself so the plan cannot name a file the
             # monitor does not actually append to.
@@ -483,6 +506,13 @@ def validate_plan(plan: Mapping[str, Any]) -> None:
     )
     _require(plan.get("tick", {}).get("max_runtime_sec") == monitor.MAX_RUNTIME_SEC, "runtime bound")
     _require(plan.get("tick", {}).get("max_new_listings_per_tick") == monitor.MAX_NEW_LISTINGS_PER_TICK, "tick cap")
+    _require(plan.get("backlog_contract") == monitor.BACKLOG_CONTRACT, "backlog protocol")
+    _require(plan.get("tick", {}).get("backlog_path") == str(monitor.BACKLOG_PATH), "backlog path")
+    _require(
+        plan.get("tick", {}).get("max_new_listings_per_tick_semantics")
+        == "maximum_job_attempts_including_retries_not_discovery_admissions",
+        "tick cap semantics",
+    )
     _require(plan.get("source_bindings", {}).get("parent_v2", {}).get("parallel_immutable") is True, "v2 parallel binding")
     _require(plan.get("guard_contract", {}).get("v2_namespace_must_remain_untouched") is True, "v2 isolation guard")
     _require(
@@ -499,6 +529,11 @@ def validate_plan(plan: Mapping[str, Any]) -> None:
         "technical rebind provenance",
     )
     _require_declared_scope_change(rebind)
+    _require(
+        rebind.get("research_scope_changed") is (RESEARCH_SCOPE_CHANGE is not None)
+        and rebind.get("research_scope_change") == RESEARCH_SCOPE_CHANGE,
+        "research scope change declaration",
+    )
     topology = rebind.get("runtime_topology_change")
     if RUNTIME_TOPOLOGY_CHANGE is None:
         _require(topology is None, "unexpected runtime topology change declaration")
@@ -545,6 +580,8 @@ def validate_plan(plan: Mapping[str, Any]) -> None:
         "expansion_adapter": REPO_ROOT / "trading_mvp/src/listing_momentum_exchange_expansion.py",
         "spot_asset_classifier": REPO_ROOT / "trading_mvp/src/listing_spot_asset_class.py",
         "expansion_monitor": REPO_ROOT / "trading_mvp/src/slow_liquidity_listing_momentum_forward_expansion_monitor.py",
+        "expansion_backlog": REPO_ROOT / "trading_mvp/src/listing_expansion_backlog.py",
+        "atomic_io": REPO_ROOT / "trading_mvp/src/listing_atomic_io.py",
         "preflight_launcher": REPO_ROOT / "tools/start_listing_momentum_exchange_expansion_preflight_visible.ps1",
         "visible_tick_launcher": REPO_ROOT / "tools/start_listing_momentum_forward_expansion_tick_visible.ps1",
         "expansion_plan_generator": Path(__file__).resolve(),

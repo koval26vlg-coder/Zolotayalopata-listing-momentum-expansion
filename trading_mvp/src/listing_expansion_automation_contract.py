@@ -14,16 +14,17 @@ from typing import Any, Mapping
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-PLAN_ID = "listing_momentum_expansion_automation_20260828_v11"
-PLAN_RELATIVE_PATH = "docs/plans/listing-momentum-expansion-automation-planonly-20260828-v11.json"
-PREVIOUS_PLAN_RELATIVE_PATH = "docs/plans/listing-momentum-expansion-automation-planonly-20260828-v10.json"
-PREVIOUS_PLAN_HASH = "3502ad5cf932059158c10043788fd3c806f09c6d8279cc9752792cb01b010552"
-PREVIOUS_PLAN_FILE_SHA256 = "a018a8f2cf986c6cf18c896de9d95f8c4b86fbebc8566ff3df01f0662ba522c2"
+PLAN_ID = "listing_momentum_expansion_automation_20260925_v13"
+PLAN_RELATIVE_PATH = "docs/plans/listing-momentum-expansion-automation-planonly-20260925-v13.json"
+PREVIOUS_PLAN_RELATIVE_PATH = "docs/plans/listing-momentum-expansion-automation-planonly-20260925-v12.json"
+PREVIOUS_PLAN_HASH = "2150fdb52cc034afc1e4f75d530ce1a5bf039b9df8c931394faafc29ac8dbe52"
+PREVIOUS_PLAN_FILE_SHA256 = "06dfb0f6bd23b658a6f1e208a576447bc296ccf7ceb5bb5d21ee375394e3c997"
 SCHEMA = "trading_mvp_listing_expansion_automation_planonly_v1"
 VENUES = ("binance", "bybit", "okx", "bitget")
 WRAPPER_ARTIFACTS = {
     "automation_contract": "trading_mvp/src/listing_expansion_automation_contract.py",
     "automation_state": "trading_mvp/src/listing_automation_state.py",
+    "atomic_io": "trading_mvp/src/listing_atomic_io.py",
     "automation_runner": "trading_mvp/src/listing_expansion_automation.py",
     "child_outcome_verifier": "trading_mvp/src/listing_expansion_child_evidence.py",
     "visible_automation_launcher": "tools/start_listing_momentum_expansion_automation_visible.ps1",
@@ -180,10 +181,10 @@ def build_plan(repo_root: Path, child_plan_path: Path, *, generated_at_utc: str)
     previous_path = _inside(root / PREVIOUS_PLAN_RELATIVE_PATH, root)
     if _sha(previous_path) != PREVIOUS_PLAN_FILE_SHA256:
         raise AutomationContractError("superseded wrapper plan file sha mismatch")
-    if hashlib.sha256(_committed_bytes(root, previous_path)).hexdigest() != PREVIOUS_PLAN_FILE_SHA256:
-        raise AutomationContractError("superseded wrapper plan committed bytes mismatch")
+    # Offline successor preparation accepts an immutable local predecessor. Runtime
+    # validate_plan below still requires its exact bytes in HEAD before any launch.
     previous = read_json(previous_path)
-    if previous.get("plan_hash") != PREVIOUS_PLAN_HASH:
+    if previous.get("plan_hash") != PREVIOUS_PLAN_HASH or previous.get("plan_hash") != canonical_hash(previous):
         raise AutomationContractError("superseded wrapper plan hash mismatch")
     state_root = root / "docs/agent-log/run-gates/listing-expansion-automation"
     payload: dict[str, Any] = {
@@ -194,7 +195,9 @@ def build_plan(repo_root: Path, child_plan_path: Path, *, generated_at_utc: str)
         "leverage_or_margin": False, "replay_allowed": False, "evaluator_or_oos_allowed": False,
         "venues": list(VENUES), "acceptance_decision": "NONE_ACCRUAL_ONLY",
         "technical_rebind": {
-            "reason": "terminal_child_exit_claim_cleanup",
+            "reason": "durable_discovery_backlog_and_bounded_atomic_replace",
+            "research_scope_changed": True,
+            "autopilot_authority": "WITHDRAWN_UNTIL_REVIEWED",
             "supersedes_plan_id": previous.get("plan_id"),
             "supersedes_plan_hash": PREVIOUS_PLAN_HASH,
             "supersedes_plan_file_sha256": PREVIOUS_PLAN_FILE_SHA256,
@@ -245,6 +248,9 @@ def validate_plan(path: Path, *, repo_root: Path = REPO_ROOT) -> dict[str, Any]:
     raw = _stable_bytes(path)
     if raw != _committed_bytes(root, path):
         raise AutomationContractError("wrapper plan differs from committed Git bytes")
+    previous_path = _inside(root / PREVIOUS_PLAN_RELATIVE_PATH, root)
+    if hashlib.sha256(_committed_bytes(root, previous_path)).hexdigest() != PREVIOUS_PLAN_FILE_SHA256:
+        raise AutomationContractError("superseded wrapper plan committed bytes mismatch")
     try:
         child_path = Path(plan["child_plan"]["path"])
         expected = build_plan(root, child_path, generated_at_utc=plan["generated_at_utc"])
