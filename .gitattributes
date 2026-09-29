@@ -47,3 +47,26 @@ docs/plans/slow-liquidity-listing-momentum-forward-expansion-planonly-20260925-v
 docs/plans/listing-momentum-expansion-automation-planonly-20260925-v13.json -text whitespace=cr-at-eol
 trading_mvp/src/listing_expansion_backlog.py -text whitespace=cr-at-eol
 trading_mvp/src/listing_atomic_io.py -text whitespace=cr-at-eol
+trading_mvp/src/listing_expansion_identity_evidence.py -text
+trading_mvp/src/listing_expansion_review_queue.py -text
+trading_mvp/src/listing_expansion_review_contract.py -text
+trading_mvp/src/listing_expansion_review_materializer.py -text
+trading_mvp/tests/test_listing_expansion_identity_evidence.py -text
+trading_mvp/tests/test_listing_expansion_review_queue.py -text
+trading_mvp/tests/test_listing_expansion_review_contract.py -text
+trading_mvp/tests/test_listing_expansion_review_materializer.py -text
+docs/plans/listing-expansion-identity-priority-planonly-20260929-v1.json -text
+docs/plans/listing-expansion-identity-priority-planonly-20260929-v2.json -text
+trading_mvp/src/listing_expansion_generation.py -text
+trading_mvp/src/slow_liquidity_listing_momentum_forward_expansion_monitor_v19.py -text
+trading_mvp/src/slow_liquidity_listing_momentum_forward_expansion_plan_v19.py -text
+trading_mvp/src/listing_expansion_automation_contract_v14.py -text
+trading_mvp/src/listing_expansion_automation_v14.py -text
+trading_mvp/tests/test_listing_expansion_generation_backlog.py -text
+trading_mvp/tests/test_listing_expansion_successor_install.py -text
+trading_mvp/tests/test_expansion_monitor_v19.py -text
+tools/start_listing_momentum_forward_expansion_tick_v19_visible.ps1 -text
+tools/start_listing_momentum_expansion_automation_v14_visible.ps1 -text
+docs/evidence/listing-expansion-reviewed-lineage-seed-20260929-v1.json -text
+docs/plans/slow-liquidity-listing-momentum-forward-expansion-planonly-20260929-v19.json -text
+docs/plans/listing-momentum-expansion-automation-planonly-20260929-v14.json -text

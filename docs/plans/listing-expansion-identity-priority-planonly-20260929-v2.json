@@ -1,0 +1,231 @@
+{
+  "schema": "listing_expansion_review_planonly_v1",
+  "plan_id": "listing_expansion_identity_priority_20260929_v2",
+  "mode": "PlanOnly",
+  "status": "OFFLINE_READY_NOT_ACTIVATED",
+  "generated_at_utc": "2026-09-29T09:14:42.481125Z",
+  "as_of_ts": 1790672774,
+  "manual_review_received_ts": 1790672774,
+  "research_only": true,
+  "public_data_only": true,
+  "network_allowed": false,
+  "collector_allowed": false,
+  "scheduler_allowed": false,
+  "private_api": false,
+  "live_orders": false,
+  "real_capital": false,
+  "leverage_or_margin": false,
+  "replay_allowed": false,
+  "evaluator_allowed": false,
+  "source_plan_hash": "5f32fed7297b46c5b657623157ad816e72e79ed6307f309ead3efd6d4e3ebb31",
+  "source_plan_id": "slow_liquidity_listing_momentum_forward_expansion_20260925_v18",
+  "expected_input_events": 2202,
+  "venues": [
+    "binance",
+    "bybit",
+    "okx",
+    "bitget"
+  ],
+  "policy": {
+    "retry_slots": 10,
+    "max_proposals": 50,
+    "aging_slots_per_venue": 1,
+    "official_future_horizon_sec": 86400,
+    "official_active_after_sec": 60,
+    "recent_metadata_horizon_sec": 259200,
+    "separate_lanes": true,
+    "migration": "LINKED_OVERLAY_NO_SOURCE_REWRITE",
+    "selection_not_execution": true
+  },
+  "input_files": [
+    {
+      "role": "source_plan",
+      "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\docs\\plans\\slow-liquidity-listing-momentum-forward-expansion-planonly-20260925-v18.json",
+      "sha256": "5a214eb887ec43178b934c14fdbb7aedbdb0d48524177bcff5552ba6cb4ea64d"
+    },
+    {
+      "role": "source_backlog",
+      "path": "E:\\trading_mvp\\listing-momentum-forward-expansion\\backlog-v18\\events.jsonl",
+      "sha256": "268a46f8bec78f41146e2223642fd30f5103f628c0f2fec209e0a255930a5f4b"
+    },
+    {
+      "role": "discovery",
+      "path": "E:\\trading_mvp\\listing-momentum-forward-expansion\\ticks\\expansion_tick_20260929T0820263742263Z\\discovery.json",
+      "sha256": "cee786422187424adc8a9eba0be5bc8ba516efa93ca7029991e00c0399b5ba2c"
+    },
+    {
+      "role": "tick_manifest",
+      "path": "E:\\trading_mvp\\listing-momentum-forward-expansion\\ticks\\expansion_tick_20260929T0820263742263Z\\manifest.json",
+      "sha256": "9e701231f89bc00cefb29dfdadcc36491ddad4ab4ad8f56dc0458a980ea63cf0"
+    },
+    {
+      "role": "acquisition_outcomes",
+      "path": "E:\\trading_mvp\\listing-momentum-forward-expansion\\ticks\\expansion_tick_20260929T0820263742263Z\\acquisition-outcomes.json",
+      "sha256": "c4bc79511124e11fa32aa387bd53cfa3b92ccc9a651e968bec82d7a8c20aaba0"
+    },
+    {
+      "role": "raw_ohlcv",
+      "path": "E:\\trading_mvp\\listing-momentum-forward-expansion\\ticks\\expansion_tick_20260929T0820263742263Z\\ohlcv.jsonl",
+      "sha256": "af5df64956dd39f31eff529ad8c44dce945595823f7fba626ef6bc2d013becc8"
+    },
+    {
+      "role": "bitget_receipt",
+      "path": "C:\\Users\\koval\\Documents\\ChatGPT\\Listing\\reports\\expansion-identity-priority-20260929\\bitget\\source_manifest.json",
+      "sha256": "c54fd480e59ce525fcdaff46c7dfcd32b1bf30795037e05013dbb61a8b269f1e"
+    },
+    {
+      "role": "bitget_raw",
+      "path": "C:\\Users\\koval\\Documents\\ChatGPT\\Listing\\reports\\expansion-identity-priority-20260929\\bitget\\instruments-20260929T0851Z.raw.json",
+      "sha256": "45c28d9d1b8cfd867963335e11f843256034baeb5eae9b00d2469d44396e50b3"
+    },
+    {
+      "role": "bitget_docs",
+      "path": "C:\\Users\\koval\\Documents\\ChatGPT\\Listing\\reports\\expansion-identity-priority-20260929\\bitget\\instruments-docs.raw.html",
+      "sha256": "161a85b8a7d51fcb771e77822dc1cc962503ccf899a43dc85a2b9d0291b4bdd3"
+    },
+    {
+      "role": "bitget_reality_docs",
+      "path": "C:\\Users\\koval\\Documents\\ChatGPT\\Listing\\reports\\expansion-identity-priority-20260929\\bitget\\reality-guide.raw.html",
+      "sha256": "d0bc191ff07498b2997604ad6f07412136fd8bddb04f703f3229fa88d73e6419"
+    },
+    {
+      "role": "okx_review",
+      "path": "C:\\Users\\koval\\Documents\\ChatGPT\\Listing\\reports\\expansion-identity-priority-20260929\\okx\\XDP_EVIDENCE.json",
+      "sha256": "f4ebceacda919deb0435363e2ad35f8a58d7dcbeee15ae4943440ccb6e74bf30"
+    },
+    {
+      "role": "okx_instrument",
+      "path": "C:\\Users\\koval\\Documents\\ChatGPT\\Listing\\reports\\expansion-identity-priority-20260929\\okx\\instruments_xdp_spot.json",
+      "sha256": "4a3cb50a8f61a89b2dbe5cd798be14a6d68889b04a3b7fc3caf5fa64f62d4d86"
+    },
+    {
+      "role": "okx_announcement",
+      "path": "C:\\Users\\koval\\Documents\\ChatGPT\\Listing\\reports\\expansion-identity-priority-20260929\\okx\\spot_announcement_us.html",
+      "sha256": "d857adfdf659aca91b001dc041f89bc6311b3bee5039a31be543bfe6d627e181"
+    },
+    {
+      "role": "okx_perp_announcement",
+      "path": "C:\\Users\\koval\\Documents\\ChatGPT\\Listing\\reports\\expansion-identity-priority-20260929\\okx\\perpetual_announcement_us.html",
+      "sha256": "dccefeeef19f6411efe531864e8345a2d9bb7b1680e646f46dbabd6c92de2e14"
+    },
+    {
+      "role": "okx_docs",
+      "path": "C:\\Users\\koval\\Documents\\ChatGPT\\Listing\\reports\\expansion-identity-priority-20260929\\okx\\api_docs.html",
+      "sha256": "8a08f29d3da3ad1ecec9a6a36704b09dc61834e6fb9116efb51a7bbf4ae8a02c"
+    },
+    {
+      "role": "okx_source_receipt",
+      "path": "C:\\Users\\koval\\Documents\\ChatGPT\\Listing\\reports\\expansion-identity-priority-20260929\\okx\\source_manifest.json",
+      "sha256": "039c6c1d9b6cc56e7590e9150f87271ef0c030348e47d7bcf7ac765a2ed908e4"
+    },
+    {
+      "role": "okx_regional_receipt",
+      "path": "C:\\Users\\koval\\Documents\\ChatGPT\\Listing\\reports\\expansion-identity-priority-20260929\\okx\\regional_source_manifest.json",
+      "sha256": "74d74e724a4d83e11cdb8ce5e063805a4701f9f1193416e621f9f1e7ef94609e"
+    },
+    {
+      "role": "proxy_review",
+      "path": "C:\\Users\\koval\\Documents\\ChatGPT\\Listing\\reports\\expansion-identity-priority-20260929\\proxy\\reviewed_candidates.json",
+      "sha256": "3433a6347df7431dbcfcca550d2e94775e39827f01994101b528bfd3171892ef"
+    },
+    {
+      "role": "superseded_v1_plan",
+      "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\docs\\plans\\listing-expansion-identity-priority-planonly-20260929-v1.json",
+      "sha256": "bd4c9edf4e88748a7d2a6e68d290a4242625c1bf8d7ebf70a4c8663f255c1d51"
+    },
+    {
+      "role": "superseded_v1_code_snapshot",
+      "path": "C:\\Users\\koval\\Documents\\ChatGPT\\Listing\\reports\\expansion-identity-priority-20260929\\pre-v2-code-snapshot.json",
+      "sha256": "bfbb776cdda5eedbbcbc413379c1f3d1e932c1fa2b10a9996b7b4d9ee3774a70"
+    },
+    {
+      "role": "superseded_v1_bundle_manifest",
+      "path": "C:\\Users\\koval\\Documents\\ChatGPT\\Listing\\reports\\expansion-identity-priority-20260929\\materialized-v1\\manifest.json",
+      "sha256": "2099b24582bd4ac605a4ab76a6af788e0e61864491619463b61d4bdac7c5b0a7"
+    }
+  ],
+  "implementation_files": [
+    {
+      "role": "review_contract",
+      "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\listing_expansion_review_contract.py",
+      "sha256": "54ef88d0b5e0eb870319eb128f77b0ce24c2ba37a31bdda7d6d0dcee301216e2"
+    },
+    {
+      "role": "review_queue",
+      "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\listing_expansion_review_queue.py",
+      "sha256": "a5bd8225711d7a4263d2edb1b9c7a1e9058eff9de024e22c14b7660c749f0c7f"
+    },
+    {
+      "role": "evidence_validator",
+      "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\listing_expansion_identity_evidence.py",
+      "sha256": "a49f67e1e85a80e951773b2ae18dd9b0d40307d9fd5600b3fc57ff7ba3fec990"
+    },
+    {
+      "role": "materializer",
+      "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\listing_expansion_review_materializer.py",
+      "sha256": "5af41ea30addb87c4a6f5f2bba4cf99ace32923861c0b26cb95db1c0ea84cf71"
+    },
+    {
+      "role": "backlog",
+      "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\src\\listing_expansion_backlog.py",
+      "sha256": "507c590da82a6fc231e15c7e1fc7856c573829cfc3cf185c909a520682ccfe55"
+    }
+  ],
+  "test_files": [
+    {
+      "role": "test_listing_expansion_identity_evidence",
+      "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\tests\\test_listing_expansion_identity_evidence.py",
+      "sha256": "ee29df42aad2ce52a4a5f8a8f7764c89a54d178f464d86b6a752ed223295dfea"
+    },
+    {
+      "role": "test_listing_expansion_review_queue",
+      "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\tests\\test_listing_expansion_review_queue.py",
+      "sha256": "7bd8c30c01010865aef8804f33f87e5b479dd63fd3472845f16b1f4c4412303c"
+    },
+    {
+      "role": "test_listing_expansion_review_contract",
+      "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\tests\\test_listing_expansion_review_contract.py",
+      "sha256": "2cc028a1c0928ff5c5e3393e7f6590cfe01b5f49456e6081e73247266189291e"
+    },
+    {
+      "role": "test_listing_expansion_review_materializer",
+      "path": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion\\trading_mvp\\tests\\test_listing_expansion_review_materializer.py",
+      "sha256": "008585e6f5b9fe994fc67953cfa1d535e0d644314648d739de8a7b686d38ccf3"
+    }
+  ],
+  "authorization": {
+    "user_request": "выполняй",
+    "scope": "official identity/timestamp research plus separate versioned queue-priority review plan",
+    "network_work_already_completed_as_separate_bounded_source_review": true,
+    "installed_collector_changed": false
+  },
+  "lineage": {
+    "relationship": "additive_review_overlay_of_v18_not_collector_successor",
+    "source_repository": "C:\\Users\\koval\\Documents\\ZolotyayLopata-listing-momentum-expansion",
+    "source_git_head": "fe503768d168e1c392807884a6e422eaded08db0",
+    "source_backlog_preserved": true,
+    "source_event_ids_preserved": true,
+    "source_anchors_preserved": true,
+    "state_migration_allowed": false,
+    "legacy_completion_is_not_acceptance": true
+  },
+  "evidence_rules": {
+    "bitget": "exact symbol/base/quote/category plus symbolType and isReality; no ticker heuristic",
+    "okx_xdp": "separate auction listTime and continuous contTdSwTime corroborated by official announcement",
+    "proxy17": "reviewed web extract identity can be displayed but RAW_SOURCE_ARCHIVE_MISSING blocks acquisition proposal",
+    "source_reception_never_backdated_to_publication": true,
+    "t0_not_first_trade": true,
+    "acceptance_decision": "NONE_DESCRIPTIVE_REVIEW_ONLY"
+  },
+  "activation_requirements": [
+    "Separate collector-generation integration and lineage transfer without editing v18.",
+    "Reviewed bound implementation, state namespace, registry/launcher bindings and concurrency gate.",
+    "Missing raw article evidence resolved before selecting web-extract-only records.",
+    "No recurring schedule or OHLCV acquisition is authorized by this plan."
+  ],
+  "supersedes_plan_hash": "3a551d798d7c6527fad87a088d93bbcbe940595fb4b1375877543af58cb2dddb",
+  "supersedes_plan_id": "listing_expansion_identity_priority_20260929_v1",
+  "version_reason": "Bind each implementation role to the actual imported sibling module path; reject duplicate paths and unknown roles. No source classification, as_of, timestamp or priority-policy change.",
+  "predecessor_disposition": "v1 retained unchanged with exact pre-v2 code/test byte snapshot and output manifest; superseded for future use due to role-path binding defect",
+  "plan_hash": "8e11bcb2a03688f20539ee0797f35ba7a4f1143c2a30bbd038d4b58738725706"
+}
